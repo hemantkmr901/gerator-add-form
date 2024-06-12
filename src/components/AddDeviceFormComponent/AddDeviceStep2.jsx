@@ -142,7 +142,7 @@ const AddDeviceStep2 = () => {
   //     console.log(errors); // Inspect the latest errors
   //   }
   // }, [errors, isValid, dirty]);
- 
+
 
   useEffect(() => {
     // This effect runs whenever errors, isValid, or dirty change
@@ -166,15 +166,20 @@ const AddDeviceStep2 = () => {
 
 
   useEffect(() => {
-    console.log("Gallery touched ");
+    console.log("Gallery touched Open 169");
     console.log(touched);
-    if(touched.gallery && values.gallery[0] != null){
+    if (touched.gallery && values.gallery[0] != null) {
       // console.log();
-      console.log("inside useEffect values");
+      console.log("inside useEffect values 173");
+    const galleryError = validateField("gallery");
+      console.log(galleryError);
       setGalleryImageFile([...values.gallery]);
     }
+
+    console.log("Gallery touched Close 177");
+
     //   console.log(values.gallery);
-  
+
     // return () => {
     //   second
     // }
@@ -189,21 +194,21 @@ const AddDeviceStep2 = () => {
     // if(featureImageFile != null)
     // {
     console.log("+++++++++++++++++++++++++++++++++");
-    console.log("Gallery Image Error Called");
+    console.log("Gallery Image Error Called ");
     console.log(galleryImageFile.length);
     console.log(!isValid + " " + dirty);
     if (!isValid && dirty && (galleryImageFile.length > 0)) {
-      console.log("UseEffect error and handleSelect is called");
-      handleSelectedMultiImageFile();
+      console.log("Gallery Image Error UseEffect 199");
+      handleSelectedMultiImageFile("error");
       // galleryImageFile.forEach(file => {
-        // });
-        // setFeatureImageFile(null);
-        }
-        
-        console.log("+++++++++++++++++++++++++++++++++");
-  }, [errors, isValid, dirty]);
+      // });
+      // setFeatureImageFile(null);
+    }
+    console.log("Gallery Image Error Closed ");
+    console.log("+++++++++++++++++++++++++++++++++");
+  }, [errors]);
 
-  
+
   useEffect(() => {
     // This effect runs whenever errors, isValid, or dirty change
     // console.log("File ref has any data? ");
@@ -212,25 +217,28 @@ const AddDeviceStep2 = () => {
     //   console.log(fileImageRef.current.files[0]);
     // if(featureImageFile != null)
     // {
+        
     console.log("----------------------------------");
     console.log("Gallery Image File Called ");
     console.log(galleryImageFile.length);
     console.log(!isValid + " " + dirty);
     if (!isValid && dirty && (galleryImageFile.length > 0)) {
-      console.log("UseEffect2 error and handleSelect is called");
-      handleSelectedMultiImageFile();
+      console.log("Gallery Image File UseEffect2 223");
+      handleSelectedMultiImageFile("galleryImageFile");
       // galleryImageFile.forEach(file => {
-        // });
-        // setFeatureImageFile(null);
-        }
-      console.log("----------------------------------");
+      // });
+      // setFeatureImageFile(null);
+    }
+    console.log("Gallery Image File Closed ");
+
+    console.log("----------------------------------");
 
   }, [galleryImageFile]);
 
 
 
 
-  
+
 
   // useEffect(() => {
   //   //   formikRef.current?.setValues(formData);
@@ -358,7 +366,7 @@ const AddDeviceStep2 = () => {
     // setSelectedImageFile(e.target.files[0])
     // console.log(savedError);
     // console.log(error);
-    console.log(error);
+    // console.log(error);
 
     if (!errors.featureImage) {
       setFieldTouched("featureImage", true);
@@ -419,20 +427,23 @@ const AddDeviceStep2 = () => {
   }
 
   //onChange handle method for gallery where populating image one by one
-  const handleSelectedMultiImageFile = () => {
-    
-    console.log("333333333333333333333333");
-    console.log(errors);
-console.log(!errors.gallery);
+  const handleSelectedMultiImageFile = (type) => {
 
+    console.log("handleSelectedMultiImageFile Called "+type );
+    // console.log(!errors.gallery);
+    
     if (!errors.gallery) {
       setFieldTouched("gallery", true);
-      console.log("handleSelectedImage Called 280");
+      console.log(errors);
+      console.log("Inside !erros.gallery is true means no error found 435");
       setSelectedMultiImageFile(galleryImageFile)
+      console.log("File added into select multi image hook");
       // [...selectedMultiImageFile, ...galleryImageFile]
       setGalleryImageFile([])
     } else {
-      console.log("Error found line 283 ");
+      console.log(errors);
+      console.log("Inside !erros.gallery is false means error found 435");
+
       // if (cropedImageFile !== '') setCropedImageFile('')
       // setGalleryImageFile([])
       // const updatedValues = values.gallery;
@@ -440,7 +451,8 @@ console.log(!errors.gallery);
       // console.log(newUpdatedValues);
       setFieldTouched("gallery", true);
     }
-    console.log("33333333333333333333333333333333");
+       console.log("handleSelectedMultiImageFile Closed "+type);
+
   }
 
 
@@ -499,13 +511,14 @@ console.log(!errors.gallery);
 
       // if (values.gallery[0] === null) { console.log("first value is null"); }
       // setFieldValue(name, [...values.gallery, ...fileObjects]);
-      console.log("FFFFFFFFFFFFFFFFFFFFF");
+      console.log("Values updated........");
       // console.log(values.gallery);
 
       // setGalleryImageFile([...values.gallery, ...fileObjects]);
       return;
     }
 
+    console.log("handle change closed");
 
 
     setFieldValue(name, value);
