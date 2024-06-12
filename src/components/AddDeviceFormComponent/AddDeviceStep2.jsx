@@ -22,7 +22,7 @@ import ImageCrop from "../ImageCropComponent/ImageCrop";
 
 
 
-const FileUpload = ({ imageRef, ...props }) => {
+const FileUpload = ({ ...props }) => {
   const [field, meta] = useField(props);
 
 
@@ -40,7 +40,7 @@ const FileUpload = ({ imageRef, ...props }) => {
           text="Click to upload"
           textPaddingClassName="buttons-button-2"
         /></label>
-      <input ref={imageRef} type="file" accept="image/*" {...field} {...props} />
+      <input type="file" accept="image/*" {...field} {...props} />
       <div className="action custom-action">
 
         {/* <br/> */}
@@ -56,7 +56,7 @@ const FileUpload = ({ imageRef, ...props }) => {
 };
 
 
-const MultiFileUpload = ({ multi_imageRef, ...props }) => {
+const MultiFileUpload = ({ ...props }) => {
   const [field, meta] = useField(props);
   return (
     <div>
@@ -72,17 +72,25 @@ const MultiFileUpload = ({ multi_imageRef, ...props }) => {
           text="Click to upload"
           textPaddingClassName="buttons-button-2"
         /></label>
-      <input ref={multi_imageRef} type="file" multiple {...field} accept="image/*" {...props} />
+      <input type="file" multiple accept="image/*" {...field} {...props} />
       <div className="action custom-action">
 
         {/* <br/> */}
         <div className="text-28">or drag and drop</div>
       </div>
       <p className="supporting-text-10">PNG, JPG or GIF (max. 800x400px)</p>{" "}
-
-      {meta.touched && meta.error ? (
-        <div style={{ color: "red" }}>{meta.error}</div>
+      {meta.touched && meta.error && meta.error.length > 0 ? (
+        <div>
+          {meta.error.map((error, index) => (
+            <div key={index} style={{ color: "red" }}>
+              {error}
+            </div>
+          ))}
+        </div>
       ) : null}
+      {/* {meta.touched && meta.error ? (
+        <div style={{ color: "red" }}>{meta.error}</div>
+      ) : null} */}
     </div>
   );
 };
@@ -117,7 +125,8 @@ const AddDeviceStep2 = () => {
   const formData = useSelector((state) => state.addDevice);
   const appData = useSelector((state) => state.appDataAddDevice);
   const [featureImageFile, setFeatureImageFile] = useState(null);
-  const { validateForm, setFieldValue, setFieldError, setErrors, setFieldTouched, validateField, errors, isValid, dirty } = useFormikContext();
+  const [galleryImageFile, setGalleryImageFile] = useState([]);
+  const { values, validateForm, setFieldValue, setFieldError, setErrors, setFieldTouched, validateField, errors, isValid, dirty, touched } = useFormikContext();
   // let imageCrop ;
   const { isImageSelected, setIsImageSelected, selectedMultiImageFile, setSelectedMultiImageFile, selectedImageFile, setSelectedImageFile, cropedImageFile, setCropedImageFile } = useContext(AddDeviceFormContext);
 
@@ -133,89 +142,158 @@ const AddDeviceStep2 = () => {
   //     console.log(errors); // Inspect the latest errors
   //   }
   // }, [errors, isValid, dirty]);
-
+ 
 
   useEffect(() => {
     // This effect runs whenever errors, isValid, or dirty change
     // console.log("File ref has any data? ");
     // console.log(fileImageRef.current?.files);
     // if (fileImageRef.current?.files.length > 0) {
-      //   console.log(fileImageRef.current.files[0]);
-      // if(featureImageFile != null)
-      // {
-      console.log("Feature Image");
-      console.log(featureImageFile);
-        if (!isValid && dirty && (featureImageFile != null)) {
-          console.log("UseEffect error and handleSelect is called");
-          handleSelectedImageFile(featureImageFile, errors);
-          // setFeatureImageFile(null);
-          }
-         
+    //   console.log(fileImageRef.current.files[0]);
+    // if(featureImageFile != null)
+    // {
+    // console.log("Feature Image");
+    // console.log(featureImageFile);
+    if (!isValid && dirty && (featureImageFile != null)) {
+      // console.log("UseEffect error and handleSelect is called");
+      handleSelectedImageFile(featureImageFile, errors);
+      // setFeatureImageFile(null);
+    }
+
   }, [errors, isValid, dirty, featureImageFile]);
 
 
+
+
   useEffect(() => {
-    //   formikRef.current?.setValues(formData);
-    //   // console.log(formikRef.current);
-    // }, [formData]);
-
-    // onChange Listener on input file tag(featureImage)
-    // useEffect(() => {
-    //   if (fileImageRef.current) {
-    //     fileImageRef.current.addEventListener('change', handleSelectedImageFile);
-    //   }
-    //   return () => { // Add a cleanup function
-    //     if (fileImageRef.current) {
-    //       fileImageRef.current.removeEventListener('change', handleSelectedImageFile);
-    //     }
-    //   }
-    
-    // console.log(selectedImageFile);
-    // console.log(isImageSelected);
-    // if (selectedImageFile !== "" && isImageSelected === true) {
-    //   setIsImageSelected(false);
-    //   setFieldValue("featureImage", '')
-    //   console.log("file+true effect");
-    //   console.log(selectedImageFile);
+    console.log("Gallery touched ");
+    console.log(touched);
+    if(touched.gallery && values.gallery[0] != null){
+      // console.log();
+      console.log("inside useEffect values");
+      setGalleryImageFile([...values.gallery]);
+    }
+    //   console.log(values.gallery);
+  
+    // return () => {
+    //   second
     // }
-    console.log("outside selectimage effect");
-    if (selectedImageFile !== "" && isImageSelected === false) {
-      setIsImageSelected(true);
-      console.log("UseEffect file+false");
-      selectedImageFile ? console.log(selectedImageFile): console.log("no data in selectedImageFile hook");
-    }
+  }, [values])
 
-    if (selectedImageFile === "" && isImageSelected === true){
-      const filteredErrors = Object.keys(errors).reduce((acc, fieldName) => {
-        // Filter based on your condition (replace with your actual logic)
-        if (fieldName !== 'featureImage') { 
-          acc[fieldName] = errors[fieldName];
+  useEffect(() => {
+    // This effect runs whenever errors, isValid, or dirty change
+    // console.log("File ref has any data? ");
+    // console.log(fileImageRef.current?.files);
+    // if (fileImageRef.current?.files.length > 0) {
+    //   console.log(fileImageRef.current.files[0]);
+    // if(featureImageFile != null)
+    // {
+    console.log("+++++++++++++++++++++++++++++++++");
+    console.log("Gallery Image Error Called");
+    console.log(galleryImageFile.length);
+    console.log(!isValid + " " + dirty);
+    if (!isValid && dirty && (galleryImageFile.length > 0)) {
+      console.log("UseEffect error and handleSelect is called");
+      handleSelectedMultiImageFile();
+      // galleryImageFile.forEach(file => {
+        // });
+        // setFeatureImageFile(null);
         }
-        return acc;
-      }, {});
-      
-      // Update Formik's error state
-      setErrors(filteredErrors);
-      setIsImageSelected(false);
-      console.log(errors.featureImage);
-      console.log("UseEffect file+true");
-    //   console.log(selectedImageFile);
-    }
-    // console.log(selectedImageFile);
-    // console.log(cropedImageFile);
-  }, [selectedImageFile]);
+        
+        console.log("+++++++++++++++++++++++++++++++++");
+  }, [errors, isValid, dirty]);
+
+  
+  useEffect(() => {
+    // This effect runs whenever errors, isValid, or dirty change
+    // console.log("File ref has any data? ");
+    // console.log(fileImageRef.current?.files);
+    // if (fileImageRef.current?.files.length > 0) {
+    //   console.log(fileImageRef.current.files[0]);
+    // if(featureImageFile != null)
+    // {
+    console.log("----------------------------------");
+    console.log("Gallery Image File Called ");
+    console.log(galleryImageFile.length);
+    console.log(!isValid + " " + dirty);
+    if (!isValid && dirty && (galleryImageFile.length > 0)) {
+      console.log("UseEffect2 error and handleSelect is called");
+      handleSelectedMultiImageFile();
+      // galleryImageFile.forEach(file => {
+        // });
+        // setFeatureImageFile(null);
+        }
+      console.log("----------------------------------");
+
+  }, [galleryImageFile]);
+
+
+
+
+  
+
+  // useEffect(() => {
+  //   //   formikRef.current?.setValues(formData);
+  //   //   // console.log(formikRef.current);
+  //   // }, [formData]);
+
+  //   // onChange Listener on input file tag(featureImage)
+  //   // useEffect(() => {
+  //   //   if (fileImageRef.current) {
+  //   //     fileImageRef.current.addEventListener('change', handleSelectedImageFile);
+  //   //   }
+  //   //   return () => { // Add a cleanup function
+  //   //     if (fileImageRef.current) {
+  //   //       fileImageRef.current.removeEventListener('change', handleSelectedImageFile);
+  //   //     }
+  //   //   }
+
+  //   // console.log(selectedImageFile);
+  //   // console.log(isImageSelected);
+  //   // if (selectedImageFile !== "" && isImageSelected === true) {
+  //   //   setIsImageSelected(false);
+  //   //   setFieldValue("featureImage", '')
+  //   //   console.log("file+true effect");
+  //   //   console.log(selectedImageFile);
+  //   // }
+  //   console.log("outside selectimage effect");
+  //   if (selectedImageFile !== "" && isImageSelected === false) {
+  //     setIsImageSelected(true);
+  //     console.log("UseEffect file+false");
+  //     selectedImageFile ? console.log(selectedImageFile) : console.log("no data in selectedImageFile hook");
+  //   }
+
+  //   if (selectedImageFile === "" && isImageSelected === true) {
+  //     const filteredErrors = Object.keys(errors).reduce((acc, fieldName) => {
+  //       // Filter based on your condition (replace with your actual logic)
+  //       if (fieldName !== 'featureImage') {
+  //         acc[fieldName] = errors[fieldName];
+  //       }
+  //       return acc;
+  //     }, {});
+
+  //     // Update Formik's error state
+  //     setErrors(filteredErrors);
+  //     setIsImageSelected(false);
+  //     console.log(errors.featureImage);
+  //     console.log("UseEffect file+true");
+  //     //   console.log(selectedImageFile);
+  //   }
+  //   // console.log(selectedImageFile);
+  //   // console.log(cropedImageFile);
+  // }, [selectedImageFile]);
 
   //onChange Listener on input file tag(gallery)
-  useEffect(() => {
-    if (multiImageRef.current) {
-      multiImageRef.current.addEventListener('change', handleSelectedMultiImageFile);
-    }
-    return () => { // Add a cleanup function
-      if (multiImageRef.current) {
-        multiImageRef.current.removeEventListener('change', handleSelectedMultiImageFile);
-      }
-    }
-  }, [selectedMultiImageFile]);
+  // useEffect(() => {
+  //   if (multiImageRef.current) {
+  //     multiImageRef.current.addEventListener('change', handleSelectedMultiImageFile);
+  //   }
+  //   return () => { // Add a cleanup function
+  //     if (multiImageRef.current) {
+  //       multiImageRef.current.removeEventListener('change', handleSelectedMultiImageFile);
+  //     }
+  //   }
+  // }, [selectedMultiImageFile]);
 
 
   //onClick Listener on input radio tag(video/youtube)
@@ -281,14 +359,14 @@ const AddDeviceStep2 = () => {
     // console.log(savedError);
     // console.log(error);
     console.log(error);
-    
+
     if (!errors.featureImage) {
       setFieldTouched("featureImage", true);
-      console.log( "handleSelectedImage Called 280");
+      console.log("handleSelectedImage Called 280");
       setSelectedImageFile(file)
     } else {
       console.log("Error found line 283 ");
-      if(cropedImageFile !== '') setCropedImageFile('')
+      if (cropedImageFile !== '') setCropedImageFile('')
       setSelectedImageFile('')
       setFieldTouched("featureImage", true);
     }
@@ -300,7 +378,7 @@ const AddDeviceStep2 = () => {
   //   Yup.reach(imageUploadSchema, "featureImage").validateSync(file);
   // } catch (error) {
   //   console.log(error);
-  //   formik.errors = {"featureImage": error.message};
+  //   formik.errors = {"featureImage": error.message};selectedMultiImageFile.length
   //   // formik.setFieldError("featureImage", error.message);
   //   formik.setFieldTouched("featureImage", true);
   //   // return error.message;
@@ -333,7 +411,7 @@ const AddDeviceStep2 = () => {
   const handleImageCheckbox = (e) => {
     setFeatureImageFile(null);
     setCropedImageFile('');
-    setFieldValue("featureImage", '')
+    setFieldValue("featureImage", '');
     // setSelectedImageFile('');
     // console.log(selectedImageFile);
     // fileImageRef.current.value="";
@@ -341,19 +419,48 @@ const AddDeviceStep2 = () => {
   }
 
   //onChange handle method for gallery where populating image one by one
-  const handleSelectedMultiImageFile = (e) => {
-    // console.log('listener called');
-    const filesObject = e.target.files;
-    const fileObjects = Array.from(filesObject).map(file => ({
-      file: file, // Store the original file object
-    }));
-    setSelectedMultiImageFile([...selectedMultiImageFile, ...fileObjects]);
+  const handleSelectedMultiImageFile = () => {
+    
+    console.log("333333333333333333333333");
+    console.log(errors);
+console.log(!errors.gallery);
+
+    if (!errors.gallery) {
+      setFieldTouched("gallery", true);
+      console.log("handleSelectedImage Called 280");
+      setSelectedMultiImageFile(galleryImageFile)
+      // [...selectedMultiImageFile, ...galleryImageFile]
+      setGalleryImageFile([])
+    } else {
+      console.log("Error found line 283 ");
+      // if (cropedImageFile !== '') setCropedImageFile('')
+      // setGalleryImageFile([])
+      // const updatedValues = values.gallery;
+      // const newUpdatedValues = updatedValues.pop();
+      // console.log(newUpdatedValues);
+      setFieldTouched("gallery", true);
+    }
+    console.log("33333333333333333333333333333333");
   }
 
 
   //onClick handle method For gallery image remove one by one
   const handleImageMultiCheckbox = (indexToRemove) => {
     setSelectedMultiImageFile(selectedMultiImageFile => selectedMultiImageFile.filter((_, index) => index !== indexToRemove));
+    // setGalleryImageFile(galleryImageFile => galleryImageFile.filter((_, index) => index !== indexToRemove));
+    // console.log(values.gallery);
+    const gallery = values.gallery;
+    gallery.splice(indexToRemove, 1)
+    // console.log("index to remove " + indexToRemove);
+    // console.log("update value of gallery ");
+    console.log(gallery);
+    if (gallery.length !== 0) {
+      setFieldValue('gallery', gallery);
+    } else {
+      setFieldValue('gallery', [null]);
+    }
+    // setGalleryImageFile([...galleryImageFile, ...fileObjects])
+
   }
 
   //This handle method used to capture input entered text and save them into redux state
@@ -361,17 +468,48 @@ const AddDeviceStep2 = () => {
     const { name, value } = event.target;
     console.log("handle change called");
     console.log(event.target?.files[0]);
+
     if (name === 'featureImage') {
       const file = event.target.files[0];
-      console.log('\x1b[36m%s\x1b[0m',"inside handle change called");
+      console.log('\x1b[36m%s\x1b[0m', "inside handle change called");
       setFieldValue(name, file);
       setFeatureImageFile(file);
       // handleSelectedImageFile(file, errors);
       // dispatch(updateField({ field: name, file }));
-    } else {
-      setFieldValue(name, value);
-      dispatch(updateField({ field: name, value }));
+      return;
     }
+
+    if (name === 'gallery') {
+      // if(event.target.files.length === 0 ){
+      //   const error
+      // }
+      const filesObject = event.target.files;
+      const fileObjects = Array.from(filesObject).map(file => ({
+        file: file, // Store the original file object
+      }));
+
+      setFieldValue(name, [
+        ...(values.gallery[0] === null ? [] : [values.gallery[0]]), // Conditional spreading
+        ...values.gallery.slice(1), // Rest of the original array
+        ...fileObjects
+      ]);
+
+      setFieldTouched("gallery", true);
+
+
+      // if (values.gallery[0] === null) { console.log("first value is null"); }
+      // setFieldValue(name, [...values.gallery, ...fileObjects]);
+      console.log("FFFFFFFFFFFFFFFFFFFFF");
+      // console.log(values.gallery);
+
+      // setGalleryImageFile([...values.gallery, ...fileObjects]);
+      return;
+    }
+
+
+
+    setFieldValue(name, value);
+    dispatch(updateField({ field: name, value }));
 
   };
 
@@ -387,20 +525,28 @@ const AddDeviceStep2 = () => {
 
     const errors = await validateForm();
     if (Object.keys(errors).length > 0) {
-      console.log("Croped image has something "+(cropedImageFile !== ''));
+      // console.log("Croped image has something "+(cropedImageFile !== ''));
       // console.log(errors);
-      if(cropedImageFile !== ''){
-      console.log("Croped image has something "+(cropedImageFile !== ''));
+      if (cropedImageFile !== '') {
+        console.log("Croped image has something " + (cropedImageFile !== ''));
         const filteredErrors = Object.keys(errors).reduce((acc, fieldName) => {
           // Filter based on your condition (replace with your actual logic)
-          if (fieldName !== 'featureImage' ) { 
+          if (fieldName !== 'featureImage') {
             acc[fieldName] = errors[fieldName];
           }
           return acc;
         }, {});
 
+
+        // if(galleryImageFile.length === 0 ){
+        //   console.log(filteredErrors);
+        // }
         // console.log(filteredErrors);
         setErrors(filteredErrors)
+      }
+
+      if (values > 0) {
+
       }
 
       Object.keys(errors).forEach(key => {
@@ -497,8 +643,8 @@ const AddDeviceStep2 = () => {
                     type="modern"
                   />
 
-{/* imageRef={fileImageRef} */}
-                  <FileUpload name="featureImage" id="featureImage"  onChange={handleChange} value={undefined} />
+                  {/* imageRef={fileImageRef} */}
+                  <FileUpload name="featureImage" id="featureImage" onChange={handleChange} value={undefined} />
                   {(selectedImageFile instanceof File && isImageSelected) && (
                     <ImageCrop />
                   )}
@@ -556,15 +702,13 @@ const AddDeviceStep2 = () => {
                     type="modern"
                   />
 
-
-                  <MultiFileUpload name="gallery" id="gallery" multi_imageRef={multiImageRef} value={undefined} />
-
-
+                  {/* multi_imageRef={multiImageRef} */}
+                  <MultiFileUpload name="gallery" id="gallery" onChange={handleChange} value={undefined} />
                 </div>
               </div>
               {
                 (typeof selectedMultiImageFile === 'object' && selectedMultiImageFile.length !== 0) && (
-                  selectedMultiImageFile.map((imageObject, index) => (
+                  selectedMultiImageFile?.map((imageObject, index) => (
                     <div className="file-upload-item" key={index}>
                       <div className="content-20">
                         <FileTypeDefaultImageTypeSolid

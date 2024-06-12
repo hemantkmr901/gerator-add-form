@@ -209,22 +209,23 @@ const AddDeviceParent = () => {
         value => !value || (value && value.size <= 1024 * 1024)
       )
       .required('A file is required'),
-      galleryImage: Yup.array().of(
-        Yup.mixed().test(
+      gallery: Yup.array().of(
+        Yup.mixed()
+        .test(
           'fileType',
           'Unsupported File Format (only jpeg and png)',
           value => {
-            if (!value)return true 
-            return  ['image/jpeg', 'image/png'].includes(value.type) 
+            // if (!value)return true
+            return  ['image/jpeg', 'image/png'].includes(value.file.type) 
           }
         )
         .test(
           'fileSize',
           'File too large (max size 1MB)',
-          value => !value || (value && value.size <= 1024 * 1024)
+          value => !value.file || (value.file && value.file.size <= 1024 * 1024)
         )
         .required('A file is required')
-      ).max(3, 'Maximum of 3 images allowed')
+      )
   }
 )
 
