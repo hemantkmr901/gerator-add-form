@@ -1,0 +1,35 @@
+.overlay {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.8);
+  overflow-y: hidden;
+  transition: 0.5s;
+}
+
+.center{
+ margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);}
+  
+  
+.loader {
+  width: 40px;
+  aspect-ratio: 1.154;
+  --_g: no-repeat radial-gradient(farthest-side,#fff 90%,#0000);
+  background: 
+    var(--_g) 50%  0,
+    var(--_g) 0    100%,
+    var(--_g) 100% 100%;
+  background-size: 35% calc(35%*1.154);
+  animation: l16 1s infinite;
+}
+@keyframes l16{ 
+    50%,100% {background-position: 100% 100%,50% 0,0 100%} 
+}

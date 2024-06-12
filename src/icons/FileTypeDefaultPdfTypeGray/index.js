@@ -1,0 +1,1 @@
+export { FileTypeDefaultPdfTypeGray } from "./FileTypeDefaultPdfTypeGray";

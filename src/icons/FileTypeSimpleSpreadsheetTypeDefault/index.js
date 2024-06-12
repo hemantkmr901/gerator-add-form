@@ -1,0 +1,1 @@
+export { FileTypeSimpleSpreadsheetTypeDefault } from "./FileTypeSimpleSpreadsheetTypeDefault";

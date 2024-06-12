@@ -1,0 +1,1 @@
+export { SinglePostDevice } from "./SinglePostDevice";

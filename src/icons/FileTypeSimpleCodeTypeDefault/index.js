@@ -1,0 +1,1 @@
+export { FileTypeSimpleCodeTypeDefault } from "./FileTypeSimpleCodeTypeDefault";

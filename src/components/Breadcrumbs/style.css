@@ -1,0 +1,100 @@
+.breadcrumbs {
+  position: relative;
+}
+
+.breadcrumbs .breadcrumb-button-base {
+  flex: 0 0 auto !important;
+}
+
+.breadcrumbs .slash-divider {
+  height: 20px !important;
+  position: relative !important;
+  width: 20px !important;
+}
+
+.breadcrumbs .tabs {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.breadcrumbs .chevron-right {
+  height: 16px !important;
+  position: relative !important;
+  width: 16px !important;
+}
+
+.breadcrumbs.type-0-text-with-line {
+  align-items: flex-start;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: var(--1-color-modes-colors-border-border-secondary-duplicate);
+  border-top-style: solid;
+  border-top-width: 1px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--3-spacing-spacing-md-duplicate);
+  justify-content: center;
+  padding: var(--3-spacing-spacing-md-duplicate) 0px var(--3-spacing-spacing-md-duplicate) 0px;
+}
+
+.breadcrumbs.type-0-button-gray {
+  align-items: center;
+  display: inline-flex;
+}
+
+.breadcrumbs.type-0-text {
+  align-items: center;
+  display: inline-flex;
+}
+
+.breadcrumbs.type-0-button-brand {
+  align-items: center;
+  display: inline-flex;
+}
+
+.breadcrumbs.type-0-text-with-line.breakpoint-desktop {
+  width: 480px;
+}
+
+.breadcrumbs.type-0-text.breakpoint-desktop {
+  gap: var(--3-spacing-spacing-lg-duplicate);
+}
+
+.breadcrumbs.breakpoint-mobile.type-0-text-with-line {
+  width: 320px;
+}
+
+.breadcrumbs.type-0-text.breakpoint-mobile {
+  gap: var(--3-spacing-spacing-md-duplicate);
+}
+
+.breadcrumbs.type-0-text .tabs {
+  gap: var(--3-spacing-spacing-md-duplicate);
+}
+
+.breadcrumbs.type-0-text-with-line.breakpoint-desktop .tabs {
+  gap: var(--3-spacing-spacing-lg-duplicate);
+  padding: 0px 0px 0px var(--3-spacing-spacing-md-duplicate);
+}
+
+.breadcrumbs.breakpoint-mobile.type-0-button-gray .tabs {
+  gap: var(--3-spacing-spacing-sm-duplicate);
+}
+
+.breadcrumbs.type-0-button-gray.breakpoint-desktop .tabs {
+  gap: var(--3-spacing-spacing-md-duplicate);
+}
+
+.breadcrumbs.breakpoint-mobile.type-0-button-brand .tabs {
+  gap: var(--3-spacing-spacing-sm-duplicate);
+}
+
+.breadcrumbs.breakpoint-mobile.type-0-text-with-line .tabs {
+  gap: var(--3-spacing-spacing-md-duplicate);
+}
+
+.breadcrumbs.breakpoint-desktop.type-0-button-brand .tabs {
+  gap: var(--3-spacing-spacing-md-duplicate);
+}

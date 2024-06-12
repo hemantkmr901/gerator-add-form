@@ -1,0 +1,1 @@
+export { FileTypeDefaultCodeTypeSolid } from "./FileTypeDefaultCodeTypeSolid";

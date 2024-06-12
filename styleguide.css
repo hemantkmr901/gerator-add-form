@@ -1,0 +1,1127 @@
+:root {
+  --1-color-modes-colors-background-bg-brand-primary: var(--primitives-colors-brand-50-duplicate);
+  --1-color-modes-colors-background-bg-brand-primary-duplicate: var(--primitives-colors-brand-50-duplicate);
+  --1-color-modes-colors-background-bg-brand-secondary-duplicate: var(--primitives-colors-brand-100-duplicate);
+  --1-color-modes-colors-background-bg-brand-solid: var(--primitives-colors-brand-600-duplicate);
+  --1-color-modes-colors-background-bg-brand-solid-hover: var(--primitives-colors-brand-700);
+  --1-color-modes-colors-background-bg-disabled-duplicate: var(--primitives-colors-gray-light-mode-100-duplicate);
+  --1-color-modes-colors-background-bg-disabled-subtle: var(--primitives-colors-gray-light-mode-50-duplicate);
+  --1-color-modes-colors-background-bg-error-secondary-duplicate: var(--primitives-colors-error-100);
+  --1-color-modes-colors-background-bg-error-solid-duplicate: var(--primitives-colors-error-600-duplicate);
+  --1-color-modes-colors-background-bg-primary: var(--primitives-colors-base-white-duplicate);
+  --1-color-modes-colors-background-bg-primary-solid: var(--primitives-colors-gray-light-mode-950);
+  --1-color-modes-colors-background-bg-primary-solid-duplicate: var(--primitives-colors-gray-light-mode-950);
+  --1-color-modes-colors-background-bg-secondary-hover: var(--primitives-colors-gray-light-mode-100-duplicate);
+  --1-color-modes-colors-background-bg-secondary-hover-duplicate: var(
+    --primitives-colors-gray-light-mode-100-duplicate
+  );
+  --1-color-modes-colors-background-bg-secondary-solid-duplicate: var(
+    --primitives-colors-gray-light-mode-600-duplicate
+  );
+  --1-color-modes-colors-background-bg-success-secondary-duplicate: var(--primitives-colors-success-100);
+  --1-color-modes-colors-background-bg-success-solid-duplicate: var(--primitives-colors-success-600-duplicate);
+  --1-color-modes-colors-background-bg-tertiary-duplicate: var(--primitives-colors-gray-light-mode-100-duplicate);
+  --1-color-modes-colors-background-bg-warning-secondary-duplicate: var(--primitives-colors-warning-100);
+  --1-color-modes-colors-background-bg-warning-solid-duplicate: var(--primitives-colors-warning-600);
+  --1-color-modes-colors-border-border-brand: var(--primitives-colors-brand-300-duplicate);
+  --1-color-modes-colors-border-border-brand-duplicate: var(--primitives-colors-brand-300-duplicate);
+  --1-color-modes-colors-border-border-brand-solid: var(--primitives-colors-brand-600-duplicate);
+  --1-color-modes-colors-border-border-disabled-duplicate: var(--primitives-colors-gray-light-mode-300-duplicate);
+  --1-color-modes-colors-border-border-disabled-subtle: var(--primitives-colors-gray-light-mode-200-duplicate);
+  --1-color-modes-colors-border-border-error: var(--primitives-colors-error-300);
+  --1-color-modes-colors-border-border-error-solid: var(--primitives-colors-error-600-duplicate);
+  --1-color-modes-colors-border-border-primary-duplicate: var(--primitives-colors-gray-light-mode-300-duplicate);
+  --1-color-modes-colors-border-border-secondary: var(--primitives-colors-gray-light-mode-200-duplicate);
+  --1-color-modes-colors-foreground-fg-disabled-duplicate: var(--primitives-colors-gray-light-mode-400-duplicate);
+  --1-color-modes-colors-foreground-fg-disabled-subtle-duplicate: var(
+    --primitives-colors-gray-light-mode-300-duplicate
+  );
+  --1-color-modes-colors-foreground-fg-error-primary: var(--primitives-colors-error-600-duplicate);
+  --1-color-modes-colors-foreground-fg-error-secondary: var(--primitives-colors-error-500);
+  --1-color-modes-colors-foreground-fg-quarterary-500: var(--primitives-colors-gray-light-mode-500);
+  --1-color-modes-colors-foreground-fg-quarterary-500-duplicate: var(--primitives-colors-gray-light-mode-500);
+  --1-color-modes-colors-foreground-fg-quinary-400: var(--primitives-colors-gray-light-mode-400-duplicate);
+  --1-color-modes-colors-foreground-fg-quinary-hover: var(--primitives-colors-gray-light-mode-500);
+  --1-color-modes-colors-foreground-fg-secondary-700: var(--primitives-colors-gray-light-mode-700-duplicate);
+  --1-color-modes-colors-foreground-fg-secondary-hover: var(--primitives-colors-gray-light-mode-800);
+  --1-color-modes-colors-foreground-fg-senary-300: var(--primitives-colors-gray-light-mode-300-duplicate);
+  --1-color-modes-colors-foreground-fg-success-primary: var(--primitives-colors-success-600-duplicate);
+  --1-color-modes-colors-foreground-fg-success-secondary-duplicate: var(--primitives-colors-success-500);
+  --1-color-modes-colors-foreground-fg-tertiary-600: var(--primitives-colors-gray-light-mode-600-duplicate);
+  --1-color-modes-colors-foreground-fg-warning-primary: var(--primitives-colors-warning-600);
+  --1-color-modes-colors-foreground-fg-white: var(--primitives-colors-base-white-duplicate);
+  --1-color-modes-colors-text-text-brand-secondary-700: var(--primitives-colors-brand-700);
+  --1-color-modes-colors-text-text-brand-secondary-700-duplicate: var(--primitives-colors-brand-700);
+  --1-color-modes-colors-text-text-brand-tertiary-alt: var(--primitives-colors-brand-600-duplicate);
+  --1-color-modes-colors-text-text-disabled: var(--primitives-colors-gray-light-mode-500);
+  --1-color-modes-colors-text-text-disabled-duplicate: var(--primitives-colors-gray-light-mode-500);
+  --1-color-modes-colors-text-text-error-primary-600: var(--primitives-colors-error-600-duplicate);
+  --1-color-modes-colors-text-text-placeholder: var(--primitives-colors-gray-light-mode-500);
+  --1-color-modes-colors-text-text-placeholder-duplicate: var(--primitives-colors-gray-light-mode-500);
+  --1-color-modes-colors-text-text-primary-900: var(--primitives-colors-gray-light-mode-900-duplicate);
+  --1-color-modes-colors-text-text-quarterary-500: var(--primitives-colors-gray-light-mode-500);
+  --1-color-modes-colors-text-text-quarterary-500-duplicate: var(--primitives-colors-gray-light-mode-500);
+  --1-color-modes-colors-text-text-secondary-700: var(--primitives-colors-gray-light-mode-700-duplicate);
+  --1-color-modes-colors-text-text-secondary-hover: var(--primitives-colors-gray-light-mode-800);
+  --1-color-modes-colors-text-text-secondary-hover-duplicate: var(--primitives-colors-gray-light-mode-800);
+  --1-color-modes-colors-text-text-tertiary-600-duplicate: var(--primitives-colors-gray-light-mode-600-duplicate);
+  --1-color-modes-component-colors-alpha-alpha-black-100: rgba(0, 0, 0, 1);
+  --1-color-modes-component-colors-alpha-alpha-white-100: rgba(255, 255, 255, 1);
+  --1-color-modes-component-colors-alpha-alpha-white-30: rgba(255, 255, 255, 0.3);
+  --1-color-modes-component-colors-alpha-alpha-white-90: rgba(255, 255, 255, 0.9);
+  --1-color-modes-component-colors-components-avatars-avatar-bg: var(--primitives-colors-gray-light-mode-100-duplicate);
+  --1-color-modes-component-colors-components-avatars-avatar-bg-duplicate: var(
+    --primitives-colors-gray-light-mode-100-duplicate
+  );
+  --1-color-modes-component-colors-components-avatars-avatar-contrast-border: rgba(0, 0, 0, 0.08);
+  --1-color-modes-component-colors-components-avatars-avatar-contrast-border-duplicate: rgba(0, 0, 0, 0.08);
+  --1-color-modes-component-colors-components-avatars-avatar-focus-border: rgba(152, 162, 179, 0.14);
+  --1-color-modes-component-colors-components-avatars-avatar-focus-border-duplicate: rgba(152, 162, 179, 0.14);
+  --1-color-modes-component-colors-components-breadcrumbs-breadcrumb-brand-bg-hover: var(
+    --primitives-colors-brand-50-duplicate
+  );
+  --1-color-modes-component-colors-components-breadcrumbs-breadcrumb-brand-bg-hover-duplicate: var(
+    --primitives-colors-brand-50-duplicate
+  );
+  --1-color-modes-component-colors-components-breadcrumbs-breadcrumb-brand-fg-hover: var(--primitives-colors-brand-700);
+  --1-color-modes-component-colors-components-breadcrumbs-breadcrumb-brand-fg-hover-duplicate: var(
+    --primitives-colors-brand-700
+  );
+  --1-color-modes-component-colors-components-breadcrumbs-breadcrumb-brand-icon-fg-hover: var(
+    --primitives-colors-brand-700
+  );
+  --1-color-modes-component-colors-components-breadcrumbs-breadcrumb-fg: var(
+    --primitives-colors-gray-light-mode-600-duplicate
+  );
+  --1-color-modes-component-colors-components-breadcrumbs-breadcrumb-fg-duplicate: var(
+    --primitives-colors-gray-light-mode-600-duplicate
+  );
+  --1-color-modes-component-colors-components-breadcrumbs-breadcrumb-icon-fg: var(
+    --primitives-colors-gray-light-mode-500
+  );
+  --1-color-modes-component-colors-components-buttons-primary-button-primary-bg: var(
+    --primitives-colors-brand-600-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-primary-button-primary-bg-hover: var(
+    --primitives-colors-brand-700-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-primary-button-primary-bg-hover-duplicate: var(
+    --primitives-colors-brand-700
+  );
+  --1-color-modes-component-colors-components-buttons-primary-button-primary-border: var(
+    --primitives-colors-brand-600-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-primary-button-primary-border-hover: var(
+    --primitives-colors-brand-700-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-primary-button-primary-border-hover-duplicate: var(
+    --primitives-colors-brand-700
+  );
+  --1-color-modes-component-colors-components-buttons-primary-button-primary-fg: var(
+    --primitives-colors-base-white-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-primary-button-primary-fg-hover: var(
+    --primitives-colors-base-white-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-primary-error-button-primary-error-bg: var(
+    --primitives-colors-error-600-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-primary-error-button-primary-error-bg-hover: var(
+    --primitives-colors-error-700
+  );
+  --1-color-modes-component-colors-components-buttons-primary-error-button-primary-error-border: var(
+    --primitives-colors-error-600-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-primary-error-button-primary-error-border-hover: var(
+    --primitives-colors-error-700
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-button-secondary-bg: var(
+    --primitives-colors-base-white-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-button-secondary-bg-hover: var(
+    --primitives-colors-gray-light-mode-50-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-button-secondary-border-duplicate: var(
+    --primitives-colors-gray-light-mode-300-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-button-secondary-border-hover-duplicate: var(
+    --primitives-colors-gray-light-mode-300-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-button-secondary-fg: var(
+    --primitives-colors-gray-light-mode-700-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-button-secondary-fg-hover-duplicate: var(
+    --primitives-colors-gray-light-mode-800
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-color-button-secondary-color-bg: var(
+    --primitives-colors-base-white-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-color-button-secondary-color-bg-hover-duplicate: var(
+    --primitives-colors-brand-50-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-color-button-secondary-color-border-duplicate: var(
+    --primitives-colors-brand-300-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-color-button-secondary-color-border-hover-duplicate: var(
+    --primitives-colors-brand-300-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-color-button-secondary-color-fg: var(
+    --primitives-colors-brand-700-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-color-button-secondary-color-fg-duplicate: var(
+    --primitives-colors-brand-700
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-color-button-secondary-color-fg-hover-duplicate: var(
+    --primitives-colors-brand-800
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-error-button-secondary-error-bg-hover: var(
+    --primitives-colors-error-50
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-error-button-secondary-error-border: var(
+    --primitives-colors-error-300
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-error-button-secondary-error-border-hover: var(
+    --primitives-colors-error-300
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-error-button-secondary-error-fg: var(
+    --primitives-colors-error-700
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-error-button-secondary-error-fg-hover: var(
+    --primitives-colors-error-800
+  );
+  --1-color-modes-component-colors-components-buttons-tertiary-button-tertiary-bg-hover: var(
+    --primitives-colors-gray-light-mode-50-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-tertiary-button-tertiary-fg-duplicate: var(
+    --primitives-colors-gray-light-mode-600-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-tertiary-button-tertiary-fg-hover: var(
+    --primitives-colors-gray-light-mode-700-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-tertiary-color-button-tertiary-color-bg-hover-duplicate: var(
+    --primitives-colors-brand-50-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-tertiary-color-button-tertiary-color-fg: var(
+    --primitives-colors-brand-700-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-tertiary-color-button-tertiary-color-fg-duplicate: var(
+    --primitives-colors-brand-700
+  );
+  --1-color-modes-component-colors-components-buttons-tertiary-color-button-tertiary-color-fg-hover-duplicate: var(
+    --primitives-colors-brand-800
+  );
+  --1-color-modes-component-colors-components-buttons-tertiary-error-button-tertiary-error-bg-hover: var(
+    --primitives-colors-error-50
+  );
+  --1-color-modes-component-colors-components-buttons-tertiary-error-button-tertiary-error-fg: var(
+    --primitives-colors-error-700
+  );
+  --1-color-modes-component-colors-components-buttons-tertiary-error-button-tertiary-error-fg-hover: var(
+    --primitives-colors-error-800
+  );
+  --1-color-modes-component-colors-components-icons-featured-icons-dark-featured-icon-dark-fg-brand: var(
+    --primitives-colors-base-white-duplicate
+  );
+  --1-color-modes-component-colors-components-icons-featured-icons-dark-featured-icon-dark-fg-error: var(
+    --primitives-colors-base-white-duplicate
+  );
+  --1-color-modes-component-colors-components-icons-featured-icons-dark-featured-icon-dark-fg-gray: var(
+    --primitives-colors-base-white-duplicate
+  );
+  --1-color-modes-component-colors-components-icons-featured-icons-dark-featured-icon-dark-fg-success: var(
+    --primitives-colors-base-white-duplicate
+  );
+  --1-color-modes-component-colors-components-icons-featured-icons-dark-featured-icon-dark-fg-warning: var(
+    --primitives-colors-base-white-duplicate
+  );
+  --1-color-modes-component-colors-components-icons-featured-icons-light-featured-icon-light-fg-brand: var(
+    --primitives-colors-brand-600-duplicate
+  );
+  --1-color-modes-component-colors-components-icons-featured-icons-modern-featured-icon-modern-border: var(
+    --primitives-colors-gray-light-mode-200-duplicate
+  );
+  --1-color-modes-component-colors-components-icons-social-icons-social-icon-fg-instagram: rgba(0, 1, 0, 1);
+  --1-color-modes-component-colors-components-icons-social-icons-social-icon-fg-tumblr: rgba(0, 25, 53, 1);
+  --1-color-modes-component-colors-components-icons-social-icons-social-icon-fg-x: rgba(36, 46, 54, 1);
+  --1-color-modes-component-colors-components-sliders-slider-handle-border: var(
+    --1-color-modes-colors-border-border-brand-solid-duplicate
+  );
+  --1-color-modes-component-colors-components-tooltips-tooltip-supporting-text: var(
+    --primitives-colors-gray-light-mode-300-duplicate
+  );
+  --1-color-modes-component-colors-components-tooltips-tooltip-supporting-text-duplicate: var(
+    --primitives-colors-gray-light-mode-300-duplicate
+  );
+  --1-color-modes-component-colors-utility-blue-dark-utility-blue-dark-600: var(
+    --primitives-colors-blue-dark-600-duplicate
+  );
+  --1-color-modes-component-colors-utility-blue-light-utility-blue-light-200: var(--primitives-colors-blue-light-200);
+  --1-color-modes-component-colors-utility-blue-light-utility-blue-light-50: var(--primitives-colors-blue-light-50);
+  --1-color-modes-component-colors-utility-blue-light-utility-blue-light-500: var(--primitives-colors-blue-light-500);
+  --1-color-modes-component-colors-utility-blue-light-utility-blue-light-600: var(--primitives-colors-blue-light-600);
+  --1-color-modes-component-colors-utility-blue-light-utility-blue-light-700: var(--primitives-colors-blue-light-700);
+  --1-color-modes-component-colors-utility-blue-utility-blue-200: var(--primitives-colors-blue-200);
+  --1-color-modes-component-colors-utility-blue-utility-blue-50: var(--primitives-colors-blue-50);
+  --1-color-modes-component-colors-utility-blue-utility-blue-500: var(--primitives-colors-blue-500);
+  --1-color-modes-component-colors-utility-blue-utility-blue-500-duplicate: var(--primitives-colors-blue-500);
+  --1-color-modes-component-colors-utility-blue-utility-blue-600: var(--primitives-colors-blue-600);
+  --1-color-modes-component-colors-utility-blue-utility-blue-600-duplicate: var(--primitives-colors-blue-600);
+  --1-color-modes-component-colors-utility-blue-utility-blue-700: var(--primitives-colors-blue-700);
+  --1-color-modes-component-colors-utility-brand-utility-brand-100: var(--primitives-colors-brand-100-duplicate);
+  --1-color-modes-component-colors-utility-brand-utility-brand-200: var(--primitives-colors-brand-200-duplicate);
+  --1-color-modes-component-colors-utility-brand-utility-brand-200-duplicate: var(
+    --primitives-colors-brand-200-duplicate
+  );
+  --1-color-modes-component-colors-utility-brand-utility-brand-50: var(--primitives-colors-brand-50-duplicate);
+  --1-color-modes-component-colors-utility-brand-utility-brand-500: var(--primitives-colors-brand-500);
+  --1-color-modes-component-colors-utility-brand-utility-brand-700: var(--primitives-colors-brand-700);
+  --1-color-modes-component-colors-utility-error-utility-error-200: var(--primitives-colors-error-200);
+  --1-color-modes-component-colors-utility-error-utility-error-50: var(--primitives-colors-error-50);
+  --1-color-modes-component-colors-utility-error-utility-error-500: var(--primitives-colors-error-500);
+  --1-color-modes-component-colors-utility-error-utility-error-600: var(--primitives-colors-error-600-duplicate);
+  --1-color-modes-component-colors-utility-error-utility-error-600-duplicate: var(
+    --primitives-colors-error-600-duplicate
+  );
+  --1-color-modes-component-colors-utility-error-utility-error-700: var(--primitives-colors-error-700);
+  --1-color-modes-component-colors-utility-gray-blue-utility-gray-blue-200: var(--primitives-colors-gray-blue-200);
+  --1-color-modes-component-colors-utility-gray-blue-utility-gray-blue-50: var(--primitives-colors-gray-blue-50);
+  --1-color-modes-component-colors-utility-gray-blue-utility-gray-blue-500: var(--primitives-colors-gray-blue-500);
+  --1-color-modes-component-colors-utility-gray-blue-utility-gray-blue-600: var(--primitives-colors-gray-blue-600);
+  --1-color-modes-component-colors-utility-gray-blue-utility-gray-blue-700: var(--primitives-colors-gray-blue-700);
+  --1-color-modes-component-colors-utility-gray-utility-gray-100: var(
+    --primitives-colors-gray-light-mode-100-duplicate
+  );
+  --1-color-modes-component-colors-utility-gray-utility-gray-500: var(--primitives-colors-gray-light-mode-500);
+  --1-color-modes-component-colors-utility-gray-utility-gray-600: var(
+    --primitives-colors-gray-light-mode-600-duplicate
+  );
+  --1-color-modes-component-colors-utility-indigo-utility-indigo-200: var(--primitives-colors-indigo-200);
+  --1-color-modes-component-colors-utility-indigo-utility-indigo-50: var(--primitives-colors-indigo-50);
+  --1-color-modes-component-colors-utility-indigo-utility-indigo-500: var(--primitives-colors-indigo-500);
+  --1-color-modes-component-colors-utility-indigo-utility-indigo-600: var(--primitives-colors-indigo-600-duplicate);
+  --1-color-modes-component-colors-utility-indigo-utility-indigo-600-duplicate: var(
+    --primitives-colors-indigo-600-duplicate
+  );
+  --1-color-modes-component-colors-utility-indigo-utility-indigo-700: var(--primitives-colors-indigo-700);
+  --1-color-modes-component-colors-utility-orange-utility-orange-200: var(--primitives-colors-orange-200);
+  --1-color-modes-component-colors-utility-orange-utility-orange-50: var(--primitives-colors-orange-50);
+  --1-color-modes-component-colors-utility-orange-utility-orange-500: var(--primitives-colors-orange-500);
+  --1-color-modes-component-colors-utility-orange-utility-orange-600: var(--primitives-colors-orange-600-duplicate);
+  --1-color-modes-component-colors-utility-orange-utility-orange-700: var(--primitives-colors-orange-700);
+  --1-color-modes-component-colors-utility-pink-utility-pink-200: var(--primitives-colors-pink-200);
+  --1-color-modes-component-colors-utility-pink-utility-pink-50: var(--primitives-colors-pink-50);
+  --1-color-modes-component-colors-utility-pink-utility-pink-500: var(--primitives-colors-pink-500);
+  --1-color-modes-component-colors-utility-pink-utility-pink-600: var(--primitives-colors-pink-600-duplicate);
+  --1-color-modes-component-colors-utility-pink-utility-pink-600-duplicate: var(--primitives-colors-pink-600-duplicate);
+  --1-color-modes-component-colors-utility-pink-utility-pink-700: var(--primitives-colors-pink-700);
+  --1-color-modes-component-colors-utility-purple-utility-purple-200: var(--primitives-colors-purple-200);
+  --1-color-modes-component-colors-utility-purple-utility-purple-50: var(--primitives-colors-purple-50);
+  --1-color-modes-component-colors-utility-purple-utility-purple-500: var(--primitives-colors-purple-500);
+  --1-color-modes-component-colors-utility-purple-utility-purple-600: var(--primitives-colors-purple-600-duplicate);
+  --1-color-modes-component-colors-utility-purple-utility-purple-700: var(--primitives-colors-purple-700);
+  --1-color-modes-component-colors-utility-success-utility-success-200: var(--primitives-colors-success-200);
+  --1-color-modes-component-colors-utility-success-utility-success-50: var(--primitives-colors-success-50);
+  --1-color-modes-component-colors-utility-success-utility-success-500: var(--primitives-colors-success-500);
+  --1-color-modes-component-colors-utility-success-utility-success-600: var(--primitives-colors-success-600-duplicate);
+  --1-color-modes-component-colors-utility-success-utility-success-600-duplicate: var(
+    --primitives-colors-success-600-duplicate
+  );
+  --1-color-modes-component-colors-utility-success-utility-success-700: var(--primitives-colors-success-700);
+  --1-color-modes-component-colors-utility-warning-utility-warning-200: var(--primitives-colors-warning-200);
+  --1-color-modes-component-colors-utility-warning-utility-warning-50: var(--primitives-colors-warning-50);
+  --1-color-modes-component-colors-utility-warning-utility-warning-500: var(--primitives-colors-warning-500);
+  --1-color-modes-component-colors-utility-warning-utility-warning-600: var(--primitives-colors-warning-600);
+  --1-color-modes-component-colors-utility-warning-utility-warning-700: var(--primitives-colors-warning-700);
+  --2-radius-radius-full: 9999px;
+  --2-radius-radius-full-duplicate: 9999px;
+  --2-radius-radius-lg: 10px;
+  --2-radius-radius-lg-duplicate: 10px;
+  --2-radius-radius-md: 8px;
+  --2-radius-radius-md-duplicate: 8px;
+  --2-radius-radius-none: 0px;
+  --2-radius-radius-none-duplicate: 0px;
+  --2-radius-radius-sm: 6px;
+  --2-radius-radius-sm-duplicate: 6px;
+  --2-radius-radius-xl: 12px;
+  --2-radius-radius-xs: 4px;
+  --2-radius-radius-xs-duplicate: 4px;
+  --3-spacing-spacing-2xl-duplicate: var(--primitives-spacing-5-20px);
+  --3-spacing-spacing-3xl: var(--primitives-spacing-6-24px);
+  --3-spacing-spacing-3xl-duplicate: var(--primitives-spacing-6-24px-duplicate);
+  --3-spacing-spacing-4xl-duplicate: var(--primitives-spacing-8-32px);
+  --3-spacing-spacing-6xl-duplicate: var(--primitives-spacing-12-48px);
+  --3-spacing-spacing-7xl: var(--primitives-spacing-16-64px);
+  --3-spacing-spacing-7xl-duplicate: var(--primitives-spacing-16-64px);
+  --3-spacing-spacing-lg: var(--primitives-spacing-3-12px);
+  --3-spacing-spacing-lg-duplicate: var(--primitives-spacing-3-12px-duplicate);
+  --3-spacing-spacing-md: var(--primitives-spacing-2-8px-duplicate);
+  --3-spacing-spacing-md-duplicate: var(--primitives-spacing-2-8px);
+  --3-spacing-spacing-none: var(--primitives-spacing-0-0px);
+  --3-spacing-spacing-sm: var(--primitives-spacing-1-5-6px);
+  --3-spacing-spacing-sm-duplicate: var(--primitives-spacing-1-5-6px-duplicate);
+  --3-spacing-spacing-xl: var(--primitives-spacing-4-16px);
+  --3-spacing-spacing-xl-duplicate: var(--primitives-spacing-4-16px-duplicate);
+  --3-spacing-spacing-xs: var(--primitives-spacing-1-4px-duplicate);
+  --3-spacing-spacing-xs-duplicate: var(--primitives-spacing-1-4px);
+  --3-spacing-spacing-xxs: var(--primitives-spacing-0-5-2px);
+  --3-spacing-spacing-xxs-duplicate: var(--primitives-spacing-0-5-2px-duplicate);
+  --4-widths-width-md: var(--primitives-spacing-140-560px);
+  --4-widths-width-sm: var(--primitives-spacing-120-480px);
+  --4-widths-width-xxs: var(--primitives-spacing-80-320px);
+  --4-widths-width-xxs-duplicate: var(--primitives-spacing-80-320px);
+  --5-containers-container-max-width-desktop-duplicate: var(--primitives-spacing-320-1-280px);
+  --5-containers-container-padding-desktop-duplicate: var(--primitives-spacing-8-32px);
+  --5-containers-container-padding-mobile: var(--primitives-spacing-4-16px);
+  --5-containers-container-padding-mobile-duplicate: var(--primitives-spacing-4-16px-duplicate);
+  --display-sm-medium-font-family: "Inter", Helvetica;
+  --display-sm-medium-font-size: 30px;
+  --display-sm-medium-font-style: normal;
+  --display-sm-medium-font-weight: 500;
+  --display-sm-medium-letter-spacing: 0px;
+  --display-sm-medium-line-height: 38px;
+  --display-sm-semibold-font-family: "Inter", Helvetica;
+  --display-sm-semibold-font-size: 30px;
+  --display-sm-semibold-font-style: normal;
+  --display-sm-semibold-font-weight: 600;
+  --display-sm-semibold-letter-spacing: 0px;
+  --display-sm-semibold-line-height: 38px;
+  --display-xs-semibold-font-family: "Inter", Helvetica;
+  --display-xs-semibold-font-size: 24px;
+  --display-xs-semibold-font-style: normal;
+  --display-xs-semibold-font-weight: 600;
+  --display-xs-semibold-letter-spacing: 0px;
+  --display-xs-semibold-line-height: 32px;
+  --focus-rings-ring-brand: 0px 0px 0px 4px rgba(158, 119, 237, 0.24);
+  --focus-rings-ring-brand-shadow-xs: 0px 0px 0px 4px rgba(158, 119, 237, 0.24), 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  --focus-rings-ring-error: 0px 0px 0px 4px rgba(240, 68, 56, 0.24);
+  --focus-rings-ring-error-shadow-xs: 0px 0px 0px 4px rgba(240, 68, 56, 0.24), 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  --focus-rings-ring-gray: 0px 0px 0px 4px rgba(152, 162, 179, 0.14);
+  --focus-rings-ring-gray-shadow-xs: 0px 0px 0px 4px rgba(152, 162, 179, 0.14), 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  --primitives-colors-base-black: rgba(0, 0, 0, 1);
+  --primitives-colors-base-white: rgba(255, 255, 255, 1);
+  --primitives-colors-base-white-duplicate: rgba(255, 255, 255, 1);
+  --primitives-colors-blue-200: rgba(178, 221, 255, 1);
+  --primitives-colors-blue-300: rgba(132, 202, 255, 1);
+  --primitives-colors-blue-400: rgba(83, 177, 253, 1);
+  --primitives-colors-blue-50: rgba(239, 248, 255, 1);
+  --primitives-colors-blue-500: rgba(46, 144, 250, 1);
+  --primitives-colors-blue-600: rgba(21, 112, 239, 1);
+  --primitives-colors-blue-700: rgba(23, 92, 211, 1);
+  --primitives-colors-blue-800: rgba(24, 73, 169, 1);
+  --primitives-colors-blue-950: rgba(16, 42, 86, 1);
+  --primitives-colors-blue-dark-600: rgba(21, 94, 239, 1);
+  --primitives-colors-blue-dark-600-duplicate: rgba(21, 94, 239, 1);
+  --primitives-colors-blue-light-200: rgba(185, 230, 254, 1);
+  --primitives-colors-blue-light-300: rgba(124, 212, 253, 1);
+  --primitives-colors-blue-light-400: rgba(54, 191, 250, 1);
+  --primitives-colors-blue-light-50: rgba(240, 249, 255, 1);
+  --primitives-colors-blue-light-500: rgba(11, 165, 236, 1);
+  --primitives-colors-blue-light-600: rgba(0, 134, 201, 1);
+  --primitives-colors-blue-light-700: rgba(2, 106, 162, 1);
+  --primitives-colors-blue-light-800: rgba(6, 89, 134, 1);
+  --primitives-colors-blue-light-950: rgba(6, 44, 65, 1);
+  --primitives-colors-brand-100: rgba(244, 235, 255, 1);
+  --primitives-colors-brand-100-duplicate: rgba(244, 235, 255, 1);
+  --primitives-colors-brand-200: rgba(233, 215, 254, 1);
+  --primitives-colors-brand-200-duplicate: rgba(233, 215, 254, 1);
+  --primitives-colors-brand-300: rgba(214, 187, 251, 1);
+  --primitives-colors-brand-300-duplicate: rgba(214, 187, 251, 1);
+  --primitives-colors-brand-400: rgba(182, 146, 246, 1);
+  --primitives-colors-brand-400-duplicate: rgba(182, 146, 246, 1);
+  --primitives-colors-brand-50: rgba(249, 245, 255, 1);
+  --primitives-colors-brand-50-duplicate: rgba(249, 245, 255, 1);
+  --primitives-colors-brand-500: rgba(158, 119, 237, 1);
+  --primitives-colors-brand-500-duplicate: rgba(158, 119, 237, 1);
+  --primitives-colors-brand-600: rgba(127, 86, 217, 1);
+  --primitives-colors-brand-600-duplicate: rgba(127, 86, 217, 1);
+  --primitives-colors-brand-700: rgba(105, 65, 198, 1);
+  --primitives-colors-brand-700-duplicate: rgba(105, 65, 198, 1);
+  --primitives-colors-brand-800: rgba(83, 56, 158, 1);
+  --primitives-colors-brand-950: rgba(44, 28, 95, 1);
+  --primitives-colors-error-100: rgba(254, 228, 226, 1);
+  --primitives-colors-error-200: rgba(254, 205, 202, 1);
+  --primitives-colors-error-300: rgba(253, 162, 155, 1);
+  --primitives-colors-error-400: rgba(249, 112, 102, 1);
+  --primitives-colors-error-50: rgba(254, 243, 242, 1);
+  --primitives-colors-error-500: rgba(240, 68, 56, 1);
+  --primitives-colors-error-600: rgba(217, 45, 32, 1);
+  --primitives-colors-error-600-duplicate: rgba(217, 45, 32, 1);
+  --primitives-colors-error-700: rgba(180, 35, 24, 1);
+  --primitives-colors-error-800: rgba(145, 32, 24, 1);
+  --primitives-colors-error-950: rgba(85, 22, 12, 1);
+  --primitives-colors-fuchsia-600: rgba(186, 36, 213, 1);
+  --primitives-colors-fuchsia-600-duplicate: rgba(186, 36, 213, 1);
+  --primitives-colors-gray-blue-200: rgba(213, 217, 235, 1);
+  --primitives-colors-gray-blue-300: rgba(179, 184, 219, 1);
+  --primitives-colors-gray-blue-400: rgba(113, 123, 188, 1);
+  --primitives-colors-gray-blue-50: rgba(248, 249, 252, 1);
+  --primitives-colors-gray-blue-500: rgba(78, 91, 166, 1);
+  --primitives-colors-gray-blue-600: rgba(62, 71, 132, 1);
+  --primitives-colors-gray-blue-700: rgba(54, 63, 114, 1);
+  --primitives-colors-gray-blue-800: rgba(41, 48, 86, 1);
+  --primitives-colors-gray-blue-900: rgba(16, 19, 35, 1);
+  --primitives-colors-gray-dark-mode-100: rgba(240, 241, 241, 1);
+  --primitives-colors-gray-dark-mode-200: rgba(236, 236, 237, 1);
+  --primitives-colors-gray-dark-mode-300: rgba(206, 207, 210, 1);
+  --primitives-colors-gray-dark-mode-300-duplicate: rgba(206, 207, 210, 1);
+  --primitives-colors-gray-dark-mode-400: rgba(148, 150, 156, 1);
+  --primitives-colors-gray-dark-mode-400-duplicate: rgba(148, 150, 156, 1);
+  --primitives-colors-gray-dark-mode-50: rgba(245, 245, 246, 1);
+  --primitives-colors-gray-dark-mode-50-duplicate: rgba(245, 245, 246, 1);
+  --primitives-colors-gray-dark-mode-500: rgba(133, 136, 142, 1);
+  --primitives-colors-gray-dark-mode-600: rgba(97, 100, 108, 1);
+  --primitives-colors-gray-dark-mode-600-duplicate: rgba(97, 100, 108, 1);
+  --primitives-colors-gray-dark-mode-700: rgba(51, 55, 65, 1);
+  --primitives-colors-gray-dark-mode-700-duplicate: rgba(51, 55, 65, 1);
+  --primitives-colors-gray-dark-mode-800: rgba(31, 36, 47, 1);
+  --primitives-colors-gray-dark-mode-800-duplicate: rgba(31, 36, 47, 1);
+  --primitives-colors-gray-dark-mode-900: rgba(22, 27, 38, 1);
+  --primitives-colors-gray-dark-mode-900-duplicate: rgba(22, 27, 38, 1);
+  --primitives-colors-gray-dark-mode-950: rgba(12, 17, 29, 1);
+  --primitives-colors-gray-dark-mode-950-duplicate: rgba(12, 17, 29, 1);
+  --primitives-colors-gray-light-mode-100: rgba(242, 244, 247, 1);
+  --primitives-colors-gray-light-mode-100-duplicate: rgba(242, 244, 247, 1);
+  --primitives-colors-gray-light-mode-200: rgba(234, 236, 240, 1);
+  --primitives-colors-gray-light-mode-200-duplicate: rgba(234, 236, 240, 1);
+  --primitives-colors-gray-light-mode-25: rgba(252, 252, 253, 1);
+  --primitives-colors-gray-light-mode-300: rgba(208, 213, 221, 1);
+  --primitives-colors-gray-light-mode-300-duplicate: rgba(208, 213, 221, 1);
+  --primitives-colors-gray-light-mode-400: rgba(152, 162, 179, 1);
+  --primitives-colors-gray-light-mode-400-duplicate: rgba(152, 162, 179, 1);
+  --primitives-colors-gray-light-mode-50: rgba(249, 250, 251, 1);
+  --primitives-colors-gray-light-mode-50-duplicate: rgba(249, 250, 251, 1);
+  --primitives-colors-gray-light-mode-500: rgba(102, 112, 133, 1);
+  --primitives-colors-gray-light-mode-600: rgba(71, 84, 103, 1);
+  --primitives-colors-gray-light-mode-600-duplicate: rgba(71, 84, 103, 1);
+  --primitives-colors-gray-light-mode-700: rgba(52, 64, 84, 1);
+  --primitives-colors-gray-light-mode-700-duplicate: rgba(52, 64, 84, 1);
+  --primitives-colors-gray-light-mode-800: rgba(24, 34, 48, 1);
+  --primitives-colors-gray-light-mode-900: rgba(16, 24, 40, 1);
+  --primitives-colors-gray-light-mode-900-duplicate: rgba(16, 24, 40, 1);
+  --primitives-colors-gray-light-mode-950: rgba(12, 17, 29, 1);
+  --primitives-colors-indigo-200: rgba(199, 215, 254, 1);
+  --primitives-colors-indigo-300: rgba(164, 188, 253, 1);
+  --primitives-colors-indigo-400: rgba(128, 152, 249, 1);
+  --primitives-colors-indigo-50: rgba(238, 244, 255, 1);
+  --primitives-colors-indigo-500: rgba(97, 114, 243, 1);
+  --primitives-colors-indigo-600: rgba(68, 76, 231, 1);
+  --primitives-colors-indigo-600-duplicate: rgba(68, 76, 231, 1);
+  --primitives-colors-indigo-700: rgba(53, 56, 205, 1);
+  --primitives-colors-indigo-800: rgba(45, 49, 166, 1);
+  --primitives-colors-indigo-950: rgba(31, 35, 91, 1);
+  --primitives-colors-orange-200: rgba(249, 219, 175, 1);
+  --primitives-colors-orange-300: rgba(247, 178, 122, 1);
+  --primitives-colors-orange-400: rgba(243, 135, 68, 1);
+  --primitives-colors-orange-50: rgba(254, 246, 238, 1);
+  --primitives-colors-orange-500: rgba(239, 104, 32, 1);
+  --primitives-colors-orange-600: rgba(224, 79, 22, 1);
+  --primitives-colors-orange-600-duplicate: rgba(224, 79, 22, 1);
+  --primitives-colors-orange-700: rgba(185, 56, 21, 1);
+  --primitives-colors-orange-800: rgba(147, 47, 25, 1);
+  --primitives-colors-orange-950: rgba(81, 28, 16, 1);
+  --primitives-colors-orange-dark-600: rgba(230, 46, 5, 1);
+  --primitives-colors-orange-dark-600-duplicate: rgba(230, 46, 5, 1);
+  --primitives-colors-pink-200: rgba(252, 206, 238, 1);
+  --primitives-colors-pink-300: rgba(250, 167, 224, 1);
+  --primitives-colors-pink-400: rgba(246, 112, 199, 1);
+  --primitives-colors-pink-50: rgba(253, 242, 250, 1);
+  --primitives-colors-pink-500: rgba(238, 70, 188, 1);
+  --primitives-colors-pink-600: rgba(221, 37, 144, 1);
+  --primitives-colors-pink-600-duplicate: rgba(221, 37, 144, 1);
+  --primitives-colors-pink-700: rgba(193, 21, 116, 1);
+  --primitives-colors-pink-800: rgba(158, 22, 95, 1);
+  --primitives-colors-pink-950: rgba(78, 13, 48, 1);
+  --primitives-colors-purple-200: rgba(217, 214, 254, 1);
+  --primitives-colors-purple-300: rgba(189, 180, 254, 1);
+  --primitives-colors-purple-400: rgba(155, 138, 251, 1);
+  --primitives-colors-purple-50: rgba(244, 243, 255, 1);
+  --primitives-colors-purple-500: rgba(122, 90, 248, 1);
+  --primitives-colors-purple-600: rgba(105, 56, 239, 1);
+  --primitives-colors-purple-600-duplicate: rgba(105, 56, 239, 1);
+  --primitives-colors-purple-700: rgba(89, 37, 220, 1);
+  --primitives-colors-purple-800: rgba(74, 31, 184, 1);
+  --primitives-colors-purple-950: rgba(39, 17, 95, 1);
+  --primitives-colors-success-100: rgba(220, 250, 230, 1);
+  --primitives-colors-success-200: rgba(171, 239, 198, 1);
+  --primitives-colors-success-300: rgba(117, 224, 167, 1);
+  --primitives-colors-success-400: rgba(71, 205, 137, 1);
+  --primitives-colors-success-50: rgba(236, 253, 243, 1);
+  --primitives-colors-success-500: rgba(23, 178, 106, 1);
+  --primitives-colors-success-600: rgba(7, 148, 85, 1);
+  --primitives-colors-success-600-duplicate: rgba(7, 148, 85, 1);
+  --primitives-colors-success-700: rgba(6, 118, 71, 1);
+  --primitives-colors-success-800: rgba(8, 93, 58, 1);
+  --primitives-colors-success-950: rgba(5, 51, 33, 1);
+  --primitives-colors-warning-100: rgba(254, 240, 199, 1);
+  --primitives-colors-warning-200: rgba(254, 223, 137, 1);
+  --primitives-colors-warning-300: rgba(254, 200, 75, 1);
+  --primitives-colors-warning-400: rgba(253, 176, 34, 1);
+  --primitives-colors-warning-400-duplicate: rgba(253, 176, 34, 1);
+  --primitives-colors-warning-50: rgba(255, 250, 235, 1);
+  --primitives-colors-warning-500: rgba(247, 144, 9, 1);
+  --primitives-colors-warning-600: rgba(220, 104, 3, 1);
+  --primitives-colors-warning-700: rgba(181, 71, 8, 1);
+  --primitives-colors-warning-800: rgba(147, 55, 13, 1);
+  --primitives-colors-warning-950: rgba(78, 29, 9, 1);
+  --primitives-spacing-0-0px: 0px;
+  --primitives-spacing-0-5-2px: 2px;
+  --primitives-spacing-0-5-2px-duplicate: 2px;
+  --primitives-spacing-1-4px: 4px;
+  --primitives-spacing-1-4px-duplicate: 4px;
+  --primitives-spacing-1-5-6px: 6px;
+  --primitives-spacing-1-5-6px-duplicate: 6px;
+  --primitives-spacing-12-48px: 48px;
+  --primitives-spacing-120-480px: 480px;
+  --primitives-spacing-140-560px: 560px;
+  --primitives-spacing-16-64px: 64px;
+  --primitives-spacing-2-8px: 8px;
+  --primitives-spacing-2-8px-duplicate: 8px;
+  --primitives-spacing-3-12px: 12px;
+  --primitives-spacing-3-12px-duplicate: 12px;
+  --primitives-spacing-320-1-280px: 1280px;
+  --primitives-spacing-4-16px: 16px;
+  --primitives-spacing-4-16px-duplicate: 16px;
+  --primitives-spacing-5-20px: 20px;
+  --primitives-spacing-6-24px: 24px;
+  --primitives-spacing-6-24px-duplicate: 24px;
+  --primitives-spacing-8-32px: 32px;
+  --primitives-spacing-80-320px: 320px;
+  --shadows-shadow-lg: 0px 4px 6px -2px rgba(16, 24, 40, 0.03), 0px 12px 16px -4px rgba(16, 24, 40, 0.08);
+  --shadows-shadow-xs: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  --text-lg-semibold-font-family: "Inter", Helvetica;
+  --text-lg-semibold-font-size: 18px;
+  --text-lg-semibold-font-style: normal;
+  --text-lg-semibold-font-weight: 600;
+  --text-lg-semibold-letter-spacing: 0px;
+  --text-lg-semibold-line-height: 28px;
+  --text-md-medium-font-family: "Inter", Helvetica;
+  --text-md-medium-font-size: 16px;
+  --text-md-medium-font-style: normal;
+  --text-md-medium-font-weight: 500;
+  --text-md-medium-letter-spacing: 0px;
+  --text-md-medium-line-height: 24px;
+  --text-md-regular-font-family: "Inter", Helvetica;
+  --text-md-regular-font-size: 16px;
+  --text-md-regular-font-style: normal;
+  --text-md-regular-font-weight: 400;
+  --text-md-regular-letter-spacing: 0px;
+  --text-md-regular-line-height: 24px;
+  --text-md-semibold-font-family: "Inter", Helvetica;
+  --text-md-semibold-font-size: 16px;
+  --text-md-semibold-font-style: normal;
+  --text-md-semibold-font-weight: 600;
+  --text-md-semibold-letter-spacing: 0px;
+  --text-md-semibold-line-height: 24px;
+  --text-sm-medium-font-family: "Inter", Helvetica;
+  --text-sm-medium-font-size: 14px;
+  --text-sm-medium-font-style: normal;
+  --text-sm-medium-font-weight: 500;
+  --text-sm-medium-letter-spacing: 0px;
+  --text-sm-medium-line-height: 20px;
+  --text-sm-regular-font-family: "Inter", Helvetica;
+  --text-sm-regular-font-size: 14px;
+  --text-sm-regular-font-style: normal;
+  --text-sm-regular-font-weight: 400;
+  --text-sm-regular-letter-spacing: 0px;
+  --text-sm-regular-line-height: 20px;
+  --text-sm-semibold-font-family: "Inter", Helvetica;
+  --text-sm-semibold-font-size: 14px;
+  --text-sm-semibold-font-style: normal;
+  --text-sm-semibold-font-weight: 600;
+  --text-sm-semibold-letter-spacing: 0px;
+  --text-sm-semibold-line-height: 20px;
+  --text-xl-semibold-font-family: "Inter", Helvetica;
+  --text-xl-semibold-font-size: 20px;
+  --text-xl-semibold-font-style: normal;
+  --text-xl-semibold-font-weight: 600;
+  --text-xl-semibold-letter-spacing: 0px;
+  --text-xl-semibold-line-height: 30px;
+  --text-xs-medium-font-family: "Inter", Helvetica;
+  --text-xs-medium-font-size: 12px;
+  --text-xs-medium-font-style: normal;
+  --text-xs-medium-font-weight: 500;
+  --text-xs-medium-letter-spacing: 0px;
+  --text-xs-medium-line-height: 18px;
+  --text-xs-regular-font-family: "Inter", Helvetica;
+  --text-xs-regular-font-size: 12px;
+  --text-xs-regular-font-style: normal;
+  --text-xs-regular-font-weight: 400;
+  --text-xs-regular-letter-spacing: 0px;
+  --text-xs-regular-line-height: 18px;
+  --text-xs-semibold-font-family: "Inter", Helvetica;
+  --text-xs-semibold-font-size: 12px;
+  --text-xs-semibold-font-style: normal;
+  --text-xs-semibold-font-weight: 600;
+  --text-xs-semibold-letter-spacing: 0px;
+  --text-xs-semibold-line-height: 18px;
+}
+
+/*
+
+To enable a theme in your HTML, simply add one of the following data attributes to an HTML element, like so:
+
+<body data-1-color-modes-mode="light-mode">
+    <!-- the rest of your content -->
+</body>
+
+You can apply the theme on any DOM node, not just the `body`
+
+*/
+
+[data-1-color-modes-mode="light-mode"] {
+  --1-color-modes-colors-background-bg-brand-primary: var(--primitives-colors-brand-50-duplicate);
+  --1-color-modes-colors-background-bg-brand-primary-duplicate: var(--primitives-colors-brand-50-duplicate);
+  --1-color-modes-colors-background-bg-brand-solid-hover: var(--primitives-colors-brand-700);
+  --1-color-modes-colors-background-bg-disabled-duplicate: var(--primitives-colors-gray-light-mode-100-duplicate);
+  --1-color-modes-colors-background-bg-disabled-subtle: var(--primitives-colors-gray-light-mode-50-duplicate);
+  --1-color-modes-colors-background-bg-error-secondary-duplicate: var(--primitives-colors-error-100);
+  --1-color-modes-colors-background-bg-primary: var(--primitives-colors-base-white-duplicate);
+  --1-color-modes-colors-background-bg-primary-solid: var(--primitives-colors-gray-light-mode-950);
+  --1-color-modes-colors-background-bg-primary-solid-duplicate: var(--primitives-colors-gray-light-mode-950);
+  --1-color-modes-colors-background-bg-secondary-hover: var(--primitives-colors-gray-light-mode-100-duplicate);
+  --1-color-modes-colors-background-bg-secondary-hover-duplicate: var(
+    --primitives-colors-gray-light-mode-100-duplicate
+  );
+  --1-color-modes-colors-background-bg-secondary-solid-duplicate: var(
+    --primitives-colors-gray-light-mode-600-duplicate
+  );
+  --1-color-modes-colors-background-bg-success-secondary-duplicate: var(--primitives-colors-success-100);
+  --1-color-modes-colors-background-bg-tertiary-duplicate: var(--primitives-colors-gray-light-mode-100-duplicate);
+  --1-color-modes-colors-background-bg-warning-secondary-duplicate: var(--primitives-colors-warning-100);
+  --1-color-modes-colors-border-border-brand: var(--primitives-colors-brand-300-duplicate);
+  --1-color-modes-colors-border-border-brand-duplicate: var(--primitives-colors-brand-300-duplicate);
+  --1-color-modes-colors-border-border-brand-solid: var(--primitives-colors-brand-600-duplicate);
+  --1-color-modes-colors-border-border-disabled-duplicate: var(--primitives-colors-gray-light-mode-300-duplicate);
+  --1-color-modes-colors-border-border-disabled-subtle: var(--primitives-colors-gray-light-mode-200-duplicate);
+  --1-color-modes-colors-border-border-error: var(--primitives-colors-error-300);
+  --1-color-modes-colors-border-border-error-solid: var(--primitives-colors-error-600-duplicate);
+  --1-color-modes-colors-border-border-primary-duplicate: var(--primitives-colors-gray-light-mode-300-duplicate);
+  --1-color-modes-colors-border-border-secondary: var(--primitives-colors-gray-light-mode-200-duplicate);
+  --1-color-modes-colors-foreground-fg-disabled-duplicate: var(--primitives-colors-gray-light-mode-400-duplicate);
+  --1-color-modes-colors-foreground-fg-disabled-subtle-duplicate: var(
+    --primitives-colors-gray-light-mode-300-duplicate
+  );
+  --1-color-modes-colors-foreground-fg-error-primary: var(--primitives-colors-error-600-duplicate);
+  --1-color-modes-colors-foreground-fg-error-secondary: var(--primitives-colors-error-500);
+  --1-color-modes-colors-foreground-fg-quarterary-500: var(--primitives-colors-gray-light-mode-500);
+  --1-color-modes-colors-foreground-fg-quarterary-500-duplicate: var(--primitives-colors-gray-light-mode-500);
+  --1-color-modes-colors-foreground-fg-quinary-400: var(--primitives-colors-gray-light-mode-400-duplicate);
+  --1-color-modes-colors-foreground-fg-quinary-hover: var(--primitives-colors-gray-light-mode-500);
+  --1-color-modes-colors-foreground-fg-secondary-700: var(--primitives-colors-gray-light-mode-700-duplicate);
+  --1-color-modes-colors-foreground-fg-secondary-hover: var(--primitives-colors-gray-light-mode-800);
+  --1-color-modes-colors-foreground-fg-senary-300: var(--primitives-colors-gray-light-mode-300-duplicate);
+  --1-color-modes-colors-foreground-fg-success-primary: var(--primitives-colors-success-600-duplicate);
+  --1-color-modes-colors-foreground-fg-success-secondary-duplicate: var(--primitives-colors-success-500);
+  --1-color-modes-colors-foreground-fg-tertiary-600: var(--primitives-colors-gray-light-mode-600-duplicate);
+  --1-color-modes-colors-foreground-fg-warning-primary: var(--primitives-colors-warning-600);
+  --1-color-modes-colors-text-text-brand-secondary-700: var(--primitives-colors-brand-700);
+  --1-color-modes-colors-text-text-brand-secondary-700-duplicate: var(--primitives-colors-brand-700);
+  --1-color-modes-colors-text-text-brand-tertiary-alt: var(--primitives-colors-brand-600-duplicate);
+  --1-color-modes-colors-text-text-disabled: var(--primitives-colors-gray-light-mode-500);
+  --1-color-modes-colors-text-text-disabled-duplicate: var(--primitives-colors-gray-light-mode-500);
+  --1-color-modes-colors-text-text-error-primary-600: var(--primitives-colors-error-600-duplicate);
+  --1-color-modes-colors-text-text-placeholder: var(--primitives-colors-gray-light-mode-500);
+  --1-color-modes-colors-text-text-placeholder-duplicate: var(--primitives-colors-gray-light-mode-500);
+  --1-color-modes-colors-text-text-primary-900: var(--primitives-colors-gray-light-mode-900-duplicate);
+  --1-color-modes-colors-text-text-quarterary-500: var(--primitives-colors-gray-light-mode-500);
+  --1-color-modes-colors-text-text-quarterary-500-duplicate: var(--primitives-colors-gray-light-mode-500);
+  --1-color-modes-colors-text-text-secondary-700: var(--primitives-colors-gray-light-mode-700-duplicate);
+  --1-color-modes-colors-text-text-secondary-hover: var(--primitives-colors-gray-light-mode-800);
+  --1-color-modes-colors-text-text-secondary-hover-duplicate: var(--primitives-colors-gray-light-mode-800);
+  --1-color-modes-colors-text-text-tertiary-600-duplicate: var(--primitives-colors-gray-light-mode-600-duplicate);
+  --1-color-modes-component-colors-alpha-alpha-black-100: rgba(0, 0, 0, 1);
+  --1-color-modes-component-colors-alpha-alpha-white-100: rgba(255, 255, 255, 1);
+  --1-color-modes-component-colors-alpha-alpha-white-30: rgba(255, 255, 255, 0.3);
+  --1-color-modes-component-colors-alpha-alpha-white-90: rgba(255, 255, 255, 0.9);
+  --1-color-modes-component-colors-components-avatars-avatar-bg: var(--primitives-colors-gray-light-mode-100-duplicate);
+  --1-color-modes-component-colors-components-avatars-avatar-bg-duplicate: var(
+    --primitives-colors-gray-light-mode-100-duplicate
+  );
+  --1-color-modes-component-colors-components-avatars-avatar-contrast-border: rgba(0, 0, 0, 0.08);
+  --1-color-modes-component-colors-components-avatars-avatar-contrast-border-duplicate: rgba(0, 0, 0, 0.08);
+  --1-color-modes-component-colors-components-breadcrumbs-breadcrumb-brand-bg-hover: var(
+    --primitives-colors-brand-50-duplicate
+  );
+  --1-color-modes-component-colors-components-breadcrumbs-breadcrumb-brand-bg-hover-duplicate: var(
+    --primitives-colors-brand-50-duplicate
+  );
+  --1-color-modes-component-colors-components-breadcrumbs-breadcrumb-fg: var(
+    --primitives-colors-gray-light-mode-600-duplicate
+  );
+  --1-color-modes-component-colors-components-breadcrumbs-breadcrumb-fg-duplicate: var(
+    --primitives-colors-gray-light-mode-600-duplicate
+  );
+  --1-color-modes-component-colors-components-breadcrumbs-breadcrumb-icon-fg: var(
+    --primitives-colors-gray-light-mode-500
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-button-secondary-bg: var(
+    --primitives-colors-base-white-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-button-secondary-bg-hover: var(
+    --primitives-colors-gray-light-mode-50-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-button-secondary-border-duplicate: var(
+    --primitives-colors-gray-light-mode-300-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-button-secondary-border-hover-duplicate: var(
+    --primitives-colors-gray-light-mode-300-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-button-secondary-fg: var(
+    --primitives-colors-gray-light-mode-700-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-button-secondary-fg-hover-duplicate: var(
+    --primitives-colors-gray-light-mode-800
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-color-button-secondary-color-bg: var(
+    --primitives-colors-base-white-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-color-button-secondary-color-bg-hover-duplicate: var(
+    --primitives-colors-brand-50-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-color-button-secondary-color-border-duplicate: var(
+    --primitives-colors-brand-300-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-color-button-secondary-color-border-hover-duplicate: var(
+    --primitives-colors-brand-300-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-color-button-secondary-color-fg: var(
+    --primitives-colors-brand-700-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-color-button-secondary-color-fg-duplicate: var(
+    --primitives-colors-brand-700
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-color-button-secondary-color-fg-hover-duplicate: var(
+    --primitives-colors-brand-800
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-error-button-secondary-error-border: var(
+    --primitives-colors-error-300
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-error-button-secondary-error-border-hover: var(
+    --primitives-colors-error-300
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-error-button-secondary-error-fg: var(
+    --primitives-colors-error-700
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-error-button-secondary-error-fg-hover: var(
+    --primitives-colors-error-800
+  );
+  --1-color-modes-component-colors-components-buttons-tertiary-button-tertiary-bg-hover: var(
+    --primitives-colors-gray-light-mode-50-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-tertiary-button-tertiary-fg-duplicate: var(
+    --primitives-colors-gray-light-mode-600-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-tertiary-color-button-tertiary-color-bg-hover-duplicate: var(
+    --primitives-colors-brand-50-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-tertiary-color-button-tertiary-color-fg: var(
+    --primitives-colors-brand-700-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-tertiary-color-button-tertiary-color-fg-duplicate: var(
+    --primitives-colors-brand-700
+  );
+  --1-color-modes-component-colors-components-buttons-tertiary-color-button-tertiary-color-fg-hover-duplicate: var(
+    --primitives-colors-brand-800
+  );
+  --1-color-modes-component-colors-components-buttons-tertiary-error-button-tertiary-error-fg: var(
+    --primitives-colors-error-700
+  );
+  --1-color-modes-component-colors-components-buttons-tertiary-error-button-tertiary-error-fg-hover: var(
+    --primitives-colors-error-800
+  );
+  --1-color-modes-component-colors-components-icons-featured-icons-modern-featured-icon-modern-border: var(
+    --primitives-colors-gray-light-mode-200-duplicate
+  );
+  --1-color-modes-component-colors-components-sliders-slider-handle-border: var(
+    --1-color-modes-colors-border-border-brand-solid-duplicate
+  );
+  --1-color-modes-component-colors-components-tooltips-tooltip-supporting-text: var(
+    --primitives-colors-gray-light-mode-300-duplicate
+  );
+  --1-color-modes-component-colors-components-tooltips-tooltip-supporting-text-duplicate: var(
+    --primitives-colors-gray-light-mode-300-duplicate
+  );
+  --1-color-modes-component-colors-utility-blue-light-utility-blue-light-200: var(--primitives-colors-blue-light-200);
+  --1-color-modes-component-colors-utility-blue-light-utility-blue-light-50: var(--primitives-colors-blue-light-50);
+  --1-color-modes-component-colors-utility-blue-light-utility-blue-light-600: var(--primitives-colors-blue-light-600);
+  --1-color-modes-component-colors-utility-blue-light-utility-blue-light-700: var(--primitives-colors-blue-light-700);
+  --1-color-modes-component-colors-utility-blue-utility-blue-200: var(--primitives-colors-blue-200);
+  --1-color-modes-component-colors-utility-blue-utility-blue-50: var(--primitives-colors-blue-50);
+  --1-color-modes-component-colors-utility-blue-utility-blue-600: var(--primitives-colors-blue-600);
+  --1-color-modes-component-colors-utility-blue-utility-blue-600-duplicate: var(--primitives-colors-blue-600);
+  --1-color-modes-component-colors-utility-blue-utility-blue-700: var(--primitives-colors-blue-700);
+  --1-color-modes-component-colors-utility-brand-utility-brand-200: var(--primitives-colors-brand-200-duplicate);
+  --1-color-modes-component-colors-utility-brand-utility-brand-200-duplicate: var(
+    --primitives-colors-brand-200-duplicate
+  );
+  --1-color-modes-component-colors-utility-brand-utility-brand-50: var(--primitives-colors-brand-50-duplicate);
+  --1-color-modes-component-colors-utility-brand-utility-brand-700: var(--primitives-colors-brand-700);
+  --1-color-modes-component-colors-utility-error-utility-error-200: var(--primitives-colors-error-200);
+  --1-color-modes-component-colors-utility-error-utility-error-50: var(--primitives-colors-error-50);
+  --1-color-modes-component-colors-utility-error-utility-error-600: var(--primitives-colors-error-600-duplicate);
+  --1-color-modes-component-colors-utility-error-utility-error-600-duplicate: var(
+    --primitives-colors-error-600-duplicate
+  );
+  --1-color-modes-component-colors-utility-error-utility-error-700: var(--primitives-colors-error-700);
+  --1-color-modes-component-colors-utility-gray-blue-utility-gray-blue-200: var(--primitives-colors-gray-blue-200);
+  --1-color-modes-component-colors-utility-gray-blue-utility-gray-blue-50: var(--primitives-colors-gray-blue-50);
+  --1-color-modes-component-colors-utility-gray-blue-utility-gray-blue-600: var(--primitives-colors-gray-blue-600);
+  --1-color-modes-component-colors-utility-gray-blue-utility-gray-blue-700: var(--primitives-colors-gray-blue-700);
+  --1-color-modes-component-colors-utility-gray-utility-gray-100: var(
+    --primitives-colors-gray-light-mode-100-duplicate
+  );
+  --1-color-modes-component-colors-utility-gray-utility-gray-500: var(--primitives-colors-gray-light-mode-500);
+  --1-color-modes-component-colors-utility-gray-utility-gray-600: var(
+    --primitives-colors-gray-light-mode-600-duplicate
+  );
+  --1-color-modes-component-colors-utility-indigo-utility-indigo-200: var(--primitives-colors-indigo-200);
+  --1-color-modes-component-colors-utility-indigo-utility-indigo-50: var(--primitives-colors-indigo-50);
+  --1-color-modes-component-colors-utility-indigo-utility-indigo-600: var(--primitives-colors-indigo-600-duplicate);
+  --1-color-modes-component-colors-utility-indigo-utility-indigo-600-duplicate: var(
+    --primitives-colors-indigo-600-duplicate
+  );
+  --1-color-modes-component-colors-utility-indigo-utility-indigo-700: var(--primitives-colors-indigo-700);
+  --1-color-modes-component-colors-utility-orange-utility-orange-200: var(--primitives-colors-orange-200);
+  --1-color-modes-component-colors-utility-orange-utility-orange-50: var(--primitives-colors-orange-50);
+  --1-color-modes-component-colors-utility-orange-utility-orange-600: var(--primitives-colors-orange-600-duplicate);
+  --1-color-modes-component-colors-utility-orange-utility-orange-700: var(--primitives-colors-orange-700);
+  --1-color-modes-component-colors-utility-pink-utility-pink-200: var(--primitives-colors-pink-200);
+  --1-color-modes-component-colors-utility-pink-utility-pink-50: var(--primitives-colors-pink-50);
+  --1-color-modes-component-colors-utility-pink-utility-pink-600: var(--primitives-colors-pink-600-duplicate);
+  --1-color-modes-component-colors-utility-pink-utility-pink-600-duplicate: var(--primitives-colors-pink-600-duplicate);
+  --1-color-modes-component-colors-utility-pink-utility-pink-700: var(--primitives-colors-pink-700);
+  --1-color-modes-component-colors-utility-purple-utility-purple-200: var(--primitives-colors-purple-200);
+  --1-color-modes-component-colors-utility-purple-utility-purple-50: var(--primitives-colors-purple-50);
+  --1-color-modes-component-colors-utility-purple-utility-purple-600: var(--primitives-colors-purple-600-duplicate);
+  --1-color-modes-component-colors-utility-purple-utility-purple-700: var(--primitives-colors-purple-700);
+  --1-color-modes-component-colors-utility-success-utility-success-200: var(--primitives-colors-success-200);
+  --1-color-modes-component-colors-utility-success-utility-success-50: var(--primitives-colors-success-50);
+  --1-color-modes-component-colors-utility-success-utility-success-600: var(--primitives-colors-success-600-duplicate);
+  --1-color-modes-component-colors-utility-success-utility-success-600-duplicate: var(
+    --primitives-colors-success-600-duplicate
+  );
+  --1-color-modes-component-colors-utility-success-utility-success-700: var(--primitives-colors-success-700);
+  --1-color-modes-component-colors-utility-warning-utility-warning-200: var(--primitives-colors-warning-200);
+  --1-color-modes-component-colors-utility-warning-utility-warning-50: var(--primitives-colors-warning-50);
+  --1-color-modes-component-colors-utility-warning-utility-warning-600: var(--primitives-colors-warning-600);
+  --1-color-modes-component-colors-utility-warning-utility-warning-700: var(--primitives-colors-warning-700);
+}
+
+[data-1-color-modes-mode="dark-mode"] {
+  --1-color-modes-colors-background-bg-brand-primary: var(--primitives-colors-brand-500);
+  --1-color-modes-colors-background-bg-brand-primary-duplicate: var(--primitives-colors-brand-500);
+  --1-color-modes-colors-background-bg-brand-solid-hover: var(--primitives-colors-brand-500);
+  --1-color-modes-colors-background-bg-disabled-duplicate: var(--primitives-colors-gray-dark-mode-800);
+  --1-color-modes-colors-background-bg-disabled-subtle: var(--primitives-colors-gray-dark-mode-900-duplicate);
+  --1-color-modes-colors-background-bg-error-secondary-duplicate: var(--primitives-colors-error-600-duplicate);
+  --1-color-modes-colors-background-bg-primary: var(--primitives-colors-gray-dark-mode-950-duplicate);
+  --1-color-modes-colors-background-bg-primary-solid: var(--1-color-modes-colors-background-bg-secondary-duplicate);
+  --1-color-modes-colors-background-bg-primary-solid-duplicate: var(
+    --1-color-modes-colors-background-bg-secondary-duplicate
+  );
+  --1-color-modes-colors-background-bg-secondary-hover: var(--primitives-colors-gray-dark-mode-800);
+  --1-color-modes-colors-background-bg-secondary-hover-duplicate: var(--primitives-colors-gray-dark-mode-800);
+  --1-color-modes-colors-background-bg-secondary-solid-duplicate: var(--primitives-colors-gray-dark-mode-600-duplicate);
+  --1-color-modes-colors-background-bg-success-secondary-duplicate: var(--primitives-colors-success-600-duplicate);
+  --1-color-modes-colors-background-bg-tertiary-duplicate: var(--primitives-colors-gray-dark-mode-800);
+  --1-color-modes-colors-background-bg-warning-secondary-duplicate: var(--primitives-colors-warning-600);
+  --1-color-modes-colors-border-border-brand: var(--primitives-colors-brand-400-duplicate);
+  --1-color-modes-colors-border-border-brand-duplicate: var(--primitives-colors-brand-400-duplicate);
+  --1-color-modes-colors-border-border-brand-solid: var(--primitives-colors-brand-500-duplicate);
+  --1-color-modes-colors-border-border-disabled-duplicate: var(--primitives-colors-gray-dark-mode-700);
+  --1-color-modes-colors-border-border-disabled-subtle: var(--primitives-colors-gray-dark-mode-800-duplicate);
+  --1-color-modes-colors-border-border-error: var(--primitives-colors-error-400);
+  --1-color-modes-colors-border-border-error-solid: var(--primitives-colors-error-500);
+  --1-color-modes-colors-border-border-primary-duplicate: var(--primitives-colors-gray-dark-mode-700);
+  --1-color-modes-colors-border-border-secondary: var(--primitives-colors-gray-dark-mode-800-duplicate);
+  --1-color-modes-colors-foreground-fg-disabled-duplicate: var(--primitives-colors-gray-dark-mode-500);
+  --1-color-modes-colors-foreground-fg-disabled-subtle-duplicate: var(--primitives-colors-gray-dark-mode-600-duplicate);
+  --1-color-modes-colors-foreground-fg-error-primary: var(--primitives-colors-error-500);
+  --1-color-modes-colors-foreground-fg-error-secondary: var(--primitives-colors-error-400);
+  --1-color-modes-colors-foreground-fg-quarterary-500: var(--primitives-colors-gray-dark-mode-400-duplicate);
+  --1-color-modes-colors-foreground-fg-quarterary-500-duplicate: var(--primitives-colors-gray-dark-mode-400-duplicate);
+  --1-color-modes-colors-foreground-fg-quinary-400: var(--primitives-colors-gray-dark-mode-500);
+  --1-color-modes-colors-foreground-fg-quinary-hover: var(--primitives-colors-gray-dark-mode-400-duplicate);
+  --1-color-modes-colors-foreground-fg-secondary-700: var(--primitives-colors-gray-dark-mode-300-duplicate);
+  --1-color-modes-colors-foreground-fg-secondary-hover: var(--primitives-colors-gray-dark-mode-200);
+  --1-color-modes-colors-foreground-fg-senary-300: var(--primitives-colors-gray-dark-mode-600-duplicate);
+  --1-color-modes-colors-foreground-fg-success-primary: var(--primitives-colors-success-500);
+  --1-color-modes-colors-foreground-fg-success-secondary-duplicate: var(--primitives-colors-success-400);
+  --1-color-modes-colors-foreground-fg-tertiary-600: var(--primitives-colors-gray-dark-mode-400-duplicate);
+  --1-color-modes-colors-foreground-fg-warning-primary: var(--primitives-colors-warning-500);
+  --1-color-modes-colors-text-text-brand-secondary-700: var(--primitives-colors-gray-dark-mode-300);
+  --1-color-modes-colors-text-text-brand-secondary-700-duplicate: var(--primitives-colors-gray-dark-mode-300);
+  --1-color-modes-colors-text-text-brand-tertiary-alt: var(--primitives-colors-gray-dark-mode-50-duplicate);
+  --1-color-modes-colors-text-text-disabled: var(--primitives-colors-gray-dark-mode-500);
+  --1-color-modes-colors-text-text-disabled-duplicate: var(--primitives-colors-gray-dark-mode-500);
+  --1-color-modes-colors-text-text-error-primary-600: var(--primitives-colors-error-400);
+  --1-color-modes-colors-text-text-placeholder: var(--primitives-colors-gray-dark-mode-500);
+  --1-color-modes-colors-text-text-placeholder-duplicate: var(--primitives-colors-gray-dark-mode-500);
+  --1-color-modes-colors-text-text-primary-900: var(--primitives-colors-gray-dark-mode-50-duplicate);
+  --1-color-modes-colors-text-text-quarterary-500: var(--primitives-colors-gray-dark-mode-400-duplicate);
+  --1-color-modes-colors-text-text-quarterary-500-duplicate: var(--primitives-colors-gray-dark-mode-400-duplicate);
+  --1-color-modes-colors-text-text-secondary-700: var(--primitives-colors-gray-dark-mode-300-duplicate);
+  --1-color-modes-colors-text-text-secondary-hover: var(--primitives-colors-gray-dark-mode-200);
+  --1-color-modes-colors-text-text-secondary-hover-duplicate: var(--primitives-colors-gray-dark-mode-200);
+  --1-color-modes-colors-text-text-tertiary-600-duplicate: var(--primitives-colors-gray-dark-mode-400-duplicate);
+  --1-color-modes-component-colors-alpha-alpha-black-100: rgba(255, 255, 255, 1);
+  --1-color-modes-component-colors-alpha-alpha-white-100: var(--primitives-colors-gray-dark-mode-950);
+  --1-color-modes-component-colors-alpha-alpha-white-30: rgba(12, 17, 29, 0.3);
+  --1-color-modes-component-colors-alpha-alpha-white-90: rgba(12, 17, 29, 0.9);
+  --1-color-modes-component-colors-components-avatars-avatar-bg: var(--primitives-colors-gray-dark-mode-800);
+  --1-color-modes-component-colors-components-avatars-avatar-bg-duplicate: var(--primitives-colors-gray-dark-mode-800);
+  --1-color-modes-component-colors-components-avatars-avatar-contrast-border: rgba(255, 255, 255, 0.12);
+  --1-color-modes-component-colors-components-avatars-avatar-contrast-border-duplicate: rgba(255, 255, 255, 0.12);
+  --1-color-modes-component-colors-components-breadcrumbs-breadcrumb-brand-bg-hover: var(
+    --primitives-colors-gray-dark-mode-800
+  );
+  --1-color-modes-component-colors-components-breadcrumbs-breadcrumb-brand-bg-hover-duplicate: var(
+    --primitives-colors-gray-dark-mode-800
+  );
+  --1-color-modes-component-colors-components-breadcrumbs-breadcrumb-fg: var(--primitives-colors-gray-dark-mode-300);
+  --1-color-modes-component-colors-components-breadcrumbs-breadcrumb-fg-duplicate: var(
+    --primitives-colors-gray-dark-mode-300
+  );
+  --1-color-modes-component-colors-components-breadcrumbs-breadcrumb-icon-fg: var(
+    --primitives-colors-gray-dark-mode-400-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-button-secondary-bg: var(
+    --primitives-colors-gray-dark-mode-900-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-button-secondary-bg-hover: var(
+    --primitives-colors-gray-dark-mode-800-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-button-secondary-border-duplicate: var(
+    --primitives-colors-gray-dark-mode-700
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-button-secondary-border-hover-duplicate: var(
+    --primitives-colors-gray-dark-mode-700
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-button-secondary-fg: var(
+    --primitives-colors-gray-dark-mode-300-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-button-secondary-fg-hover-duplicate: var(
+    --primitives-colors-gray-dark-mode-100
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-color-button-secondary-color-bg: var(
+    --primitives-colors-gray-dark-mode-900-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-color-button-secondary-color-bg-hover-duplicate: var(
+    --primitives-colors-gray-dark-mode-800
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-color-button-secondary-color-border-duplicate: var(
+    --primitives-colors-gray-dark-mode-700
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-color-button-secondary-color-border-hover-duplicate: var(
+    --primitives-colors-gray-dark-mode-700
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-color-button-secondary-color-fg: var(
+    --primitives-colors-gray-dark-mode-300-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-color-button-secondary-color-fg-duplicate: var(
+    --primitives-colors-gray-dark-mode-300
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-color-button-secondary-color-fg-hover-duplicate: var(
+    --primitives-colors-gray-dark-mode-100
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-error-button-secondary-error-border: var(
+    --primitives-colors-error-800
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-error-button-secondary-error-border-hover: var(
+    --primitives-colors-error-700
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-error-button-secondary-error-fg: var(
+    --primitives-colors-error-200
+  );
+  --1-color-modes-component-colors-components-buttons-secondary-error-button-secondary-error-fg-hover: var(
+    --primitives-colors-error-100
+  );
+  --1-color-modes-component-colors-components-buttons-tertiary-button-tertiary-bg-hover: var(
+    --primitives-colors-gray-dark-mode-800-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-tertiary-button-tertiary-fg-duplicate: var(
+    --primitives-colors-gray-dark-mode-400-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-tertiary-color-button-tertiary-color-bg-hover-duplicate: var(
+    --primitives-colors-gray-dark-mode-800
+  );
+  --1-color-modes-component-colors-components-buttons-tertiary-color-button-tertiary-color-fg: var(
+    --primitives-colors-gray-dark-mode-300-duplicate
+  );
+  --1-color-modes-component-colors-components-buttons-tertiary-color-button-tertiary-color-fg-duplicate: var(
+    --primitives-colors-gray-dark-mode-300
+  );
+  --1-color-modes-component-colors-components-buttons-tertiary-color-button-tertiary-color-fg-hover-duplicate: var(
+    --primitives-colors-gray-dark-mode-100
+  );
+  --1-color-modes-component-colors-components-buttons-tertiary-error-button-tertiary-error-fg: var(
+    --primitives-colors-error-300
+  );
+  --1-color-modes-component-colors-components-buttons-tertiary-error-button-tertiary-error-fg-hover: var(
+    --primitives-colors-error-200
+  );
+  --1-color-modes-component-colors-components-icons-featured-icons-modern-featured-icon-modern-border: var(
+    --primitives-colors-gray-dark-mode-700-duplicate
+  );
+  --1-color-modes-component-colors-components-sliders-slider-handle-border: var(
+    --1-color-modes-colors-background-bg-primary-duplicate
+  );
+  --1-color-modes-component-colors-components-tooltips-tooltip-supporting-text: var(
+    --primitives-colors-gray-dark-mode-300
+  );
+  --1-color-modes-component-colors-components-tooltips-tooltip-supporting-text-duplicate: var(
+    --primitives-colors-gray-dark-mode-300
+  );
+  --1-color-modes-component-colors-utility-blue-light-utility-blue-light-200: var(--primitives-colors-blue-light-800);
+  --1-color-modes-component-colors-utility-blue-light-utility-blue-light-50: var(--primitives-colors-blue-light-950);
+  --1-color-modes-component-colors-utility-blue-light-utility-blue-light-600: var(--primitives-colors-blue-light-400);
+  --1-color-modes-component-colors-utility-blue-light-utility-blue-light-700: var(--primitives-colors-blue-light-300);
+  --1-color-modes-component-colors-utility-blue-utility-blue-200: var(--primitives-colors-blue-800);
+  --1-color-modes-component-colors-utility-blue-utility-blue-50: var(--primitives-colors-blue-950);
+  --1-color-modes-component-colors-utility-blue-utility-blue-600: var(--primitives-colors-blue-400);
+  --1-color-modes-component-colors-utility-blue-utility-blue-600-duplicate: var(--primitives-colors-blue-400);
+  --1-color-modes-component-colors-utility-blue-utility-blue-700: var(--primitives-colors-blue-300);
+  --1-color-modes-component-colors-utility-brand-utility-brand-200: var(--primitives-colors-brand-800);
+  --1-color-modes-component-colors-utility-brand-utility-brand-200-duplicate: var(--primitives-colors-brand-800);
+  --1-color-modes-component-colors-utility-brand-utility-brand-50: var(--primitives-colors-brand-950);
+  --1-color-modes-component-colors-utility-brand-utility-brand-700: var(--primitives-colors-brand-300-duplicate);
+  --1-color-modes-component-colors-utility-error-utility-error-200: var(--primitives-colors-error-800);
+  --1-color-modes-component-colors-utility-error-utility-error-50: var(--primitives-colors-error-950);
+  --1-color-modes-component-colors-utility-error-utility-error-600: var(--primitives-colors-error-400);
+  --1-color-modes-component-colors-utility-error-utility-error-600-duplicate: var(--primitives-colors-error-400);
+  --1-color-modes-component-colors-utility-error-utility-error-700: var(--primitives-colors-error-300);
+  --1-color-modes-component-colors-utility-gray-blue-utility-gray-blue-200: var(--primitives-colors-gray-blue-800);
+  --1-color-modes-component-colors-utility-gray-blue-utility-gray-blue-50: var(--primitives-colors-gray-blue-900);
+  --1-color-modes-component-colors-utility-gray-blue-utility-gray-blue-600: var(--primitives-colors-gray-blue-400);
+  --1-color-modes-component-colors-utility-gray-blue-utility-gray-blue-700: var(--primitives-colors-gray-blue-300);
+  --1-color-modes-component-colors-utility-gray-utility-gray-100: var(--primitives-colors-gray-dark-mode-800);
+  --1-color-modes-component-colors-utility-gray-utility-gray-500: var(--primitives-colors-gray-dark-mode-500);
+  --1-color-modes-component-colors-utility-gray-utility-gray-600: var(--primitives-colors-gray-dark-mode-400-duplicate);
+  --1-color-modes-component-colors-utility-indigo-utility-indigo-200: var(--primitives-colors-indigo-800);
+  --1-color-modes-component-colors-utility-indigo-utility-indigo-50: var(--primitives-colors-indigo-950);
+  --1-color-modes-component-colors-utility-indigo-utility-indigo-600: var(--primitives-colors-indigo-400);
+  --1-color-modes-component-colors-utility-indigo-utility-indigo-600-duplicate: var(--primitives-colors-indigo-400);
+  --1-color-modes-component-colors-utility-indigo-utility-indigo-700: var(--primitives-colors-indigo-300);
+  --1-color-modes-component-colors-utility-orange-utility-orange-200: var(--primitives-colors-orange-800);
+  --1-color-modes-component-colors-utility-orange-utility-orange-50: var(--primitives-colors-orange-950);
+  --1-color-modes-component-colors-utility-orange-utility-orange-600: var(--primitives-colors-orange-400);
+  --1-color-modes-component-colors-utility-orange-utility-orange-700: var(--primitives-colors-orange-300);
+  --1-color-modes-component-colors-utility-pink-utility-pink-200: var(--primitives-colors-pink-800);
+  --1-color-modes-component-colors-utility-pink-utility-pink-50: var(--primitives-colors-pink-950);
+  --1-color-modes-component-colors-utility-pink-utility-pink-600: var(--primitives-colors-pink-400);
+  --1-color-modes-component-colors-utility-pink-utility-pink-600-duplicate: var(--primitives-colors-pink-400);
+  --1-color-modes-component-colors-utility-pink-utility-pink-700: var(--primitives-colors-pink-300);
+  --1-color-modes-component-colors-utility-purple-utility-purple-200: var(--primitives-colors-purple-800);
+  --1-color-modes-component-colors-utility-purple-utility-purple-50: var(--primitives-colors-purple-950);
+  --1-color-modes-component-colors-utility-purple-utility-purple-600: var(--primitives-colors-purple-400);
+  --1-color-modes-component-colors-utility-purple-utility-purple-700: var(--primitives-colors-purple-300);
+  --1-color-modes-component-colors-utility-success-utility-success-200: var(--primitives-colors-success-800);
+  --1-color-modes-component-colors-utility-success-utility-success-50: var(--primitives-colors-success-950);
+  --1-color-modes-component-colors-utility-success-utility-success-600: var(--primitives-colors-success-400);
+  --1-color-modes-component-colors-utility-success-utility-success-600-duplicate: var(--primitives-colors-success-400);
+  --1-color-modes-component-colors-utility-success-utility-success-700: var(--primitives-colors-success-300);
+  --1-color-modes-component-colors-utility-warning-utility-warning-200: var(--primitives-colors-warning-800);
+  --1-color-modes-component-colors-utility-warning-utility-warning-50: var(--primitives-colors-warning-950);
+  --1-color-modes-component-colors-utility-warning-utility-warning-600: var(--primitives-colors-warning-400-duplicate);
+  --1-color-modes-component-colors-utility-warning-utility-warning-700: var(--primitives-colors-warning-300);
+}

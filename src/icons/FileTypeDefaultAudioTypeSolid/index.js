@@ -1,0 +1,1 @@
+export { FileTypeDefaultAudioTypeSolid } from "./FileTypeDefaultAudioTypeSolid";

@@ -1,0 +1,42 @@
+.tag-close-x {
+  align-items: flex-start;
+  border-radius: 3px;
+  display: inline-flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.tag-close-x .class-22 {
+  height: 12px !important;
+  position: relative !important;
+  width: 12px !important;
+}
+
+.tag-close-x .class-23 {
+  height: 10px !important;
+  position: relative !important;
+  width: 10px !important;
+}
+
+.tag-close-x .x-close {
+  height: 14px !important;
+  position: relative !important;
+  width: 14px !important;
+}
+
+.tag-close-x.size-25-md {
+  padding: var(--3-spacing-spacing-xxs-duplicate);
+}
+
+.tag-close-x.size-25-sm {
+  padding: var(--3-spacing-spacing-xxs-duplicate);
+}
+
+.tag-close-x.state-1-hover {
+  background-color: var(--1-color-modes-colors-background-bg-primary-hover-duplicate);
+}
+
+.tag-close-x.size-25-lg {
+  padding: 3px;
+}

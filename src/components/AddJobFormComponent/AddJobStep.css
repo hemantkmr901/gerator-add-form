@@ -1,0 +1,42 @@
+.myinputfield{
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px !important;
+}
+
+.myselectfield{
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px !important;
+}
+
+.mytextarea{
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px !important;
+    height: 80%;
+}
+
+.error{
+    color: red;
+    font-size: 15px;
+    font-family: var(--text-md-regular-font-family);
+}
+
+.button:hover{
+    background-color: #583c97;
+}
+
+
+
+.group-9,.content-23{
+    top: 44px !important;
+}
+
+.group-8{
+    top: 1182px !important;
+}
+
+.group-5,.group-6{
+    top: 244px !important;
+}

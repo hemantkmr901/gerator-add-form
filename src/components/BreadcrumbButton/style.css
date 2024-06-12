@@ -1,0 +1,114 @@
+.breadcrumb-button {
+  display: inline-flex;
+  position: relative;
+}
+
+.breadcrumb-button .text-9 {
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.breadcrumb-button .home-line {
+  height: 20px !important;
+  position: relative !important;
+  width: 20px !important;
+}
+
+.breadcrumb-button.icon-true {
+  align-items: flex-start;
+}
+
+.breadcrumb-button.icon-false {
+  align-items: center;
+  justify-content: center;
+}
+
+.breadcrumb-button.button-brand.icon-true {
+  border-radius: var(--3-spacing-spacing-sm-duplicate);
+  padding: var(--3-spacing-spacing-xs-duplicate);
+}
+
+.breadcrumb-button.button-gray.current-0-true {
+  background-color: var(--1-color-modes-component-colors-components-breadcrumbs-breadcrumb-bg-hover-duplicate);
+}
+
+.breadcrumb-button.button-gray.icon-false {
+  border-radius: var(--2-radius-radius-sm-duplicate);
+  padding: var(--3-spacing-spacing-xs-duplicate) var(--3-spacing-spacing-md-duplicate)
+    var(--3-spacing-spacing-xs-duplicate) var(--3-spacing-spacing-md-duplicate);
+}
+
+.breadcrumb-button.button-gray.icon-true {
+  border-radius: var(--3-spacing-spacing-sm-duplicate);
+  padding: var(--3-spacing-spacing-xs-duplicate);
+}
+
+.breadcrumb-button.state-0-hover.button-brand {
+  background-color: var(--1-color-modes-component-colors-components-breadcrumbs-breadcrumb-brand-bg-hover-duplicate);
+}
+
+.breadcrumb-button.icon-false.button-brand {
+  border-radius: var(--2-radius-radius-sm-duplicate);
+  padding: var(--3-spacing-spacing-xs-duplicate) var(--3-spacing-spacing-md-duplicate)
+    var(--3-spacing-spacing-xs-duplicate) var(--3-spacing-spacing-md-duplicate);
+}
+
+.breadcrumb-button.state-0-hover.button-gray {
+  background-color: var(--1-color-modes-component-colors-components-breadcrumbs-breadcrumb-bg-hover-duplicate);
+}
+
+.breadcrumb-button.button-brand.current-0-true {
+  background-color: var(--1-color-modes-component-colors-components-breadcrumbs-breadcrumb-brand-bg-hover-duplicate);
+}
+
+.breadcrumb-button.current-0-true .text-9 {
+  font-family: var(--text-sm-semibold-font-family);
+  font-size: var(--text-sm-semibold-font-size);
+  font-style: var(--text-sm-semibold-font-style);
+  font-weight: var(--text-sm-semibold-font-weight);
+  letter-spacing: var(--text-sm-semibold-letter-spacing);
+  line-height: var(--text-sm-semibold-line-height);
+}
+
+.breadcrumb-button.current-0-false .text-9 {
+  font-family: var(--text-sm-medium-font-family);
+  font-size: var(--text-sm-medium-font-size);
+  font-style: var(--text-sm-medium-font-style);
+  font-weight: var(--text-sm-medium-font-weight);
+  letter-spacing: var(--text-sm-medium-letter-spacing);
+  line-height: var(--text-sm-medium-line-height);
+}
+
+.breadcrumb-button.button-gray.current-0-true .text-9 {
+  color: #344054;
+}
+
+.breadcrumb-button.text.current-0-true .text-9 {
+  color: var(--1-color-modes-component-colors-components-breadcrumbs-breadcrumb-brand-fg-hover-duplicate);
+}
+
+.breadcrumb-button.state-0-default.current-0-false .text-9 {
+  color: var(--1-color-modes-component-colors-components-breadcrumbs-breadcrumb-fg-duplicate);
+}
+
+.breadcrumb-button.state-0-focused.current-0-false .text-9 {
+  color: var(--1-color-modes-component-colors-components-breadcrumbs-breadcrumb-fg-duplicate);
+}
+
+.breadcrumb-button.state-0-hover.button-brand .text-9 {
+  color: var(--1-color-modes-component-colors-components-breadcrumbs-breadcrumb-brand-fg-hover-duplicate);
+}
+
+.breadcrumb-button.state-0-hover.button-gray .text-9 {
+  color: #344054;
+}
+
+.breadcrumb-button.button-brand.current-0-true .text-9 {
+  color: var(--1-color-modes-component-colors-components-breadcrumbs-breadcrumb-brand-fg-hover-duplicate);
+}
+
+.breadcrumb-button.text.state-0-hover.current-0-false .text-9 {
+  color: #344054;
+}

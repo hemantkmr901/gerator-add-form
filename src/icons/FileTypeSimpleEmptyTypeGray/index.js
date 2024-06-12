@@ -1,0 +1,1 @@
+export { FileTypeSimpleEmptyTypeGray } from "./FileTypeSimpleEmptyTypeGray";

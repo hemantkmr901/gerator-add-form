@@ -1,0 +1,1 @@
+export { FileTypeDefaultImageTypeSolid } from "./FileTypeDefaultImageTypeSolid";

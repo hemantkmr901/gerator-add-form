@@ -1,0 +1,656 @@
+.file-type-icon {
+  height: 40px;
+  width: 40px;
+}
+
+.file-type-icon .overlap-group-3 {
+  height: 40px;
+  position: relative;
+}
+
+.file-type-icon .page {
+  height: 40px;
+  left: 6px;
+  position: absolute;
+  top: 0;
+  width: 32px;
+}
+
+.file-type-icon .file-type-wrap {
+  align-items: flex-start;
+  border-radius: 2px;
+  display: inline-flex;
+  gap: 8px;
+  left: 0;
+  padding: 2px 3px;
+  position: absolute;
+  top: 18px;
+}
+
+.file-type-icon .file-type {
+  color: #ffffff;
+  font-family: "Inter", Helvetica;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.file-type-icon .file-type-2 {
+  font-family: "Inter", Helvetica;
+  font-size: 9px;
+  font-weight: 700;
+  left: 0;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 22px;
+  width: 32px;
+}
+
+.file-type-icon .instance-node {
+  height: 40px !important;
+  left: 0 !important;
+  position: absolute !important;
+  top: 0 !important;
+  width: 40px !important;
+}
+
+.file-type-icon .type-default {
+  left: 1px;
+  width: 38px;
+}
+
+.file-type-icon .type-solid {
+  background-size: 100% 100%;
+  left: 4px;
+  width: 32px;
+}
+
+.file-type-icon .type-gray {
+  background-size: 100% 100%;
+  left: 4px;
+  width: 32px;
+}
+
+.file-type-icon .type-gray.image-TIFF {
+  background-image: url(../../../static/img/page-89.svg);
+}
+
+.file-type-icon .document-CSV.type-solid {
+  background-image: url(../../../static/img/page-27.svg);
+}
+
+.file-type-icon .development-SQL.type-solid {
+  background-image: url(../../../static/img/page-63.svg);
+}
+
+.file-type-icon .type-solid.document-XLS {
+  background-image: url(../../../static/img/page-27.svg);
+}
+
+.file-type-icon .design-AI-illustrator.type-gray {
+  background-image: url(../../../static/img/page-103.svg);
+}
+
+.file-type-icon .document-DOCX.type-gray {
+  background-image: url(../../../static/img/page-95.svg);
+}
+
+.file-type-icon .image-EPS.type-solid {
+  background-image: url(../../../static/img/page-1.svg);
+}
+
+.file-type-icon .type-solid.development-CSS {
+  background-image: url(../../../static/img/page-63.svg);
+}
+
+.file-type-icon .type-gray.image-EPS {
+  background-image: url(../../../static/img/page-92.svg);
+}
+
+.file-type-icon .type-solid.media-MKV {
+  background-image: url(../../../static/img/page-21.svg);
+}
+
+.file-type-icon .type-gray.development-SQL {
+  background-image: url(../../../static/img/page-118.svg);
+}
+
+.file-type-icon .document-CSV.type-gray {
+  background-image: url(../../../static/img/page-97.svg);
+}
+
+.file-type-icon .type-gray.media-AVI {
+  background-image: url(../../../static/img/page-109.svg);
+}
+
+.file-type-icon .document-PPT.type-solid {
+  background-image: url(../../../static/img/page-33.svg);
+}
+
+.file-type-icon .image-webp.type-solid {
+  background-image: url(../../../static/img/page-1.svg);
+}
+
+.file-type-icon .type-gray.media-mp4 {
+  background-image: url(../../../static/img/page-108.svg);
+}
+
+.file-type-icon .type-solid.image-JPG {
+  background-image: url(../../../static/img/page-1.svg);
+}
+
+.file-type-icon .archive-RAR.type-gray {
+  background-image: url(../../../static/img/page-114.svg);
+}
+
+.file-type-icon .development-HTML.type-solid {
+  background-image: url(../../../static/img/page-63.svg);
+}
+
+.file-type-icon .development-EXE.type-solid {
+  background-image: url(../../../static/img/page-63.svg);
+}
+
+.file-type-icon .development-DMG.type-solid {
+  background-image: url(../../../static/img/page-63.svg);
+}
+
+.file-type-icon .type-solid.document-XLSX {
+  background-image: url(../../../static/img/page-27.svg);
+}
+
+.file-type-icon .design-AEP-after-effects.type-solid {
+  background-image: url(../../../static/img/page-45.svg);
+}
+
+.file-type-icon .design-FIG-figma.type-solid {
+  background-image: url(../../../static/img/page-1.svg);
+}
+
+.file-type-icon .development-JS.type-solid {
+  background-image: url(../../../static/img/page-63.svg);
+}
+
+.file-type-icon .archive-ZIP.type-gray {
+  background-image: url(../../../static/img/page-113.svg);
+}
+
+.file-type-icon .development-RSS.type-solid {
+  background-image: url(../../../static/img/page-63.svg);
+}
+
+.file-type-icon .image-PNG.type-solid {
+  background-image: url(../../../static/img/page-1.svg);
+}
+
+.file-type-icon .type-gray.document-PPTX {
+  background-image: url(../../../static/img/page-101.svg);
+}
+
+.file-type-icon .type-solid.document-PDF {
+  background-image: url(../../../static/img/page-19.svg);
+}
+
+.file-type-icon .type-solid.image-IMG {
+  background-image: url(../../../static/img/page-1.svg);
+}
+
+.file-type-icon .image-SVG.type-solid {
+  background-image: url(../../../static/img/page-1.svg);
+}
+
+.file-type-icon .type-gray.media-MPEG {
+  background-image: url(../../../static/img/page-112.svg);
+}
+
+.file-type-icon .media-WAV.type-solid {
+  background-image: url(../../../static/img/page-47.svg);
+}
+
+.file-type-icon .development-JSON.type-solid {
+  background-image: url(../../../static/img/page-63.svg);
+}
+
+.file-type-icon .media-mp3.type-solid {
+  background-image: url(../../../static/img/page-47.svg);
+}
+
+.file-type-icon .image-GIF.type-solid {
+  background-image: url(../../../static/img/page-1.svg);
+}
+
+.file-type-icon .design-INDD-indesign.type-gray {
+  background-image: url(../../../static/img/page-105.svg);
+}
+
+.file-type-icon .type-gray.document-DOC {
+  background-image: url(../../../static/img/page-94.svg);
+}
+
+.file-type-icon .document-TXT.type-gray {
+  background-image: url(../../../static/img/page-96.svg);
+}
+
+.file-type-icon .document-TXT.type-solid {
+  background-image: url(../../../static/img/page-25.svg);
+}
+
+.file-type-icon .type-solid.document-DOC {
+  background-image: url(../../../static/img/page-21.svg);
+}
+
+.file-type-icon .design-INDD-indesign.type-solid {
+  background-image: url(../../../static/img/page-43.svg);
+}
+
+.file-type-icon .development-JAVA.type-solid {
+  background-image: url(../../../static/img/page-63.svg);
+}
+
+.file-type-icon .image-GIF.type-gray {
+  background-image: url(../../../static/img/page-90.svg);
+}
+
+.file-type-icon .type-gray.development-JSON {
+  background-image: url(../../../static/img/page-121.svg);
+}
+
+.file-type-icon .type-gray.image-JPEG {
+  background-image: url(../../../static/img/page-86.svg);
+}
+
+.file-type-icon .development-XML.type-solid {
+  background-image: url(../../../static/img/page-63.svg);
+}
+
+.file-type-icon .type-gray.media-WAV {
+  background-image: url(../../../static/img/page-110.svg);
+}
+
+.file-type-icon .development-XML.type-gray {
+  background-image: url(../../../static/img/page-119.svg);
+}
+
+.file-type-icon .image-JPEG.type-solid {
+  background-image: url(../../../static/img/page-1.svg);
+}
+
+.file-type-icon .type-gray.development-JAVA {
+  background-image: url(../../../static/img/page-122.svg);
+}
+
+.file-type-icon .document-PPTX.type-solid {
+  background-image: url(../../../static/img/page-33.svg);
+}
+
+.file-type-icon .development-RSS.type-gray {
+  background-image: url(../../../static/img/page-117.svg);
+}
+
+.file-type-icon .type-gray.design-FIG-figma {
+  background-image: url(../../../static/img/page-102.svg);
+}
+
+.file-type-icon .type-gray.media-mp3 {
+  background-image: url(../../../static/img/page-107.svg);
+}
+
+.file-type-icon .type-gray.document-XLSX {
+  background-image: url(../../../static/img/page-99.svg);
+}
+
+.file-type-icon .type-gray.development-DMG {
+  background-image: url(../../../static/img/page-124.svg);
+}
+
+.file-type-icon .development-HTML.type-gray {
+  background-image: url(../../../static/img/page-115.svg);
+}
+
+.file-type-icon .image-SVG.type-gray {
+  background-image: url(../../../static/img/page-91.svg);
+}
+
+.file-type-icon .type-solid.media-MPEG {
+  background-image: url(../../../static/img/page-21.svg);
+}
+
+.file-type-icon .type-gray.image-IMG {
+  background-image: url(../../../static/img/page-84.svg);
+}
+
+.file-type-icon .type-solid.media-mp4 {
+  background-image: url(../../../static/img/page-21.svg);
+}
+
+.file-type-icon .type-solid.media-AVI {
+  background-image: url(../../../static/img/page-21.svg);
+}
+
+.file-type-icon .type-gray.document-PDF {
+  background-image: url(../../../static/img/page-93.svg);
+}
+
+.file-type-icon .type-gray.media-MKV {
+  background-image: url(../../../static/img/page-111.svg);
+}
+
+.file-type-icon .image-PNG.type-gray {
+  background-image: url(../../../static/img/page-87.svg);
+}
+
+.file-type-icon .type-gray.development-CSS {
+  background-image: url(../../../static/img/page-116.svg);
+}
+
+.file-type-icon .archive-ZIP.type-solid {
+  background-image: url(../../../static/img/page-25.svg);
+}
+
+.file-type-icon .design-AI-illustrator.type-solid {
+  background-image: url(../../../static/img/page-39.svg);
+}
+
+.file-type-icon .document-DOCX.type-solid {
+  background-image: url(../../../static/img/page-21.svg);
+}
+
+.file-type-icon .type-gray.development-JS {
+  background-image: url(../../../static/img/page-120.svg);
+}
+
+.file-type-icon .design-AEP-after-effects.type-gray {
+  background-image: url(../../../static/img/page-106.svg);
+}
+
+.file-type-icon .type-gray.document-XLS {
+  background-image: url(../../../static/img/page-98.svg);
+}
+
+.file-type-icon .image-TIFF.type-solid {
+  background-image: url(../../../static/img/page-1.svg);
+}
+
+.file-type-icon .development-EXE.type-gray {
+  background-image: url(../../../static/img/page-123.svg);
+}
+
+.file-type-icon .archive-RAR.type-solid {
+  background-image: url(../../../static/img/page-25.svg);
+}
+
+.file-type-icon .design-PSD-photoshop.type-solid {
+  background-image: url(../../../static/img/page-21.svg);
+}
+
+.file-type-icon .design-PSD-photoshop.type-gray {
+  background-image: url(../../../static/img/page-104.svg);
+}
+
+.file-type-icon .type-gray.image-JPG {
+  background-image: url(../../../static/img/page-85.svg);
+}
+
+.file-type-icon .image-webp.type-gray {
+  background-image: url(../../../static/img/page-88.svg);
+}
+
+.file-type-icon .document-PPT.type-gray {
+  background-image: url(../../../static/img/page-100.svg);
+}
+
+.file-type-icon .overlap-group-3.development-JS .file-type-wrap {
+  background-color: var(--primitives-colors-indigo-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.simple-folder .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.development-JSON .file-type-wrap {
+  background-color: var(--primitives-colors-indigo-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.image-TIFF .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.image-JPG .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.development-DMG .file-type-wrap {
+  background-color: var(--primitives-colors-indigo-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.design-PSD-photoshop .file-type-wrap {
+  background-color: var(--primitives-colors-blue-dark-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.document-PPT .file-type-wrap {
+  background-color: var(--primitives-colors-orange-dark-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.document-DOC .file-type-wrap {
+  background-color: var(--primitives-colors-blue-dark-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.image-PNG .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.media-MPEG .file-type-wrap {
+  background-color: var(--primitives-colors-blue-dark-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.image-SVG .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.document-XLSX .file-type-wrap {
+  background-color: var(--primitives-colors-success-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.default-spreadsheet .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.development-EXE .file-type-wrap {
+  background-color: var(--primitives-colors-indigo-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.development-JAVA .file-type-wrap {
+  background-color: var(--primitives-colors-indigo-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.document-PPTX .file-type-wrap {
+  background-color: var(--primitives-colors-orange-dark-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.default-image .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.image-GIF .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.design-AI-illustrator .file-type-wrap {
+  background-color: var(--primitives-colors-orange-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.simple-empty .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.document-DOCX .file-type-wrap {
+  background-color: var(--primitives-colors-blue-dark-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.design-AEP-after-effects .file-type-wrap {
+  background-color: var(--primitives-colors-purple-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.default-audio .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.design-FIG-figma .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.media-WAV .file-type-wrap {
+  background-color: var(--primitives-colors-pink-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.archive-ZIP .file-type-wrap {
+  background-color: #344054;
+}
+
+.file-type-icon .overlap-group-3.simple-video-02 .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.simple-spreadsheet .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.media-AVI .file-type-wrap {
+  background-color: var(--primitives-colors-blue-dark-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.simple-document .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.simple-code .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.simple-video-01 .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.image-IMG .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.image-JPEG .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.image-webp .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.document-CSV .file-type-wrap {
+  background-color: var(--primitives-colors-success-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.development-HTML .file-type-wrap {
+  background-color: var(--primitives-colors-indigo-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.default-code .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.simple-image .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.media-mp3 .file-type-wrap {
+  background-color: var(--primitives-colors-pink-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.development-CSS .file-type-wrap {
+  background-color: var(--primitives-colors-indigo-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.image-EPS .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.media-MKV .file-type-wrap {
+  background-color: var(--primitives-colors-blue-dark-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.media-mp4 .file-type-wrap {
+  background-color: var(--primitives-colors-blue-dark-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.default-video-02 .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.design-INDD-indesign .file-type-wrap {
+  background-color: var(--primitives-colors-fuchsia-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.default-document .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.development-XML .file-type-wrap {
+  background-color: var(--primitives-colors-indigo-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.document-PDF .file-type-wrap {
+  background-color: var(--primitives-colors-error-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.document-TXT .file-type-wrap {
+  background-color: var(--primitives-colors-gray-light-mode-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.default-video-01 .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.simple-audio .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.development-RSS .file-type-wrap {
+  background-color: var(--primitives-colors-indigo-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.simple-PDF .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.archive-RAR .file-type-wrap {
+  background-color: #344054;
+}
+
+.file-type-icon .overlap-group-3.default-PDF .file-type-wrap {
+  background-color: #7e56d8;
+}
+
+.file-type-icon .overlap-group-3.document-XLS .file-type-wrap {
+  background-color: var(--primitives-colors-success-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.development-SQL .file-type-wrap {
+  background-color: var(--primitives-colors-indigo-600-duplicate);
+}
+
+.file-type-icon .overlap-group-3.type-gray .file-type-2 {
+  color: var(--1-color-modes-colors-foreground-fg-secondary-700-duplicate);
+}
+
+.file-type-icon .overlap-group-3.type-default .file-type-2 {
+  color: var(--1-color-modes-colors-foreground-fg-secondary-700-duplicate);
+}
+
+.file-type-icon .overlap-group-3.type-solid .file-type-2 {
+  color: #ffffff;
+}

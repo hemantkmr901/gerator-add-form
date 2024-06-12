@@ -1,0 +1,1 @@
+export { FileTypeDefaultDocumentTypeGray } from "./FileTypeDefaultDocumentTypeGray";

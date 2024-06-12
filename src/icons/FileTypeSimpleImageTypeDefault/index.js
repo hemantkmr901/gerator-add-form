@@ -1,0 +1,1 @@
+export { FileTypeSimpleImageTypeDefault } from "./FileTypeSimpleImageTypeDefault";

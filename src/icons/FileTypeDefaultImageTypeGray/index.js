@@ -1,0 +1,1 @@
+export { FileTypeDefaultImageTypeGray } from "./FileTypeDefaultImageTypeGray";

@@ -1,0 +1,53 @@
+.nav-item-button {
+  align-items: center;
+  border-radius: var(--2-radius-radius-sm-duplicate);
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  padding: var(--3-spacing-spacing-md-duplicate);
+  position: relative;
+}
+
+.nav-item-button .bell {
+  height: 24px !important;
+  position: relative !important;
+  width: 24px !important;
+}
+
+.nav-item-button.md {
+  height: 40px;
+  width: 40px;
+}
+
+.nav-item-button.lg {
+  height: 48px;
+  width: 48px;
+}
+
+.nav-item-button.focused {
+  box-shadow: var(--focus-rings-ring-gray);
+}
+
+.nav-item-button.hover.current-true {
+  background-color: var(--1-color-modes-colors-background-bg-secondary-hover-duplicate);
+}
+
+.nav-item-button.hover.current-false {
+  background-color: var(--1-color-modes-colors-background-bg-primary-hover-duplicate);
+}
+
+.nav-item-button.focused.current-false {
+  background-color: var(--1-color-modes-colors-background-bg-primary-duplicate);
+}
+
+.nav-item-button.default.current-true {
+  background-color: var(--1-color-modes-colors-background-bg-active-duplicate);
+}
+
+.nav-item-button.default.current-false {
+  background-color: var(--1-color-modes-colors-background-bg-primary-duplicate);
+}
+
+.nav-item-button.focused.current-true {
+  background-color: var(--1-color-modes-colors-background-bg-active-duplicate);
+}

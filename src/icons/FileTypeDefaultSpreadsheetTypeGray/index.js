@@ -1,0 +1,1 @@
+export { FileTypeDefaultSpreadsheetTypeGray } from "./FileTypeDefaultSpreadsheetTypeGray";

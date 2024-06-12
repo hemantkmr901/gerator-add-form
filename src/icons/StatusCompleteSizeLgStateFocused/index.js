@@ -1,0 +1,1 @@
+export { StatusCompleteSizeLgStateFocused } from "./StatusCompleteSizeLgStateFocused";

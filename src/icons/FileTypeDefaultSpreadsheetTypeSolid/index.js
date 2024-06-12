@@ -1,0 +1,1 @@
+export { FileTypeDefaultSpreadsheetTypeSolid } from "./FileTypeDefaultSpreadsheetTypeSolid";

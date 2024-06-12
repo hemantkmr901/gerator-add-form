@@ -1,0 +1,1 @@
+export { FileTypeSimpleFolderTypeSolid } from "./FileTypeSimpleFolderTypeSolid";
