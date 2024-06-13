@@ -97,3 +97,48 @@ input[type="radio"] {
 .imagelayout-checkbox{
     background-color: #6941c6;
 }
+
+[type="checkbox"].custom-checkbox {
+    /* Hide the default checkbox */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  
+    /* Basic Styling */
+    position: relative; /* For positioning the checkmark */
+    width: 16px;       /* Adjust size as needed */
+    height: 16px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  /* Checked State */
+  [type="checkbox"].custom-checkbox:checked {
+    background-color: var(--primitives-colors-error-600-duplicate);
+  }
+  
+  /* Cross Icon (Pseudo-elements) */
+  [type="checkbox"].custom-checkbox:checked::before,
+  [type="checkbox"].custom-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-50deg);
+    width: 2px;
+    height: 12px;
+    background-color: white;
+  }
+  
+  [type="checkbox"].custom-checkbox:checked::after {
+    transform: translate(-50%, -50%) rotate(50deg);
+  }
+  
+  /* Optional: Hover Effect */
+  [type="checkbox"].custom-checkbox:hover {
+    background-color: #ccc;
+  }

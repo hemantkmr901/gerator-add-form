@@ -17,6 +17,7 @@ import { updateField } from "./AddDeviceSlice";
 import { MySelect, MyTextInput } from "./AddDeviceStep1";
 import { updateAppDataDevice } from "./AppDataDeviceSlice";
 import ImageCrop from "../ImageCropComponent/ImageCrop";
+import { XClose31 } from "../../icons/XClose31";
 
 
 
@@ -58,6 +59,23 @@ const FileUpload = ({ ...props }) => {
 
 const MultiFileUpload = ({ ...props }) => {
   const [field, meta] = useField(props);
+
+
+
+  // const [uploadErrors, setUploadErrors] = useState([]); // Store errors here
+
+  // useEffect(() => {
+  //   if (meta.touched && meta.error && meta.error.length > 0) {
+  //     setUploadErrors(meta.error); // Update errors
+  //   } else {
+  //     setUploadErrors([]); // Clear errors when valid
+  //   }
+  // }, [meta.touched, meta.error]);
+
+  // const handleChangeWithErrors = (event) => {
+  //   onChange(event, uploadErrors); // Pass errors along with the event
+  // };
+
   return (
     <div>
       <label htmlFor="gallery" className="featurImageLabel">
@@ -79,7 +97,8 @@ const MultiFileUpload = ({ ...props }) => {
         <div className="text-28">or drag and drop</div>
       </div>
       <p className="supporting-text-10">PNG, JPG or GIF (max. 800x400px)</p>{" "}
-      {meta.touched && meta.error && meta.error.length > 0 ? (
+
+      {/* {meta.touched && meta.error && meta.error.length > 0 ? (
         <div>
           {meta.error.map((error, index) => (
             <div key={index} style={{ color: "red" }}>
@@ -87,10 +106,8 @@ const MultiFileUpload = ({ ...props }) => {
             </div>
           ))}
         </div>
-      ) : null}
-      {/* {meta.touched && meta.error ? (
-        <div style={{ color: "red" }}>{meta.error}</div>
       ) : null} */}
+
     </div>
   );
 };
@@ -124,6 +141,8 @@ const AddDeviceStep2 = () => {
   const dispatch = useDispatch();
   const formData = useSelector((state) => state.addDevice);
   const appData = useSelector((state) => state.appDataAddDevice);
+  const [imageMultiCheckboxError, setImageMultiCheckboxError] = useState([]);
+  const [maxFileIndicate, setMaxFileIndicate] = useState(false);
   const [featureImageFile, setFeatureImageFile] = useState(null);
   const [galleryImageFile, setGalleryImageFile] = useState([]);
   const { values, validateForm, setFieldValue, setFieldError, setErrors, setFieldTouched, validateField, errors, isValid, dirty, touched } = useFormikContext();
@@ -133,7 +152,7 @@ const AddDeviceStep2 = () => {
   const inputYoutubeRef = useRef(null);
   const inputVimeoRef = useRef(null);
   // const fileImageRef = useRef(null);
-  const multiImageRef = useRef(null);
+  // const multiImageRef = useRef(null);
   // const formikRef = useRef(null);
   // useEffect(() => {
   //   // This effect runs whenever errors, isValid, or dirty change
@@ -144,96 +163,127 @@ const AddDeviceStep2 = () => {
   // }, [errors, isValid, dirty]);
 
 
-  useEffect(() => {
-    // This effect runs whenever errors, isValid, or dirty change
-    // console.log("File ref has any data? ");
-    // console.log(fileImageRef.current?.files);
-    // if (fileImageRef.current?.files.length > 0) {
-    //   console.log(fileImageRef.current.files[0]);
-    // if(featureImageFile != null)
-    // {
-    // console.log("Feature Image");
-    // console.log(featureImageFile);
-    if (!isValid && dirty && (featureImageFile != null)) {
-      // console.log("UseEffect error and handleSelect is called");
-      handleSelectedImageFile(featureImageFile, errors);
-      // setFeatureImageFile(null);
-    }
+  // useEffect(() => {
+  //   // This effect runs whenever errors, isValid, or dirty change
+  //   // console.log("File ref has any data? ");
+  //   // console.log(fileImageRef.current?.files);
+  //   // if (fileImageRef.current?.files.length > 0) {
+  //   //   console.log(fileImageRef.current.files[0]);
+  //   // if(featureImageFile != null)
+  //   // {
+  //   // console.log("Feature Image");
+  //   // console.log(featureImageFile);
+  //   if (!isValid && dirty && (featureImageFile != null)) {
+  //     // console.log("UseEffect error and handleSelect is called");
+  //     handleSelectedImageFile(featureImageFile, errors);
+  //     // setFeatureImageFile(null);
+  //   }
 
-  }, [errors, isValid, dirty, featureImageFile]);
-
-
-
+  // }, [errors, isValid, dirty, featureImageFile]);
 
   useEffect(() => {
-    console.log("Gallery touched Open 169");
-    console.log(touched);
-    if (touched.gallery && values.gallery[0] != null) {
-      // console.log();
-      console.log("inside useEffect values 173");
-    const galleryError = validateField("gallery");
-      console.log(galleryError);
-      setGalleryImageFile([...values.gallery]);
+    console.log("Values useEffect Open");
+    // console.log(touched);
+    if (values.gallery.length <= 5 && !maxFileIndicate) {
+
+      // 1. Check for Errors FIRST:
+      if (errors.gallery && values.gallery.length > 0) {
+        console.log("Values Error UseEffect");
+        handleSelectedMultiImageFile("error");
+        return; // Exit useEffect to avoid further actions if there are errors
+      }
+
+      // 2. Proceed with Updates if No Errors:
+      if (touched.gallery && values.gallery[0] != null) {
+        console.log("Values Touch UseEffect");
+        // setGalleryImageFile([...values.gallery]);
+        handleSelectedMultiImageFile("no-error");
+      }
+      console.log("Values useEffect Closed ");
+
+    } else {
+
+    setMaxFileIndicate(true);
+
     }
 
-    console.log("Gallery touched Close 177");
 
-    //   console.log(values.gallery);
-
-    // return () => {
-    //   second
-    // }
-  }, [values])
+  }, [values, errors.gallery]);
+  // 
 
   useEffect(() => {
-    // This effect runs whenever errors, isValid, or dirty change
-    // console.log("File ref has any data? ");
-    // console.log(fileImageRef.current?.files);
-    // if (fileImageRef.current?.files.length > 0) {
-    //   console.log(fileImageRef.current.files[0]);
-    // if(featureImageFile != null)
-    // {
-    console.log("+++++++++++++++++++++++++++++++++");
-    console.log("Gallery Image Error Called ");
-    console.log(galleryImageFile.length);
-    console.log(!isValid + " " + dirty);
-    if (!isValid && dirty && (galleryImageFile.length > 0)) {
-      console.log("Gallery Image Error UseEffect 199");
-      handleSelectedMultiImageFile("error");
-      // galleryImageFile.forEach(file => {
-      // });
-      // setFeatureImageFile(null);
-    }
-    console.log("Gallery Image Error Closed ");
-    console.log("+++++++++++++++++++++++++++++++++");
-  }, [errors]);
+    console.log("Errors in image checkbox");
+    console.log(imageMultiCheckboxError);
+  }, [imageMultiCheckboxError])
 
 
-  useEffect(() => {
-    // This effect runs whenever errors, isValid, or dirty change
-    // console.log("File ref has any data? ");
-    // console.log(fileImageRef.current?.files);
-    // if (fileImageRef.current?.files.length > 0) {
-    //   console.log(fileImageRef.current.files[0]);
-    // if(featureImageFile != null)
-    // {
-        
-    console.log("----------------------------------");
-    console.log("Gallery Image File Called ");
-    console.log(galleryImageFile.length);
-    console.log(!isValid + " " + dirty);
-    if (!isValid && dirty && (galleryImageFile.length > 0)) {
-      console.log("Gallery Image File UseEffect2 223");
-      handleSelectedMultiImageFile("galleryImageFile");
-      // galleryImageFile.forEach(file => {
-      // });
-      // setFeatureImageFile(null);
-    }
-    console.log("Gallery Image File Closed ");
+  // useEffect(() => {
+  //   console.log("Gallery touched Open 169");
+  //   console.log(touched);
+  //   if (touched.gallery && values.gallery[0] != null) {
+  //     // console.log();
+  //     console.log("inside useEffect values 173");
+  //     setGalleryImageFile([...values.gallery]);
+  //   }
 
-    console.log("----------------------------------");
+  //   console.log(dirty + " " + values.gallery.length);
+  //   console.log(values.gallery);
+  //   if (dirty && (values.gallery.length > 0)) {
+  //     console.log("Gallery Image Error UseEffect 199");
+  //     handleSelectedMultiImageFile("error");
+  //   }
+  //   console.log("Gallery touched Close 177");
 
-  }, [galleryImageFile]);
+  //   //   console.log(values.gallery);
+
+  //   // return () => {
+  //   //   second
+  //   // }
+  // }, [values, errors.gallery])
+
+  // useEffect(() => {
+  //   // This effect runs whenever errors, isValid, or dirty change
+  //   // console.log("File ref has any data? ");
+  //   // console.log(fileImageRef.current?.files);
+  //   // if (fileImageRef.current?.files.length > 0) {
+  //   //   console.log(fileImageRef.current.files[0]);
+  //   // if(featureImageFile != null)
+  //   // {
+  //   console.log("+++++++++++++++++++++++++++++++++");
+  //   console.log("Gallery Image Error Called ");
+  //   console.log(galleryImageFile.length);
+  //   console.log(!isValid + " " + dirty);
+  //   if (!isValid && dirty && (galleryImageFile.length > 0)) {
+  //     console.log("Gallery Image Error UseEffect 199");
+  //     handleSelectedMultiImageFile("error");
+  //     // galleryImageFile.forEach(file => {
+  //     // });
+  //     // setFeatureImageFile(null);
+  //   }
+  //   console.log("Gallery Image Error Closed ");
+  //   console.log("+++++++++++++++++++++++++++++++++");
+  // }, [errors]);
+
+
+  // useEffect(() => {
+
+
+  //   console.log("----------------------------------");
+  //   console.log("Gallery Image File Called ");
+  //   console.log(galleryImageFile.length);
+  //   console.log(!isValid + " " + dirty);
+  //   if (!isValid && dirty && (galleryImageFile.length > 0)) {
+  //     console.log("Gallery Image File UseEffect2 223");
+  //     handleSelectedMultiImageFile("galleryImageFile");
+  //     // galleryImageFile.forEach(file => {
+  //     // });
+  //     // setFeatureImageFile(null);
+  //   }
+  //   console.log("Gallery Image File Closed ");
+
+  //   console.log("----------------------------------");
+
+  // }, [galleryImageFile]);
 
 
 
@@ -241,29 +291,7 @@ const AddDeviceStep2 = () => {
 
 
   // useEffect(() => {
-  //   //   formikRef.current?.setValues(formData);
-  //   //   // console.log(formikRef.current);
-  //   // }, [formData]);
 
-  //   // onChange Listener on input file tag(featureImage)
-  //   // useEffect(() => {
-  //   //   if (fileImageRef.current) {
-  //   //     fileImageRef.current.addEventListener('change', handleSelectedImageFile);
-  //   //   }
-  //   //   return () => { // Add a cleanup function
-  //   //     if (fileImageRef.current) {
-  //   //       fileImageRef.current.removeEventListener('change', handleSelectedImageFile);
-  //   //     }
-  //   //   }
-
-  //   // console.log(selectedImageFile);
-  //   // console.log(isImageSelected);
-  //   // if (selectedImageFile !== "" && isImageSelected === true) {
-  //   //   setIsImageSelected(false);
-  //   //   setFieldValue("featureImage", '')
-  //   //   console.log("file+true effect");
-  //   //   console.log(selectedImageFile);
-  //   // }
   //   console.log("outside selectimage effect");
   //   if (selectedImageFile !== "" && isImageSelected === false) {
   //     setIsImageSelected(true);
@@ -280,15 +308,11 @@ const AddDeviceStep2 = () => {
   //       return acc;
   //     }, {});
 
-  //     // Update Formik's error state
   //     setErrors(filteredErrors);
   //     setIsImageSelected(false);
   //     console.log(errors.featureImage);
   //     console.log("UseEffect file+true");
-  //     //   console.log(selectedImageFile);
   //   }
-  //   // console.log(selectedImageFile);
-  //   // console.log(cropedImageFile);
   // }, [selectedImageFile]);
 
   //onChange Listener on input file tag(gallery)
@@ -353,66 +377,22 @@ const AddDeviceStep2 = () => {
 
 
   //onChange handle method for featureImage where populating image
-  const handleSelectedImageFile = async (file, error) => {
-    // dispatch(updateAppDataDevice({case:"FEATUREIMAGE", field:"selectedImageFile",value: e.target.files[0]}))
-    // const file = e.target.files[0];
-    // setFieldValue("featureImage", "featureImage");
-    // console.log(file);
-    // setFieldValue("featureImage", file);
-    //
-    // validateField('featureImage');
-    // console.log(selectedImageFile);
-    // console.log(errors[featureImage]);
-    // setSelectedImageFile(e.target.files[0])
-    // console.log(savedError);
-    // console.log(error);
-    // console.log(error);
+  // const handleSelectedImageFile = async (file, error) => {
 
-    if (!errors.featureImage) {
-      setFieldTouched("featureImage", true);
-      console.log("handleSelectedImage Called 280");
-      setSelectedImageFile(file)
-    } else {
-      console.log("Error found line 283 ");
-      if (cropedImageFile !== '') setCropedImageFile('')
-      setSelectedImageFile('')
-      setFieldTouched("featureImage", true);
-    }
 
-    // e.target.value = null;
-  }
+  //   if (!errors.featureImage) {
+  //     setFieldTouched("featureImage", true);
+  //     console.log("handleSelectedImage Called 280");
+  //     setSelectedImageFile(file)
+  //   } else {
+  //     console.log("Error found line 283 ");
+  //     if (cropedImageFile !== '') setCropedImageFile('')
+  //     setSelectedImageFile('')
+  //     setFieldTouched("featureImage", true);
+  //   }
 
-  // try {
-  //   Yup.reach(imageUploadSchema, "featureImage").validateSync(file);
-  // } catch (error) {
-  //   console.log(error);
-  //   formik.errors = {"featureImage": error.message};selectedMultiImageFile.length
-  //   // formik.setFieldError("featureImage", error.message);
-  //   formik.setFieldTouched("featureImage", true);
-  //   // return error.message;
   // }
 
-  // console.log(file);
-  // try {
-  //   // await imageUploadSchema.validate({ featureImage: file });
-  //   console.log(formik);
-  //   console.log("file saved and clear");
-  //   } catch (error) {
-  //     // setErrors({})
-  //     setErrors({featureImage:"Required Field"})
-  //     // setFieldError("featureImage",error.message)
-  //     // const latestFormik = getFormik();
-  //     console.log(error.errors);
-  //     // console.log(formik.errors);
-  //     // console.log(latestFormik);
-  //     }
-
-  // console.log(validatedData);
-  // setFieldValue("featureImage",file)
-  // e.target.value = null;
-  // console.error(error);
-  // formik.errors = { "featureImage": error.message }
-  // formik.setErrors({"featureImage": error.message});
 
 
   //onClick handle method For featureImage remove
@@ -426,51 +406,102 @@ const AddDeviceStep2 = () => {
     // console.log(selectedImageFile);
   }
 
-  //onChange handle method for gallery where populating image one by one
-  const handleSelectedMultiImageFile = (type) => {
+  const handleSelectedMultiImageFile = async (type) => {
+    console.log("HandleSelectedMultiImageFile Called " + type);
+   
+    setFieldTouched("gallery", true); // Always touch the field for validation
 
-    console.log("handleSelectedMultiImageFile Called "+type );
-    // console.log(!errors.gallery);
-    
-    if (!errors.gallery) {
-      setFieldTouched("gallery", true);
-      console.log(errors);
-      console.log("Inside !erros.gallery is true means no error found 435");
-      setSelectedMultiImageFile(galleryImageFile)
-      console.log("File added into select multi image hook");
-      // [...selectedMultiImageFile, ...galleryImageFile]
-      setGalleryImageFile([])
-    } else {
-      console.log(errors);
-      console.log("Inside !erros.gallery is false means error found 435");
+    console.log(errors);
 
-      // if (cropedImageFile !== '') setCropedImageFile('')
-      // setGalleryImageFile([])
-      // const updatedValues = values.gallery;
-      // const newUpdatedValues = updatedValues.pop();
-      // console.log(newUpdatedValues);
-      setFieldTouched("gallery", true);
+    // 3. Additional Error Check:
+    if (errors.gallery) {
+      console.log("Inside errors.gallery is true means error found 435");
+      setImageMultiCheckboxError(errors.gallery);
+      return; // Don't proceed with upload if there's an error
     }
-       console.log("handleSelectedMultiImageFile Closed "+type);
 
-  }
+    // 4. Proceed with Upload if No Errors:
+    console.log("Inside !errors.gallery is true means no error found 435");
+    setSelectedMultiImageFile(values.gallery);
+    // setImageMultiCheckboxError(errors.gallery);
+    // console.log(imageMultiCheckboxError);
+    console.log("File added into select multi image hook");
+  };
 
+  //onChange handle method for gallery where populating image one by one
+  // const handleSelectedMultiImageFile = async (type) => {
+
+  //   console.log("handleSelectedMultiImageFile Called " + type);
+
+  //   if (!errors.gallery) {
+  //     setFieldTouched("gallery", true);
+  //     console.log(errors);
+  //     console.log("Inside !erros.gallery is true means no error found 435");
+  //     setSelectedMultiImageFile(values.gallery)
+  //     console.log("File added into select multi image hook");
+  //     // [...selectedMultiImageFile, ...galleryImageFile]
+  //     // setGalleryImageFile([])
+  //     } else {
+  //       console.log(errors);
+  //       console.log("Inside !erros.gallery is false means error found 435");
+
+  //       setFieldTouched("gallery", true);
+  //       }
+  //       console.log("handleSelectedMultiImageFile Closed " + type);
+
+  //       }
+
+  // if (cropedImageFile !== '') setCropedImageFile('')
+  // setGalleryImageFile([])
+  // const updatedValues = values.gallery;
+  // const newUpdatedValues = updatedValues.pop();
+  // console.log(newUpdatedValues);
+  // console.log(!errors.gallery);
+  // try {
+  //   await validateField("gallery")
+  //   console.log("no error found")
+  // } catch (error) {
+  //   console.log(error.message);
+  // }
 
   //onClick handle method For gallery image remove one by one
-  const handleImageMultiCheckbox = (indexToRemove) => {
-    setSelectedMultiImageFile(selectedMultiImageFile => selectedMultiImageFile.filter((_, index) => index !== indexToRemove));
-    // setGalleryImageFile(galleryImageFile => galleryImageFile.filter((_, index) => index !== indexToRemove));
-    // console.log(values.gallery);
+  const handleImageMultiCheckbox = async (indexToRemove) => {
+    await setSelectedMultiImageFile(selectedMultiImageFile => selectedMultiImageFile.filter((_, index) => index !== indexToRemove));
+
     const gallery = values.gallery;
     gallery.splice(indexToRemove, 1)
-    // console.log("index to remove " + indexToRemove);
-    // console.log("update value of gallery ");
-    console.log(gallery);
-    if (gallery.length !== 0) {
-      setFieldValue('gallery', gallery);
-    } else {
-      setFieldValue('gallery', [null]);
+
+    if (imageMultiCheckboxError.length !== 0) {
+      const errorMessages = imageMultiCheckboxError;
+      errorMessages.splice(indexToRemove, 1);
+      setImageMultiCheckboxError(errorMessages);
     }
+
+
+    console.log("handleImageMultiCheckbox index removed :" + indexToRemove);
+    console.log(gallery);
+
+    if (gallery.length !== 0) {
+      const filteredErrors = Object.keys(errors).reduce((acc, fieldName) => {
+        // Filter based on your condition (replace with your actual logic)
+        if (fieldName !== 'gallery') {
+          acc[fieldName] = errors[fieldName];
+        }
+        return acc;
+      }, {});
+      setErrors(filteredErrors)
+      await setFieldValue('gallery', gallery);
+      console.log("handleImageMultiCheckbox working.....");
+      // values.gallery.splice(indexToRemove, 1)
+      return;
+
+    } else {
+
+      setFieldValue('gallery', []);
+    }
+
+    console.log("handleImageMultiCheckbox closed.....");
+
     // setGalleryImageFile([...galleryImageFile, ...fileObjects])
 
   }
@@ -500,12 +531,14 @@ const AddDeviceStep2 = () => {
         file: file, // Store the original file object
       }));
 
-      setFieldValue(name, [
-        ...(values.gallery[0] === null ? [] : [values.gallery[0]]), // Conditional spreading
-        ...values.gallery.slice(1), // Rest of the original array
-        ...fileObjects
-      ]);
+      // setFieldValue(name, [
+      //   ...(values.gallery[0] === null ? [] : [values.gallery[0]]), // Conditional spreading
+      //   ...values.gallery.slice(1), // Rest of the original array
+      //   ...fileObjects
+      // ]);
 
+      setFieldValue(name, [...values.gallery, ...fileObjects]
+      );
       setFieldTouched("gallery", true);
 
 
@@ -519,7 +552,6 @@ const AddDeviceStep2 = () => {
     }
 
     console.log("handle change closed");
-
 
     setFieldValue(name, value);
     dispatch(updateField({ field: name, value }));
@@ -551,10 +583,6 @@ const AddDeviceStep2 = () => {
         }, {});
 
 
-        // if(galleryImageFile.length === 0 ){
-        //   console.log(filteredErrors);
-        // }
-        // console.log(filteredErrors);
         setErrors(filteredErrors)
       }
 
@@ -736,17 +764,26 @@ const AddDeviceStep2 = () => {
                             <div className="text-29">{imageObject.file.name}</div>
                             <div className="supporting-text-11">{(imageObject.file.size / 1000).toFixed(1) + " KB"} </div>
                           </div>
-                          <ProgressBar
-                            className="progress-bar-instance"
-                            label="right"
-                            percentageClassName="progress-bar-4"
-                            progress="one-hundred"
-                            progressBarClassName="progress-bar-2"
-                            progressClassName="progress-bar-3"
-                          />
+                          {(imageMultiCheckboxError[index]) ?
+                            <div key={index} style={{ color: "red" }}>
+                              {imageMultiCheckboxError[index]}
+                            </div> :
+                            <ProgressBar
+                              className="progress-bar-instance"
+                              label="right"
+                              percentageClassName="progress-bar-4"
+                              progress="one-hundred"
+                              progressBarClassName="progress-bar-2"
+                              progressClassName="progress-bar-3"
+                            />
+                          }
                         </div>
+
                       </div>
-                      <Field type="checkbox" onClick={() => handleImageMultiCheckbox(index)} name="imageMultiCheckbox" checked className="checkbox-instance checkbox-base size-30-sm state-8-default checked-true type-checkbox checkbox-2"></Field>
+                      {(imageMultiCheckboxError[index]) ?
+                        <Field type="checkbox" onClick={() => handleImageMultiCheckbox(index)} name="imageMultiCheckbox" checked className="checkbox-instance custom-checkbox"></Field> : <Field type="checkbox" onClick={() => handleImageMultiCheckbox(index)} name="imageMultiCheckbox" checked className="checkbox-instance checkbox-base size-30-sm state-8-default checked-false type-checkbox checkbox-2"></Field>}
+
+
                     </div>
                   ))
 

@@ -24,7 +24,7 @@ export const initialState = {
   accessoriesHighlights: '',
   featureImage: '',
   featureImageLink: '',
-  gallery: [null],
+  gallery: [],
   galleryImageLinks: '',
   videoType: '',
   linkVideo: '',

@@ -9,6 +9,11 @@ import { ArchiveDevice } from "./screens/Device/ArchiveDevice";
 import { EditDevice } from "./screens/Device/EditDevice";
 import { SinglePostDevice } from "./screens/Device/SinglePostDevice/SinglePostDevice";
 import AddDeviceParent from "./components/AddDeviceFormComponent/AddDeviceParent";
+import { TagCloseX } from "./components/TagCloseX";
+import { Checkbox } from "./components/Checkbox";
+import { XClose5 } from "./icons/XClose5";
+import { XClose31 } from "./icons/XClose31";
+import { CheckboxBase } from "./components/CheckboxBase";
 
 
 
@@ -37,7 +42,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/5u4600u4600-dashboard-frame-layout",
-    element: <AddDevice />,
+    element: <TagCloseX/>,
   },
   {
     path: "/desktop",

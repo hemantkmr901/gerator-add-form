@@ -5,18 +5,19 @@
   flex-direction: column;
   overflow: hidden;
   position: relative;
+  color: var(--1-color-modes-component-colors-components-buttons-primary-error-button-primary-error-bg);
 }
 
 .tag-close-x .class-22 {
-  height: 12px !important;
+  height: 14px !important;
   position: relative !important;
-  width: 12px !important;
+  width: 14px !important;
 }
 
 .tag-close-x .class-23 {
-  height: 10px !important;
+  height: 14px !important;
   position: relative !important;
-  width: 10px !important;
+  width: 14px !important;
 }
 
 .tag-close-x .x-close {
@@ -34,7 +35,9 @@
 }
 
 .tag-close-x.state-1-hover {
-  background-color: var(--1-color-modes-colors-background-bg-primary-hover-duplicate);
+  /* background-color: var(--1-color-modes-colors-background-bg-primary-hover-duplicate); */
+  background-color: var(--1-color-modes-component-colors-components-buttons-tertiary-button-tertiary-bg-hover);
+
 }
 
 .tag-close-x.size-25-lg {
