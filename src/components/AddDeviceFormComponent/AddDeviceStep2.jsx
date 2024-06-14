@@ -49,32 +49,16 @@ const FileUpload = ({ ...props }) => {
       </div>
       <p className="supporting-text-10">PNG, JPG or GIF (max. 800x400px)</p>{" "}
 
-      {meta.touched && meta.error ? (
+      {/* {meta.touched && meta.error ? (
         <div style={{ color: "red", textAlign: "center" }}>{meta.error}</div>
-      ) : null}
+      ) : null} */}
     </div>
   );
 };
 
 
-const MultiFileUpload = ({ ...props }) => {
+const MultiFileUpload = ({ maxFileWarning, ...props }) => {
   const [field, meta] = useField(props);
-
-
-
-  // const [uploadErrors, setUploadErrors] = useState([]); // Store errors here
-
-  // useEffect(() => {
-  //   if (meta.touched && meta.error && meta.error.length > 0) {
-  //     setUploadErrors(meta.error); // Update errors
-  //   } else {
-  //     setUploadErrors([]); // Clear errors when valid
-  //   }
-  // }, [meta.touched, meta.error]);
-
-  // const handleChangeWithErrors = (event) => {
-  //   onChange(event, uploadErrors); // Pass errors along with the event
-  // };
 
   return (
     <div>
@@ -98,15 +82,17 @@ const MultiFileUpload = ({ ...props }) => {
       </div>
       <p className="supporting-text-10">PNG, JPG or GIF (max. 800x400px)</p>{" "}
 
-      {/* {meta.touched && meta.error && meta.error.length > 0 ? (
+      {maxFileWarning && (
         <div>
-          {meta.error.map((error, index) => (
-            <div key={index} style={{ color: "red" }}>
-              {error}
-            </div>
-          ))}
+          <div style={{ color: "red" }}>
+            Max 5 Files are allowed to upload.
+          </div>
         </div>
-      ) : null} */}
+      )}
+
+      {meta.touched && meta.error ? (
+        <div style={{ color: "red", textAlign: "center" }}>{meta.error}</div>
+      ) : null}
 
     </div>
   );
@@ -141,10 +127,11 @@ const AddDeviceStep2 = () => {
   const dispatch = useDispatch();
   const formData = useSelector((state) => state.addDevice);
   const appData = useSelector((state) => state.appDataAddDevice);
-  const [imageMultiCheckboxError, setImageMultiCheckboxError] = useState([]);
+  const [imageSingleCheckboxError, setImageSingleCheckboxError] = useState("");
+  const [featureImageDemoFile, setFeatureImageDemoFile] = useState("");
   const [maxFileIndicate, setMaxFileIndicate] = useState(false);
-  const [featureImageFile, setFeatureImageFile] = useState(null);
-  const [galleryImageFile, setGalleryImageFile] = useState([]);
+  const [imageMultiCheckboxError, setImageMultiCheckboxError] = useState([]);
+  // const [galleryImageFile, setGalleryImageFile] = useState([]);
   const { values, validateForm, setFieldValue, setFieldError, setErrors, setFieldTouched, validateField, errors, isValid, dirty, touched } = useFormikContext();
   // let imageCrop ;
   const { isImageSelected, setIsImageSelected, selectedMultiImageFile, setSelectedMultiImageFile, selectedImageFile, setSelectedImageFile, cropedImageFile, setCropedImageFile } = useContext(AddDeviceFormContext);
@@ -181,31 +168,57 @@ const AddDeviceStep2 = () => {
 
   // }, [errors, isValid, dirty, featureImageFile]);
 
+
   useEffect(() => {
     console.log("Values useEffect Open");
     // console.log(touched);
-    if (values.gallery.length <= 5 && !maxFileIndicate) {
+    // if (values.gallery.length <= 5 && !maxFileIndicate) {
 
-      // 1. Check for Errors FIRST:
-      if (errors.gallery && values.gallery.length > 0) {
-        console.log("Values Error UseEffect");
-        handleSelectedMultiImageFile("error");
-        return; // Exit useEffect to avoid further actions if there are errors
-      }
-
-      // 2. Proceed with Updates if No Errors:
-      if (touched.gallery && values.gallery[0] != null) {
-        console.log("Values Touch UseEffect");
-        // setGalleryImageFile([...values.gallery]);
-        handleSelectedMultiImageFile("no-error");
-      }
-      console.log("Values useEffect Closed ");
-
-    } else {
-
-    setMaxFileIndicate(true);
-
+    // 1. Check for Errors FIRST:
+    if (errors.featureImage && values.featureImage !== "") {
+      console.log("Values Error UseEffect");
+      handleSelectedImageFile("error");
+      return; // Exit useEffect to avoid further actions if there are errors
     }
+
+    // 2. Proceed with Updates if No Errors:
+    if (touched.featureImage && values.featureImage != "") {
+      console.log("Values Touch UseEffect");
+      // setGalleryImageFile([...values.gallery]);
+      handleSelectedImageFile("no-error");
+    }
+    console.log("Values useEffect Closed ");
+    // }
+
+
+  }, [values, errors.featureImage]);
+
+
+  useEffect(() => {
+    console.log("Values useEffect Open");
+    // console.log(touched);
+    // if (values.gallery.length <= 5 && !maxFileIndicate) {
+
+
+
+
+    //BELOWE CODE IS FOR GALLERY IMAGES
+
+    // 1. Check for Errors FIRST:
+    if (errors.gallery && values.gallery.length > 0) {
+      console.log("Values Error UseEffect");
+      handleSelectedMultiImageFile("error");
+      return; // Exit useEffect to avoid further actions if there are errors
+    }
+
+    // 2. Proceed with Updates if No Errors:
+    if (touched.gallery && values.gallery[0] != null) {
+      console.log("Values Touch UseEffect");
+      // setGalleryImageFile([...values.gallery]);
+      handleSelectedMultiImageFile("no-error");
+    }
+    console.log("Values useEffect Closed ");
+    // }
 
 
   }, [values, errors.gallery]);
@@ -377,38 +390,71 @@ const AddDeviceStep2 = () => {
 
 
   //onChange handle method for featureImage where populating image
-  // const handleSelectedImageFile = async (file, error) => {
+  const handleSelectedImageFile = async (type) => {
 
+    console.log("HandleSelectedMultiImageFile Called " + type);
 
-  //   if (!errors.featureImage) {
-  //     setFieldTouched("featureImage", true);
-  //     console.log("handleSelectedImage Called 280");
-  //     setSelectedImageFile(file)
-  //   } else {
-  //     console.log("Error found line 283 ");
-  //     if (cropedImageFile !== '') setCropedImageFile('')
-  //     setSelectedImageFile('')
-  //     setFieldTouched("featureImage", true);
-  //   }
+    setFieldTouched("featureImage", true); // Always touch the field for validation
 
-  // }
+    console.log(errors);
+
+    // 3. Additional Error Check:
+    if (errors.featureImage) {
+      console.log("Inside errors.gallery is true means error found 435");
+      if (cropedImageFile !== '') setCropedImageFile('')
+      setSelectedImageFile('');
+      setFeatureImageDemoFile(values.featureImage);
+      setImageSingleCheckboxError(errors.featureImage);
+      return; // Don't proceed with upload if there's an error
+    }
+
+    // 4. Proceed with Upload if No Errors:
+    console.log("Inside !errors.gallery is true means no error found 435");
+    setSelectedImageFile(values.featureImage);
+    console.log("File added into select multi image hook");
+
+    // if (!errors.featureImage) {
+    //   setFieldTouched("featureImage", true);
+    //   console.log("handleSelectedImage Called 280");
+    //   setSelectedImageFile(file)
+    // } else {
+    //   console.log("Error found line 283 ");
+    //   if (cropedImageFile !== '') setCropedImageFile('')
+    //   setSelectedImageFile('')
+    //   setFieldTouched("featureImage", true);
+    // }
+
+  }
 
 
 
   //onClick handle method For featureImage remove
-  const handleImageCheckbox = (e) => {
-    setFeatureImageFile(null);
-    setCropedImageFile('');
-    setFieldValue("featureImage", '');
-    // setSelectedImageFile('');
-    // console.log(selectedImageFile);
-    // fileImageRef.current.value="";
-    // console.log(selectedImageFile);
+  const handleImageCheckbox = async(e) => {
+    if(cropedImageFile !== '')setCropedImageFile('');
+    if (errors.featureImage) {
+      console.log(errors.featureImage);
+      const filteredErrors = Object.keys(errors).reduce((acc, fieldName) => {
+        // Filter based on your condition (replace with your actual logic)
+        if (fieldName !== 'featureImage') {
+          acc[fieldName] = errors[fieldName];
+        }
+        return acc;
+      }, {});
+      console.log(filteredErrors);
+      await setFieldValue("featureImage", '');
+      setErrors(filteredErrors)
+      setFeatureImageDemoFile('');
+      setImageSingleCheckboxError('');
+    } else{
+      await setFieldValue("featureImage", '');
+      setFeatureImageDemoFile('');
+        setImageSingleCheckboxError('');
+    }
   }
 
   const handleSelectedMultiImageFile = async (type) => {
     console.log("HandleSelectedMultiImageFile Called " + type);
-   
+
     setFieldTouched("gallery", true); // Always touch the field for validation
 
     console.log(errors);
@@ -416,6 +462,7 @@ const AddDeviceStep2 = () => {
     // 3. Additional Error Check:
     if (errors.gallery) {
       console.log("Inside errors.gallery is true means error found 435");
+      setSelectedMultiImageFile(values.gallery);
       setImageMultiCheckboxError(errors.gallery);
       return; // Don't proceed with upload if there's an error
     }
@@ -491,6 +538,7 @@ const AddDeviceStep2 = () => {
       }, {});
       setErrors(filteredErrors)
       await setFieldValue('gallery', gallery);
+      if (maxFileIndicate) setMaxFileIndicate(false)
       console.log("handleImageMultiCheckbox working.....");
       // values.gallery.splice(indexToRemove, 1)
       return;
@@ -507,7 +555,7 @@ const AddDeviceStep2 = () => {
   }
 
   //This handle method used to capture input entered text and save them into redux state
-  const handleChange = (event) => {
+  const handleChange = async(event) => {
     const { name, value } = event.target;
     console.log("handle change called");
     console.log(event.target?.files[0]);
@@ -515,8 +563,10 @@ const AddDeviceStep2 = () => {
     if (name === 'featureImage') {
       const file = event.target.files[0];
       console.log('\x1b[36m%s\x1b[0m', "inside handle change called");
+      // await setFieldValue(name, "");
       setFieldValue(name, file);
-      setFeatureImageFile(file);
+      setFieldTouched("featureImage", true);
+
       // handleSelectedImageFile(file, errors);
       // dispatch(updateField({ field: name, file }));
       return;
@@ -526,6 +576,8 @@ const AddDeviceStep2 = () => {
       // if(event.target.files.length === 0 ){
       //   const error
       // }
+      console.log("Gallery new File uploading.....................");
+      console.log(event.target.files);
       const filesObject = event.target.files;
       const fileObjects = Array.from(filesObject).map(file => ({
         file: file, // Store the original file object
@@ -536,10 +588,13 @@ const AddDeviceStep2 = () => {
       //   ...values.gallery.slice(1), // Rest of the original array
       //   ...fileObjects
       // ]);
-
-      setFieldValue(name, [...values.gallery, ...fileObjects]
-      );
-      setFieldTouched("gallery", true);
+      if ((values.gallery.length + fileObjects.length) <= 5) {
+        if (maxFileIndicate) setMaxFileIndicate(false)
+        setFieldValue(name, [...values.gallery, ...fileObjects]);
+        setFieldTouched("gallery", true);
+      } else {
+        setMaxFileIndicate(true);
+      }
 
 
       // if (values.gallery[0] === null) { console.log("first value is null"); }
@@ -686,7 +741,7 @@ const AddDeviceStep2 = () => {
 
                   {/* imageRef={fileImageRef} */}
                   <FileUpload name="featureImage" id="featureImage" onChange={handleChange} value={undefined} />
-                  {(selectedImageFile instanceof File && isImageSelected) && (
+                  {(selectedImageFile instanceof File) && (
                     <ImageCrop />
                   )}
                 </div>
@@ -709,22 +764,74 @@ const AddDeviceStep2 = () => {
                           <div className="text-29">{cropedImageFile.name}</div>
                           <div className="supporting-text-11">{(cropedImageFile.size / 1000).toFixed(1) + " KB"} </div>
                         </div>
-                        <ProgressBar
+                        {(imageSingleCheckboxError !== "") ?
+                          <div style={{ color: "red" }}>
+                            {imageMultiCheckboxError}
+                          </div> :
+                          <ProgressBar
+                            className="progress-bar-instance"
+                            label="right"
+                            percentageClassName="progress-bar-4"
+                            progress="one-hundred"
+                            progressBarClassName="progress-bar-2"
+                            progressClassName="progress-bar-3"
+                          />
+                        }
+                        {/* <ProgressBar
                           className="progress-bar-instance"
                           label="right"
                           percentageClassName="progress-bar-4"
                           progress="one-hundred"
                           progressBarClassName="progress-bar-2"
                           progressClassName="progress-bar-3"
-                        />
+                        /> */}
                       </div>
                     </div>
                     <Field type="checkbox" onClick={handleImageCheckbox} name="imageCheckbox" checked className="checkbox-instance checkbox-base size-30-sm state-8-default checked-true type-checkbox checkbox-2"></Field>
                   </div>
                 )
+
               }
 
 
+
+              {
+                (featureImageDemoFile instanceof File) && (
+                  <div className="file-upload-item">
+                    <div className="content-20">
+                      <FileTypeDefaultImageTypeSolid
+                        fileType="document-PDF"
+                        fileTypeClassName="file-type-icon-2"
+                        fileTypeImageImgClassName="design-component-instance-node"
+                        fileTypeWrapClassName="file-type-icon-instance"
+                        type="default"
+                      />
+
+                      <div className="content-21">
+                        <div className="text-and-supporting-7">
+                          <div className="text-29">{featureImageDemoFile.name}</div>
+                          <div className="supporting-text-11">{(featureImageDemoFile.size / 1000).toFixed(1) + " KB"} </div>
+                        </div>
+                        {(imageSingleCheckboxError !== "") ?
+                          <div style={{ color: "red" }}>
+                            {imageSingleCheckboxError}
+                          </div> :
+                          <ProgressBar
+                            className="progress-bar-instance"
+                            label="right"
+                            percentageClassName="progress-bar-4"
+                            progress="one-hundred"
+                            progressBarClassName="progress-bar-2"
+                            progressClassName="progress-bar-3"
+                          />
+                        }
+                      </div>
+                    </div>
+                    <Field type="checkbox" onClick={handleImageCheckbox} name="imageCheckbox" checked className="checkbox-instance custom-checkbox"></Field>
+                  </div>
+             
+                )
+              }
             </div>
             <div className="input-field">
               <div className="input-with-label-2">
@@ -744,7 +851,7 @@ const AddDeviceStep2 = () => {
                   />
 
                   {/* multi_imageRef={multiImageRef} */}
-                  <MultiFileUpload name="gallery" id="gallery" onChange={handleChange} value={undefined} />
+                  <MultiFileUpload name="gallery" id="gallery" onChange={handleChange} maxFileWarning={maxFileIndicate} value={[undefined]} />
                 </div>
               </div>
               {
