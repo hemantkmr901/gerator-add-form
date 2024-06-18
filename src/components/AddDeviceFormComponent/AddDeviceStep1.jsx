@@ -12,12 +12,30 @@ import { useGetAvailabilityTaxQuery, useGetClinicalApplicationsTaxQuery, useGetP
 import AddDeviceFormContext from "../../screens/Device/AddDevice/AddDeviceContext";
 
 
-export const MyTextInput = ({ label, ...props }) => {
+export const MyTextInput = ({validate, label, ...props }) => {
   // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
   // which we can spread on <input>. We can use field meta to show an error
   // message if the field is invalid and it has been touched (i.e. visited)
   const [field, meta] = useField(props);
-  const inputStyle = (meta.touched && meta.error) ? { borderColor: 'red' } : {};     //New code for border colour
+  let fieldValidationData = null;
+  if (validate?.length > 0) {
+    validate.some(field => { // Use 'some' for early termination
+      if (field.path === props.name) {
+        fieldValidationData = field;
+        return true; // This will stop the loop early
+      }
+      return false; // Continue if no match
+    });
+  }
+
+  if (fieldValidationData != null) {
+    // console.log(fieldValidationData);
+  }
+  // {
+  //   fieldValidationData !== null ? (
+  //     <div className="error">{fieldValidationData.msg}</div>
+  //   ) : null
+  // }
 
   return (
     <>
@@ -28,13 +46,17 @@ export const MyTextInput = ({ label, ...props }) => {
       </label>
       <input
         className="text-input text-25 content-15 myinputfield"
-        style={inputStyle}  //New code for border colour
+        // style={inputStyle}  //New code for border colour
         {...field}
         {...props}
 
       />
       {(meta.touched && meta.error) ? (
         <div className="error">{meta.error}</div>
+      ) : null}
+
+      {fieldValidationData !== null ? (
+        <div className="error">{fieldValidationData.msg}</div>
       ) : null}
 
     </>
@@ -82,10 +104,33 @@ export const MyCheckbox = ({ children, ...props }) => {
   );
 };
 
-export const MySelect = ({ label, ...props }) => {
+export const MySelect = ({ validate, label, ...props }) => {
   const [field, meta] = useField(props);
 
   const inputStyle = meta.touched && meta.error ? { borderColor: 'red' } : {};   //New code for border colour
+
+  let fieldValidationData = null;
+  // console.log("MySelect inside validation result");
+  // console.log(validate);
+
+  if (validate?.length > 0) {
+    validate.some(field => { // Use 'some' for early termination
+      if (field.path === props.name) {
+        fieldValidationData = field;
+        return true; // This will stop the loop early
+      }
+      return false; // Continue if no match
+    });
+  }
+
+  if (fieldValidationData != null) {
+    // console.log(fieldValidationData);
+  }
+  {
+    fieldValidationData !== null ? (
+      <div className="error">{fieldValidationData.msg}</div>
+    ) : null
+  }
 
   return (
     <>
@@ -97,8 +142,6 @@ export const MySelect = ({ label, ...props }) => {
         style={inputStyle}   //New code for border colour
         {...field}
         {...props}
-
-
       />
 
 
@@ -107,15 +150,42 @@ export const MySelect = ({ label, ...props }) => {
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
       ) : null}
+
+      {fieldValidationData !== null ? (
+        <div className="error">{fieldValidationData.msg}</div>
+      ) : null}
     </>
   );
 };
 
-export const MyTextInput_not_mandatory = ({ label, ...props }) => {
+export const MyTextInput_not_mandatory = ({ validate, label, ...props }) => {
   // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
   // which we can spread on <input>. We can use field meta to show an error
   // message if the field is invalid and it has been touched (i.e. visited)
   const [field, meta] = useField(props);
+  let fieldValidationData = null;
+  // console.log("MYSelect inside validation result");
+  // console.log(validate);
+
+  if (validate?.length > 0) {
+    validate.some(field => { // Use 'some' for early termination
+      if (field.path === props.name) {
+        fieldValidationData = field;
+        return true; // This will stop the loop early
+      }
+      return false; // Continue if no match
+    });
+  }
+
+  if (fieldValidationData != null) {
+    // console.log(fieldValidationData);
+  }
+  {
+    fieldValidationData !== null ? (
+      <div className="error">{fieldValidationData.msg}</div>
+    ) : null
+  }
+
   return (
     <>
       {/* <label className="label">Model Number</label> */}
@@ -131,7 +201,9 @@ export const MyTextInput_not_mandatory = ({ label, ...props }) => {
 
       />
 
-
+      {fieldValidationData !== null ? (
+        <div className="error">{fieldValidationData.msg}</div>
+      ) : null}
 
       {/* <input className="text-input" {...field} {...props} /> */}
       {meta.touched && meta.error ? (
@@ -150,53 +222,53 @@ const AddDeviceStep1 = () => {
   // const formikContext = useFormikContext();
 
 
-  
+
   const dispatch = useDispatch();
   //Get form field data from redux state
   const formData = useSelector((state) => state.addDevice);
   const appData = useSelector((state) => state.appDataAddDevice);
 
   //Getting all taxonomy from AddDeviceParent(Context)
-  const { allTaxonomy, formik } = useContext(AddDeviceFormContext);
+  const { backendValidation, allTaxonomy } = useContext(AddDeviceFormContext);
+  const { validateForm, setFieldTouched, setFieldValue } = useFormikContext();
 
   //This method used to increment current step of form and update state in appData reducer
   const next = async () => {
 
-    
+    // dispatch(updateAppDataDevice({ case: "CURRENTSTEP", value: (appData.currentStep + 1) }));
+
     try {
-      // const { errorss } =  useFormikContext();
-      // const errors = await formik.validateForm();
-      // // console.log(formikUpdated);
-      // console.log(errors);
-      // if (Object.keys(errors).length > 0) {
+      // const { errors } = useFormikContext();
+      const validatedError = await validateForm();
+      // console.log(formikUpdated);
+      // console.log(validatedError);
+      if (Object.keys(validatedError).length > 0) {
 
-      //   Object.keys(errors).forEach(key => {
-      //     console.log(key);
-      //     formik.setFieldTouched(key, true);
-      //   });
-      // }  else{
-      //   dispatch(updateAppDataDevice({ case: "CURRENTSTEP", value: (appData.currentStep + 1) }));
-      // }
-      dispatch(updateAppDataDevice({ case: "CURRENTSTEP", value: (appData.currentStep + 1) }));
+        Object.keys(validatedError).forEach(key => {
+          console.log(key);
+          setFieldTouched(key, true);
+        });
+      } else {
+        dispatch(updateAppDataDevice({ case: "CURRENTSTEP", value: (appData.currentStep + 1) }));
       }
-      // if(formik.isValid){
-    catch (errors) {
-      // console.log(formik);
-      // console.log(Object.keys(errors).length);
-      // if (Object.keys(errors).length > 0) {
+      // dispatch(updateAppDataDevice({ case: "CURRENTSTEP", value: (appData.currentStep + 1) }));
+    }
+    catch (err) {
+      console.log(Object.keys(err).length);
+      if (Object.keys(err).length > 0) {
 
-      //   Object.keys(errors).forEach(key => {
-      //     console.log(key);
-      //     formik.setFieldTouched(key, true);
-      //   });
-      // } 
+        Object.keys(err).forEach(key => {
+          console.log(key);
+          setFieldTouched(key, true);
+        });
+      }
     }
 
 
 
 
     // else {
-     
+
     // }
   };
 
@@ -204,7 +276,7 @@ const AddDeviceStep1 = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     //Saving details into form
-    formik.setFieldValue(name, value);
+    setFieldValue(name, value);
     dispatch(updateField({ field: name, value }));
   };
 
@@ -298,7 +370,7 @@ const AddDeviceStep1 = () => {
             <div className="input-field">
               <div className="input-with-label-2">
 
-                <MySelect label="Transaction Type" onChange={handleChange} value={formData.transactionType} name="transactionType" id="transactionType" >
+                <MySelect label="Transaction Type" onChange={handleChange} validate={backendValidation} value={formData.transactionType} name="transactionType" id="transactionType" >
                   <option value="">Select From Dropdown list </option>
                   {(allTaxonomy.transactionType.isLoading || allTaxonomy.transactionType.isError) && <option value="0">Loading...</option>}
                   {
@@ -314,7 +386,7 @@ const AddDeviceStep1 = () => {
             </div>
             <div className="input-field">
               <div className="input-with-label-2">
-                <MySelect label="Your Role (in relation to Device listed)" name="yourRole" id="yourRole" onChange={handleChange} value={formData.yourRole}>
+                <MySelect label="Your Role (in relation to Device listed)" name="yourRole" id="yourRole" onChange={handleChange} validate={backendValidation} value={formData.yourRole}>
                   <option value="0">Select From Dropdown list </option>
                   {(allTaxonomy.yourRole.isLoading || allTaxonomy.yourRole.isError) && <option value="0">Loading...</option>}
                   {
@@ -333,7 +405,7 @@ const AddDeviceStep1 = () => {
           <div className="frame-4">
             <div className="input-field">
               <div className="input-with-label-2">
-                <MySelect label="Device Category" name="deviceCategory" id="deviceCategory" onChange={handleChange} value={formData.deviceCategory}>
+                <MySelect label="Device Category" name="deviceCategory" id="deviceCategory" onChange={handleChange} validate={backendValidation} value={formData.deviceCategory}>
                   <option value="0">Select From Dropdown list </option>
                   <option value="CALIBRATOR">1/25-DIHYDROXY VITAMIN D3 IVD/ CALIBRATOR</option>
                   <option value="CONTROL">1/25-DIHYDROXY VITAMIN D3 IVD/ CONTROL</option>
@@ -348,7 +420,7 @@ const AddDeviceStep1 = () => {
             <div className="input-field">
               <div className="input-with-label-2">
 
-                <MySelect label="Original Equipment Manufacture (OEM)&nbsp;&nbsp;" name="oem" id="oem" onChange={handleChange} value={formData.oem}>
+                <MySelect label="Original Equipment Manufacture (OEM)&nbsp;&nbsp;" name="oem" id="oem" onChange={handleChange} validate={backendValidation} value={formData.oem}>
                   <option value="0">Type 3 Characters to search and select </option>
                   <option value="3tp">3TP</option>
                   <option value="4med">4 MED</option>
@@ -371,7 +443,7 @@ const AddDeviceStep1 = () => {
                   name="modelName"
                   id="modelName"
                   type="text"
-                  onChange={handleChange} value={formData.modelName}
+                  onChange={handleChange} validate={backendValidation} value={formData.modelName}
                   placeholder="Enter Model Name without OEM Brand - max. 30 characters"
                 />
 
@@ -381,7 +453,7 @@ const AddDeviceStep1 = () => {
               <div className="input-with-label-2">
 
 
-                <MySelect label="Status/Condition" name="statusCondition" id="statusCondition" onChange={handleChange} value={formData.statusCondition}>
+                <MySelect label="Status/Condition" name="statusCondition" id="statusCondition" onChange={handleChange} validate={backendValidation} value={formData.statusCondition}>
                   <option value="0">Select From Dropdown List </option>
                   {(allTaxonomy.statusCondition.isLoading || allTaxonomy.statusCondition.isError) && <option value="0">Loading...</option>}
                   {
@@ -400,7 +472,7 @@ const AddDeviceStep1 = () => {
               <div className="input-with-label-2">
 
 
-                <MySelect label="Year of Manufacture" name="yearofManufacture" id="yearofManufacture" onChange={handleChange} value={formData.yearofManufacture}>
+                <MySelect label="Year of Manufacture" name="yearofManufacture" id="yearofManufacture" onChange={handleChange} validate={backendValidation} value={formData.yearofManufacture}>
                   <option value="0">Select From Dropdown List </option>
                   {(allTaxonomy.yearOfManufacture.isLoading || allTaxonomy.yearOfManufacture.isError) && <option value="0">Loading...</option>}
                   {
@@ -418,7 +490,7 @@ const AddDeviceStep1 = () => {
             <div className="input-field">
               <div className="input-with-label-2">
 
-                <MySelect label="Availability" name="availability" id="availability" onChange={handleChange} value={formData.availability}>
+                <MySelect label="Availability" name="availability" id="availability" onChange={handleChange} validate={backendValidation} value={formData.availability}>
                   <option value="0">Select From Dropdown List </option>
 
                   {(allTaxonomy.availability.isLoading || allTaxonomy.availability.isError) && <option value="0">Loading...</option>}
@@ -444,7 +516,7 @@ const AddDeviceStep1 = () => {
                   id="modelNumber"
                   name="modelNumber"
                   type="text"
-                  onChange={handleChange} value={formData.modelNumber}
+                  onChange={handleChange} validate={backendValidation} value={formData.modelNumber}
                   placeholder="Max .30 characters"
                 />
 
@@ -459,7 +531,7 @@ const AddDeviceStep1 = () => {
                   name="serialNumber"
                   id="serialNumber"
                   type="text"
-                  onChange={handleChange} value={formData.serialNumber}
+                  onChange={handleChange} validate={backendValidation} value={formData.serialNumber}
                   placeholder="Max .30 characters"
                 />
 
@@ -475,7 +547,7 @@ const AddDeviceStep1 = () => {
                   label="Price (EXW) in USD / unit "
                   name="price"
                   id="price"
-                  onChange={handleChange} value={formData.price}
+                  onChange={handleChange} validate={backendValidation} value={formData.price}
                   type="number"
                   placeholder="Any Number"
 
@@ -490,7 +562,7 @@ const AddDeviceStep1 = () => {
             <div className="input-field-2">
               <div className="input-with-label-2">
 
-                <MySelect label="Unit of Measure" name="unitofMeasure" id="unitofMeasure" onChange={handleChange} value={formData.unitofMeasure}>
+                <MySelect label="Unit of Measure" name="unitofMeasure" id="unitofMeasure" validate={backendValidation} onChange={handleChange} value={formData.unitofMeasure}>
                   <option value="0">Select From Dropdown List </option>
 
                   {(allTaxonomy.unitOfMeasure.isLoading || allTaxonomy.unitOfMeasure.isError) && <option value="0">Loading...</option>}
@@ -514,6 +586,7 @@ const AddDeviceStep1 = () => {
                   name="availableQuantity"
                   id="availableQuantity"
                   onChange={handleChange}
+                  validate={backendValidation}
                   // showError={showErrors}
                   value={formData.availableQuantity}
                   type="text"
@@ -530,7 +603,7 @@ const AddDeviceStep1 = () => {
               <div className="input-field">
                 <div className="input-with-label-2">
 
-                  <MySelect label="Warranty" name="warranty" id="warranty" onChange={handleChange} value={formData.warranty}>
+                  <MySelect label="Warranty" name="warranty" id="warranty" validate={backendValidation} onChange={handleChange} value={formData.warranty}>
                     <option value="0">Select From Dropdown List </option>
 
                     {(allTaxonomy.warranty.isLoading || allTaxonomy.warranty.isError) && <option value="0">Loading...</option>}
@@ -546,7 +619,7 @@ const AddDeviceStep1 = () => {
               <div className="input-field">
                 <div className="input-with-label-2">
 
-                  <MySelect label="Shipping" name="shipping" id="shipping" onChange={handleChange} value={formData.shipping}>
+                  <MySelect label="Shipping" name="shipping" id="shipping" validate={backendValidation} onChange={handleChange} value={formData.shipping}>
                     <option value="0">Select From Dropdown List </option>
 
                     {(allTaxonomy.shipping.isLoading || allTaxonomy.shipping.isError) && <option value="0">Loading...</option>}
@@ -582,7 +655,7 @@ const AddDeviceStep1 = () => {
                   <div className="input-with-label-2">
 
 
-                    <MySelect label="Clinical Applications" name="clinicalApplications" id="clinicalApplications" onChange={handleChange} value={formData.clinicalApplications}>
+                    <MySelect label="Clinical Applications" validate={backendValidation} name="clinicalApplications" id="clinicalApplications" onChange={handleChange} value={formData.clinicalApplications}>
                       <option value="0">Select From Dropdown List </option>
 
                       {(allTaxonomy.clinicalApplications.isLoading || allTaxonomy.clinicalApplications.isError) && <option value="0">Loading...</option>}
@@ -600,7 +673,7 @@ const AddDeviceStep1 = () => {
                 <div className="input-with-label-2">
 
 
-                  <MySelect label="Device Use" name="purposeUse" id="purposeUse" onChange={handleChange} value={formData.purposeUse}>
+                  <MySelect label="Device Use" name="purposeUse" validate={backendValidation} id="purposeUse" onChange={handleChange} value={formData.purposeUse}>
                     <option value="0">Select From Dropdown List </option>
 
                     {(allTaxonomy.purposeUse.isLoading || allTaxonomy.purposeUse.isError) && <option value="0">Loading...</option>}
@@ -617,7 +690,7 @@ const AddDeviceStep1 = () => {
                 <div className="input-with-label-2">
 
 
-                  <MySelect label="Physical Location" name="physicalLocation" id="physicalLocation" onChange={handleChange} value={formData.physicalLocation}>
+                  <MySelect label="Physical Location" validate={backendValidation} name="physicalLocation" id="physicalLocation" onChange={handleChange} value={formData.physicalLocation}>
                     <option value="0">Select From Dropdown List </option>
 
                     {(allTaxonomy.physicalLocation.isLoading || allTaxonomy.physicalLocation.isError) && <option value="0">Loading...</option>}

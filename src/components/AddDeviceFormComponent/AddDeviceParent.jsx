@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Provider } from "../../screens/Device/AddDevice/AddDeviceContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { clearForm, updateField } from "../../components/AddDeviceFormComponent/AddDeviceSlice";
 import { updateAppDataDevice, clearAppData } from "../../components/AddDeviceFormComponent/AppDataDeviceSlice";
 import { useGetAvailabilityTaxQuery, useGetClinicalApplicationsTaxQuery, useGetPhysicalLocationTaxQuery, useGetPurposeUseTaxQuery, useGetShippingTaxQuery, useGetStatusConditionTaxQuery, useGetTransactionTypeTaxQuery, useGetUnitOfMeasureDeviceSpareTaxQuery, useGetWarrantyTaxQuery, useGetYearOfManufactureTaxQuery, useGetYourRoleTaxQuery } from "../../api/TaxonomyFormAPI";
@@ -16,6 +16,8 @@ import { ButtonsButton } from "../../components/ButtonsButton";
 import { LogOut014 } from "../../icons/LogOut014";
 import { PlusCircle1 } from "../../icons/PlusCircle1";
 import { Upload041 } from "../../icons/Upload041";
+import { useAddDeviceMutation } from "../../api/AddDeviceAPI";
+import { objectToFormData } from "../../helper/AddDeviceHelper";
 
 
 
@@ -33,6 +35,14 @@ const renderStep = (step) => {
 };
 
 const AddDeviceParent = () => {
+
+  //For Validation message navidating to steps. Used only when backend validation will be trigger
+  const step1FormKey = ["transactionType", "yourRole", "deviceCategory", "oem", "modelName", "statusCondition", "yearofManufacture","availability","modelNumber","serialNumber","price","unitofMeasure","availableQuantity","warranty","shipping","clinicalApplications","purposeUse","physicalLocation",];
+  const step2FormKey = ["hardwareHighlights","softwareUpgradesOsApplicationsworklistHighlights","accessoriesHighlights","featureImageObject","galleryImageObject","linkVideo","location",]
+  const step3FormKey = ["documentFileObject","documentLink","hardware","softwareUpgraadesOsApplicationsWorklist","accessories","serviceHistory","packingList","additionalInformation",]
+
+  const [addDevice, { isLoading, isError, error }] = useAddDeviceMutation();
+  const navigate = useNavigate();
   const transactionTypeTax = useGetTransactionTypeTaxQuery();
   const yourRoleTax = useGetYourRoleTaxQuery();
   const yearofManufactureTax = useGetYearOfManufactureTaxQuery()
@@ -83,10 +93,13 @@ const AddDeviceParent = () => {
   const [selectedDocumentFile, setSelectedDocumentFile] = useState("");
   const [cropedImageFile, setCropedImageFile] = useState("");
   const [isImageSelected, setIsImageSelected] = useState(false)
+  const [documentCheckboxError, setDocumentCheckboxError] = useState("")
+  const [backendValidation, setBackendValidation] = useState([])
+
 
 
   //This snippet used to reset form and applied on reset form button
-  const resetForm = (e) => {
+  const resetForm = () => {
     setSelectedImageFile("")
     setSelectedMultiImageFile([])
     setSelectedDocumentFile("")
@@ -96,146 +109,259 @@ const AddDeviceParent = () => {
   }
 
   const step1Schema = Yup.object({
-    transactionType: Yup.string().required("This is a required field").test(
-      "OPTION", "Please select a valid option",
-      (value) => value !== '0'
-    ),
-    yourRole: Yup.string().required("This is a required field").test(
-      "OPTION", "Please select a valid option",
-      (value) => value !== '0'
+    // transactionType: Yup.string().required("This is a required field").test(
+    //   "OPTION", "Please select a valid option",
+    //   (value) => value !== '0'
+    // ),
+    // yourRole: Yup.string().required("This is a required field").test(
+    //   "OPTION", "Please select a valid option",
+    //   (value) => value !== '0'
 
-    ),
-    deviceCategory: Yup.string().required("This is a required field").test(
-      "OPTION", "Please select a valid option",
-      (value) => value !== '0'
+    // ),
+    // deviceCategory: Yup.string().required("This is a required field").test(
+    //   "OPTION", "Please select a valid option",
+    //   (value) => value !== '0'
 
-    ),
-    oem: Yup.string().required("This is a required field").test(
-      "OPTION", "Please select a valid option",
-      (value) => value !== '0'
-    ),
+    // ),
+    // oem: Yup.string().required("This is a required field").test(
+    //   "OPTION", "Please select a valid option",
+    //   (value) => value !== '0'
+    // ),
 
-    modelName: Yup.string().required("This is a required field").max(30, 'Must be 30 characters or less'),
+    // modelName: Yup.string().required("This is a required field").max(30, 'Must be 30 characters or less'),
 
-    statusCondition: Yup.string().required("This is a required field").test(
-      "OPTION", "Please select a valid option",
-      (value) => value !== '0'
+    // statusCondition: Yup.string().required("This is a required field").test(
+    //   "OPTION", "Please select a valid option",
+    //   (value) => value !== '0'
 
-    ),
-    yearofManufacture: Yup.string().required("This is a required field").test(
-      "OPTION", "Please select a valid option",
-      (value) => value !== '0'
+    // ),
+    // yearofManufacture: Yup.string().required("This is a required field").test(
+    //   "OPTION", "Please select a valid option",
+    //   (value) => value !== '0'
 
-    ),
-    availability: Yup.string().required("This is a required field").test(
-      "OPTION", "Please select a valid option",
-      (value) => value !== '0'
+    // ),
+    // availability: Yup.string().required("This is a required field").test(
+    //   "OPTION", "Please select a valid option",
+    //   (value) => value !== '0'
 
-    ),
-    modelNumber: Yup.string()
-      .max(30, 'Must be 30 characters or less'),
+    // ),
+    // modelNumber: Yup.string()
+    //   .max(30, 'Must be 30 characters or less'),
 
-    serialNumber: Yup.string()
-      .max(30, 'Must be 30 characters or less'),
+    // serialNumber: Yup.string()
+    //   .max(30, 'Must be 30 characters or less'),
 
 
-    price: Yup.number("Please enter a valid number").required("This is a required field")
-      .test('decimal-places', 'Only two decimal places are allowed', value => {
+    // price: Yup.number("Please enter a valid number").required("This is a required field")
+    //   .test('decimal-places', 'Only two decimal places are allowed', value => {
 
-        const [, decimalPart] = String(value).split('.');
-        return decimalPart === undefined || decimalPart.length <= 2;
-      }),
+    //     const [, decimalPart] = String(value).split('.');
+    //     return decimalPart === undefined || decimalPart.length <= 2;
+    //   }),
 
-    unitofMeasure: Yup.string().required("This is a required field").test(
-      "OPTION", "Please select a valid option",
-      (value) => value !== '0'
+    // unitofMeasure: Yup.string().required("This is a required field").test(
+    //   "OPTION", "Please select a valid option",
+    //   (value) => value !== '0'
 
-    ),
-    availableQuantity: Yup.string().required("This is a required field").test(
-      "OPTION", "Please select a valid option",
-      (value) => value !== '0'
+    // ),
+    // availableQuantity: Yup.string().required("This is a required field").test(
+    //   "OPTION", "Please select a valid option",
+    //   (value) => value !== '0'
 
-    ),
-    warranty: Yup.string().required("This is a required field").test(
-      "OPTION", "Please select a valid option",
-      (value) => value !== '0'
+    // ),
+    // warranty: Yup.string().required("This is a required field").test(
+    //   "OPTION", "Please select a valid option",
+    //   (value) => value !== '0'
 
-    ),
-    shipping: Yup.string().required("This is a required field").test(
-      "OPTION", "Please select a valid option",
-      (value) => value !== '0'
+    // ),
+    // shipping: Yup.string().required("This is a required field").test(
+    //   "OPTION", "Please select a valid option",
+    //   (value) => value !== '0'
 
-    ),
-    clinicalApplications: Yup.string().required("This is a required field").test(
-      "OPTION", "Please select a valid option",
-      (value) => value !== '0'
+    // ),
+    // clinicalApplications: Yup.string().required("This is a required field").test(
+    //   "OPTION", "Please select a valid option",
+    //   (value) => value !== '0'
 
-    ),
-    purposeUse: Yup.string().required("This is a required field").test(
-      "OPTION", "Please select a valid option",
-      (value) => value !== '0'
+    // ),
+    // purposeUse: Yup.string().required("This is a required field").test(
+    //   "OPTION", "Please select a valid option",
+    //   (value) => value !== '0'
 
-    ),
-    physicalLocation: Yup.string().required("This is a required field").test(
-      "OPTION", "Please select a valid option",
-      (value) => value !== '0'
+    // ),
+    // physicalLocation: Yup.string().required("This is a required field").test(
+    //   "OPTION", "Please select a valid option",
+    //   (value) => value !== '0'
 
-    ),
+    // ),
   })
 
   const step2Schema = Yup.object().shape({
-    hardwareHighlights: Yup.string().required("This is a required field").max(190, 'Must be 190 characters or less'),
+    // hardwareHighlights: Yup.string().required("This is a required field").max(190, 'Must be 190 characters or less'),
 
-    softwareUpgradesOsApplicationsworklistHighlights: Yup.string().required("This is a required field").max(190, 'Must be 190 characters or less'),
+    // softwareUpgradesOsApplicationsworklistHighlights: Yup.string().required("This is a required field").max(190, 'Must be 190 characters or less'),
 
-    accessoriesHighlights: Yup.string().required("This is a required field").max(190, 'Must be 190 characters or less'),
+    // accessoriesHighlights: Yup.string().required("This is a required field").max(190, 'Must be 190 characters or less'),
 
-    location: Yup.string().required("This is a required field").test(
-      "OPTION", "Please select a valid option",
-      (value) => value !== '0'
-    ),
-    featureImage: Yup.mixed()
-      .test(
-        'fileType',
-        'Unsupported File Format (only jpeg and png)',
-        value => {
-          if (!value)return true 
-          return  ['image/jpeg', 'image/png'].includes(value.type) 
-        }
-      )
-      .test(
-        'fileSize',
-        'File too large (max size 1MB)',
-        value => !value || (value && value.size <= 1024 * 1024)
-      )
-      .required('A file is required'),
-      gallery: Yup.array().of(
+    // location: Yup.string().required("This is a required field").test(
+    //   "OPTION", "Please select a valid option",
+    //   (value) => value !== '0'
+    // ),
+    // featureImage: Yup.mixed()
+    //   .test(
+    //     'fileType',
+    //     'Unsupported File Format (only jpeg and png)',
+    //     value => {
+    //       if (!value) return true
+    //       return ['image/jpeg', 'image/png'].includes(value.type)
+    //     }
+    //   )
+    //   .test(
+    //     'fileSize',
+    //     'File too large (max size 1MB)',
+    //     value => !value || (value && value.size <= 1024 * 1024)
+    //   )
+    //   .required('A file is required'),
+    gallery: Yup.array()
+      // .min(3, 'Please select atleast three image') 
+      .of(
         Yup.mixed()
-        .test(
-          'fileType',
-          'Unsupported File Format (only jpeg and png)',
-          value => {
-            // if (!value)return true
-            return  ['image/jpeg', 'image/png'].includes(value.file.type) 
-          }
-        )
-        .test(
-          'fileSize',
-          'File too large (max size 1MB)',
-          value => !value.file || (value.file && value.file.size <= 1024 * 1024)
-        )
-        .required('A file is required')
+          .test(
+            'fileType',
+            'Unsupported File Format (only jpeg and png)',
+            value => {
+              // if (!value)return true
+              return ['image/jpeg', 'image/png'].includes(value.file.type)
+            }
+          )
+          .test(
+            'fileSize',
+            'File too large (max size 1MB)',
+            value => !value.file || (value.file && value.file.size <= 1024 * 1024)
+          )
+
       )
   }
-)
+  )
+
+  const step3Schema = Yup.object().shape({
+
+    // hardware: Yup.string().max(1000, 'Must be 1000 characters or less'),
+
+    // softwareUpgraadesOsApplicationsWorklist: Yup.string().max(1000, 'Must be 1000 characters or less'),
+
+    // accessories: Yup.string().max(1000, 'Must be 1000 characters or less'),
+
+    // serviceHistory: Yup.string().max(1000, 'Must be 1000 characters or less'),
+
+    // packingList: Yup.string().max(1000, 'Must be 1000 characters or less'),
+
+    // additionalInformation: Yup.string().max(2000, 'Must be 2000 characters or less'),
+
+    // document: Yup.mixed()
+    //   .test(
+    //     'fileType',
+    //     'Unsupported File Format (only pdf)',
+    //     value => {
+    //       if (!value) return true
+    //       return ['application/pdf'].includes(value.type)
+    //     }
+    //   )
+    //   .test(
+    //     'fileSize',
+    //     'File too large (max size 1MB)',
+    //     value => !value || (value && value.size <= 512 * 512)
+    //   )
+  })
+
+  const matchErrorsAgainstBackendValidationList = (backendValidationError) => { 
+    if (backendValidationError?.length > 0) {
+
+      setBackendValidation(backendValidationError);
+
+      // for (const field of backendValidationError) {
+      //   if (step1FormKey.includes(field.path)) {  // Assuming fieldErrors have a 'field' property
+      //   dispatch(updateAppDataDevice({ case: "CURRENTSTEP", value: 0 }));
+      //     break;
+      //   }
+      // }
+      // for (const field of backendValidationError) {
+      //   if (step2FormKey.includes(field.path)) {  // Assuming fieldErrors have a 'field' property
+      //   dispatch(updateAppDataDevice({ case: "CURRENTSTEP", value: 1 }));
+      //     break;
+      //   }
+      // }
+
+      // for (const field of backendValidationError) {
+      //   if (step3FormKey.includes(field.path)) {  // Assuming fieldErrors have a 'field' property
+      //   dispatch(updateAppDataDevice({ case: "CURRENTSTEP", value: 2 }));
+      //     break;
+      //   }
+      // }
+      for (const field of backendValidationError) {
+        if (step1FormKey.includes(field.path)) {
+          dispatch(updateAppDataDevice({ case: "CURRENTSTEP", value: 0 }));
+          console.log("step1 was true");
+          break;
+        } else if (step2FormKey.includes(field.path)) {
+          console.log("step2 was true");
+          dispatch(updateAppDataDevice({ case: "CURRENTSTEP", value: 1 }));
+          break;
+        } else if (step3FormKey.includes(field.path)) {
+          console.log("step3 was true");
+          dispatch(updateAppDataDevice({ case: "CURRENTSTEP", value: 2 }));
+        } 
+      }
+    }
+   }
+
+  const finalSubmit = async (multiPartData) => {
+    try {
+
+      const response = await addDevice(multiPartData).unwrap();
+      // console.log("Device added successfully!", response);
+      //If form was submitted successfully then isCreated return with true, then reseting form
+      if (response.isCreated) {
+        // Reseting form
+        resetForm();
+        navigate('/devices');
+      }
+    } catch (err) {
+      if (err.status === 422) {
+        console.error("Validation errors:", err.data);
+      } else {
+        // console.error(err);
+        if (err) {
+          matchErrorsAgainstBackendValidationList(err.data.errors)
+        }
+        // dispatch(updateAppDataDevice({ case: "CURRENTSTEP", value: 1 }));
+      }
+    }
+  };
+
+  useEffect(() => {
+    console.log(backendValidation);
+
+
+  }, [backendValidation])
+
 
   return (
     <Formik
       initialValues={formData}
       // validateOnChange={false}
       // validateOnBlur={false}
-      validationSchema={appData.currentStep === 0 ? step1Schema : appData.currentStep === 1 ? step2Schema : Yup.object().shape({})}
+      validationSchema={appData.currentStep === 0 ? step1Schema : appData.currentStep === 1 ? step2Schema : appData.currentStep === 2 ? step3Schema : Yup.object().shape({})}
       onSubmit={(values) => {
+        // Getting FormData object to send multipart request
+        multiPartData = objectToFormData(values, cropedImageFile, selectedMultiImageFile, selectedDocumentFile)
+        // console.log(multiPartData);
+        //   for (const [key, value] of multiPartData.entries()) {
+        //     console.log(key, value);
+        // }
+        //Final submission of form
+        setBackendValidation([]);
+        finalSubmit(multiPartData);
         console.log(values);
       }}
     >
@@ -258,7 +384,7 @@ const AddDeviceParent = () => {
             />
           </div>
 
-          <Provider value={{formik, isImageSelected, setIsImageSelected, allTaxonomy, cropedImageFile, setCropedImageFile, selectedMultiImageFile, setSelectedMultiImageFile, selectedDocumentFile, setSelectedDocumentFile, selectedImageFile, setSelectedImageFile }}>
+          <Provider value={{ backendValidation, setBackendValidation, documentCheckboxError, setDocumentCheckboxError, isImageSelected, setIsImageSelected, allTaxonomy, cropedImageFile, setCropedImageFile, selectedMultiImageFile, setSelectedMultiImageFile, selectedDocumentFile, setSelectedDocumentFile, selectedImageFile, setSelectedImageFile }}>
 
             <div className="main-wrapper">
               <div className="main">

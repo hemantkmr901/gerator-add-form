@@ -4,17 +4,21 @@ import { useGetAvailabilityTaxQuery, useGetClinicalApplicationsTaxQuery, useGetP
 
 export function objectToFormData(obj, featureImage,galleryImage,document) {
     const formData = new FormData();
-    for (const key in obj) {
-      formData.append(key, obj[key]);
+    const values = {...obj};
+    values.featureImage = "";
+    values.gallery = ""
+    values.document = "";
+    for (const key in values) {
+      formData.append(key, values[key]);
     }
 
-    //Appending featureImage to formData
+    // Appending featureImage to formData
     formData.append("featureImageObject", featureImage);
-     //Appending galleryImage to formData
+    //  Appending galleryImage to formData
         for (let i = 0; i < galleryImage.length; i++) {
             const file = galleryImage[i].file;
             formData.append('galleryImageObject', file);
-        }
+          }
      //Appending documentFile to formData also checking if user has uploaded document or not
         if (document !== "" || document.length !== 0) {
           formData.append("documentFileObject", document);

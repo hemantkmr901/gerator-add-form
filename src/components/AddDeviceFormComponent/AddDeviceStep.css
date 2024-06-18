@@ -64,7 +64,7 @@ input[type="radio"] {
 }
 
 
-#featureImage,#documentId,#gallery{
+#featureImage,#document,#gallery{
     /* padding-left: 60px; */
     display: none;
     cursor: pointer !important;
@@ -79,13 +79,11 @@ input[type="radio"] {
 
 .documentLabel{
     padding: 5px;
-    /* margin-bottom: 15px; */
-    /* margin-left: 43px; */
     border:solid 2px #583c97;
     border-radius: 10px;
 }
 
-.featurImageLabel:hover{
+.featurImageLabel:hover, .documentLabel:hover{
     padding: 5px 7px;
     /* background-color: #583c97; */
     /* color: #fff; */

@@ -23,9 +23,28 @@ import { XClose31 } from "../../icons/XClose31";
 
 
 
-const FileUpload = ({ ...props }) => {
+const FileUpload = ({ validate, ...props }) => {
   const [field, meta] = useField(props);
 
+  let fieldValidationData = "";
+  if (validate?.length > 0) {
+    validate.some(field => { // Use 'some' for early termination
+      if (field.path === "featureImageObject") {
+        fieldValidationData = field;
+        return true; // This will stop the loop early
+      }
+      return false; // Continue if no match
+    });
+  }
+
+  if (fieldValidationData != "") {
+    // console.log(fieldValidationData);
+  }
+  // {
+  //   fieldValidationData !== '' ? (
+  //     <div className="error">{fieldValidationData.msg}</div>
+  //   ) : null
+  // }
 
   return (
     <div>
@@ -48,17 +67,45 @@ const FileUpload = ({ ...props }) => {
         <div className="text-28">or drag and drop</div>
       </div>
       <p className="supporting-text-10">PNG, JPG or GIF (max. 800x400px)</p>{" "}
-
-      {/* {meta.touched && meta.error ? (
+      {/* {requiredWarning.isRequired && (
+        <div>
+          <div style={{ color: "red" }}>
+            {requiredWarning.message}
+          </div>
+        </div>
+      )} */}
+      {meta.touched && meta.error === "A file is required" ? (
         <div style={{ color: "red", textAlign: "center" }}>{meta.error}</div>
-      ) : null} */}
+      ) : null}
+      {fieldValidationData !== "" ? (
+        <div className="error">{fieldValidationData.msg}</div>
+      ) : null}
     </div>
   );
 };
 
 
-const MultiFileUpload = ({ maxFileWarning, ...props }) => {
+const MultiFileUpload = ({ validate, maxFileWarning, minFileWarning, ...props }) => {
   const [field, meta] = useField(props);
+  let fieldValidationData = "";
+  if (validate?.length > 0) {
+    validate.some(field => { // Use 'some' for early termination
+      if (field.path === "galleryImageObject") {
+        fieldValidationData = field;
+        return true; // This will stop the loop early
+      }
+      return false; // Continue if no match
+    });
+  }
+
+  if (fieldValidationData != "") {
+    // console.log(fieldValidationData);
+  }
+  // {
+  //   fieldValidationData !== null ? (
+  //     <div className="error">{fieldValidationData.msg}</div>
+  //   ) : null
+  // }
 
   return (
     <div>
@@ -82,17 +129,29 @@ const MultiFileUpload = ({ maxFileWarning, ...props }) => {
       </div>
       <p className="supporting-text-10">PNG, JPG or GIF (max. 800x400px)</p>{" "}
 
-      {maxFileWarning && (
+      {maxFileWarning.isMaxImage && (
         <div>
           <div style={{ color: "red" }}>
-            Max 5 Files are allowed to upload.
+            {maxFileWarning.message}
+          </div>
+        </div>
+      )}
+      {minFileWarning.isMinImage && (
+        <div>
+          <div style={{ color: "red" }}>
+            {minFileWarning.message}
           </div>
         </div>
       )}
 
-      {meta.touched && meta.error ? (
-        <div style={{ color: "red", textAlign: "center" }}>{meta.error}</div>
+      {fieldValidationData !== "" ? (
+        <div className="error">{fieldValidationData.msg}</div>
       ) : null}
+
+
+      {/* {meta.touched && meta.error === "At least three image is required" ? (
+        <div style={{ color: "red", textAlign: "center" }}>{meta.error}</div>
+      ) : null} */}
 
     </div>
   );
@@ -103,243 +162,277 @@ const MultiFileUpload = ({ maxFileWarning, ...props }) => {
 
 const AddDeviceStep2 = () => {
 
-  // const getFormik = () => { 
-  //   const formik = useFormikContext();
-  //   return formik}
-
-  // const imageUploadSchema = Yup.object({
-  //   featureImage: Yup.mixed()
-  //     .test(
-  //       'fileSize',
-  //       'File too large (max size 1MB)',
-  //       value => value && value.size <= 4286580
-  //     )
-  //     .test(
-  //       'fileType',
-  //       'Unsupported File Format (only jpeg and png)',
-  //       value => !value ||
-  //         value instanceof File &&
-  //         ['image/jpeg', 'image/png'].includes(value.type)
-  //     )
-
-  // });
-  // let myfieldinsideradio = false;
   const dispatch = useDispatch();
   const formData = useSelector((state) => state.addDevice);
   const appData = useSelector((state) => state.appDataAddDevice);
+
+  // ------------ Feature Image Hooks ---------------------
+
+  //This hook will store error message of featureImage 
   const [imageSingleCheckboxError, setImageSingleCheckboxError] = useState("");
+  //This hook will store image file if uploaded image have some validation error on FeatureImage 
   const [featureImageDemoFile, setFeatureImageDemoFile] = useState("");
-  const [maxFileIndicate, setMaxFileIndicate] = useState(false);
+
+  // ------------ Gallery Image Hooks ---------------------
+
+  //This hook will store boolean value if uploaded image has total 10 image validation exceeding
+  const [maxFileValidation, setMaxFileValidation] = useState({ message: "Max 5 Files are allowed to upload.", isMaxImage: false });
+
+  const [minFileValidation, setMinFileValidation] = useState({ message: "Min 3 Files are allowed to upload.", isMinImage: false })
+
+  //This hook will store all error message of all uploaded images. using when showing error message on image card.
   const [imageMultiCheckboxError, setImageMultiCheckboxError] = useState([]);
-  // const [galleryImageFile, setGalleryImageFile] = useState([]);
+
+  // ------------ Formik Methods to manage form flow ---------------------
   const { values, validateForm, setFieldValue, setFieldError, setErrors, setFieldTouched, validateField, errors, isValid, dirty, touched } = useFormikContext();
-  // let imageCrop ;
+
+  // ------------ Form Context getting from Adddeviceparent.jsx ---------------------
+  const { backendValidation, allTaxonomy } = useContext(AddDeviceFormContext);
   const { isImageSelected, setIsImageSelected, selectedMultiImageFile, setSelectedMultiImageFile, selectedImageFile, setSelectedImageFile, cropedImageFile, setCropedImageFile } = useContext(AddDeviceFormContext);
 
+  // ------------ These refs used to manage radio field state ---------------------
   const inputYoutubeRef = useRef(null);
   const inputVimeoRef = useRef(null);
-  // const fileImageRef = useRef(null);
-  // const multiImageRef = useRef(null);
-  // const formikRef = useRef(null);
-  // useEffect(() => {
-  //   // This effect runs whenever errors, isValid, or dirty change
-  //   if (!isValid && dirty) {
-  //     // Perform actions based on the updated errors
-  //     console.log(errors); // Inspect the latest errors
-  //   }
-  // }, [errors, isValid, dirty]);
 
 
-  // useEffect(() => {
-  //   // This effect runs whenever errors, isValid, or dirty change
-  //   // console.log("File ref has any data? ");
-  //   // console.log(fileImageRef.current?.files);
-  //   // if (fileImageRef.current?.files.length > 0) {
-  //   //   console.log(fileImageRef.current.files[0]);
-  //   // if(featureImageFile != null)
-  //   // {
-  //   // console.log("Feature Image");
-  //   // console.log(featureImageFile);
-  //   if (!isValid && dirty && (featureImageFile != null)) {
-  //     // console.log("UseEffect error and handleSelect is called");
-  //     handleSelectedImageFile(featureImageFile, errors);
-  //     // setFeatureImageFile(null);
-  //   }
-
-  // }, [errors, isValid, dirty, featureImageFile]);
-
-
+  /* 
+      This useEffect will provide updated values from formik and run some conditions Used on FeatureImage
+  */
   useEffect(() => {
     console.log("Values useEffect Open");
-    // console.log(touched);
-    // if (values.gallery.length <= 5 && !maxFileIndicate) {
 
+    if (touched.featureImage) {
+      if (errors.featureImage && values.featureImage !== "") {
+        console.log("Values Error UseEffect");
+        handleSelectedImageFile("error");
+        return; // Exit useEffect to avoid further actions if there are errors
+      }
+
+      // 2. Proceed with Updates if No Errors:
+      if (touched.featureImage && values.featureImage != "") {
+        console.log("Values Touch UseEffect");
+        // setGalleryImageFile([...values.gallery]);
+        handleSelectedImageFile("no-error");
+      }
+    }
     // 1. Check for Errors FIRST:
-    if (errors.featureImage && values.featureImage !== "") {
-      console.log("Values Error UseEffect");
-      handleSelectedImageFile("error");
-      return; // Exit useEffect to avoid further actions if there are errors
-    }
 
-    // 2. Proceed with Updates if No Errors:
-    if (touched.featureImage && values.featureImage != "") {
-      console.log("Values Touch UseEffect");
-      // setGalleryImageFile([...values.gallery]);
-      handleSelectedImageFile("no-error");
-    }
     console.log("Values useEffect Closed ");
     // }
 
+  }, [values.featureImage, errors.featureImage]);
 
-  }, [values, errors.featureImage]);
 
-
+  /* 
+    This useEffect will provide updated values from formik and run some conditions Used on Gallery Image
+*/
   useEffect(() => {
     console.log("Values useEffect Open");
-    // console.log(touched);
-    // if (values.gallery.length <= 5 && !maxFileIndicate) {
-
-
-
 
     //BELOWE CODE IS FOR GALLERY IMAGES
+    if (touched.gallery) {
+      if (errors.gallery && values.gallery.length > 0) {
+        console.log("Values Error UseEffect");
+        handleSelectedMultiImageFile("error");
+        return; // Exit useEffect to avoid further actions if there are errors
+      }
 
+      // 2. Proceed with Updates if No Errors:
+      if (touched.gallery && values.gallery[0] != null) {
+        console.log("Values Touch UseEffect");
+        // setGalleryImageFile([...values.gallery]);
+        handleSelectedMultiImageFile("no-error");
+      }
+    }
     // 1. Check for Errors FIRST:
-    if (errors.gallery && values.gallery.length > 0) {
-      console.log("Values Error UseEffect");
-      handleSelectedMultiImageFile("error");
-      return; // Exit useEffect to avoid further actions if there are errors
-    }
 
-    // 2. Proceed with Updates if No Errors:
-    if (touched.gallery && values.gallery[0] != null) {
-      console.log("Values Touch UseEffect");
-      // setGalleryImageFile([...values.gallery]);
-      handleSelectedMultiImageFile("no-error");
-    }
     console.log("Values useEffect Closed ");
-    // }
 
 
   }, [values, errors.gallery]);
-  // 
 
+  //Added For loggin purposes
   useEffect(() => {
     console.log("Errors in image checkbox");
     console.log(imageMultiCheckboxError);
   }, [imageMultiCheckboxError])
 
 
-  // useEffect(() => {
-  //   console.log("Gallery touched Open 169");
-  //   console.log(touched);
-  //   if (touched.gallery && values.gallery[0] != null) {
-  //     // console.log();
-  //     console.log("inside useEffect values 173");
-  //     setGalleryImageFile([...values.gallery]);
-  //   }
-
-  //   console.log(dirty + " " + values.gallery.length);
-  //   console.log(values.gallery);
-  //   if (dirty && (values.gallery.length > 0)) {
-  //     console.log("Gallery Image Error UseEffect 199");
-  //     handleSelectedMultiImageFile("error");
-  //   }
-  //   console.log("Gallery touched Close 177");
-
-  //   //   console.log(values.gallery);
-
-  //   // return () => {
-  //   //   second
-  //   // }
-  // }, [values, errors.gallery])
-
-  // useEffect(() => {
-  //   // This effect runs whenever errors, isValid, or dirty change
-  //   // console.log("File ref has any data? ");
-  //   // console.log(fileImageRef.current?.files);
-  //   // if (fileImageRef.current?.files.length > 0) {
-  //   //   console.log(fileImageRef.current.files[0]);
-  //   // if(featureImageFile != null)
-  //   // {
-  //   console.log("+++++++++++++++++++++++++++++++++");
-  //   console.log("Gallery Image Error Called ");
-  //   console.log(galleryImageFile.length);
-  //   console.log(!isValid + " " + dirty);
-  //   if (!isValid && dirty && (galleryImageFile.length > 0)) {
-  //     console.log("Gallery Image Error UseEffect 199");
-  //     handleSelectedMultiImageFile("error");
-  //     // galleryImageFile.forEach(file => {
-  //     // });
-  //     // setFeatureImageFile(null);
-  //   }
-  //   console.log("Gallery Image Error Closed ");
-  //   console.log("+++++++++++++++++++++++++++++++++");
-  // }, [errors]);
 
 
-  // useEffect(() => {
+  //onChange handle method for featureImage where populating image
+  const handleSelectedImageFile = async (type) => {
 
+    console.log("HandleSelectedImageFile Called " + type);
 
-  //   console.log("----------------------------------");
-  //   console.log("Gallery Image File Called ");
-  //   console.log(galleryImageFile.length);
-  //   console.log(!isValid + " " + dirty);
-  //   if (!isValid && dirty && (galleryImageFile.length > 0)) {
-  //     console.log("Gallery Image File UseEffect2 223");
-  //     handleSelectedMultiImageFile("galleryImageFile");
-  //     // galleryImageFile.forEach(file => {
-  //     // });
-  //     // setFeatureImageFile(null);
-  //   }
-  //   console.log("Gallery Image File Closed ");
+    setFieldTouched("featureImage", true); // Always touch the field for validation
 
-  //   console.log("----------------------------------");
+    console.log(errors);
 
-  // }, [galleryImageFile]);
+    // 3. Additional Error Check:
+    if (errors.featureImage) {
+      console.log("Inside errors.gallery is true means error found ");
+      if (cropedImageFile !== '') setCropedImageFile('')
+      setSelectedImageFile('');
+      setFeatureImageDemoFile(values.featureImage);
+      setImageSingleCheckboxError(errors.featureImage);
+      return; // Don't proceed with upload if there's an error
+    }
+
+    // 4. Proceed with Upload if No Errors:
+    console.log("Inside !errors.gallery is true means no error found");
+    setFeatureImageDemoFile('');
+    setImageSingleCheckboxError('');
+    if (cropedImageFile === '') setSelectedImageFile(values.featureImage);
+    console.log("File added into select multi image hook");
+
+  }
 
 
 
+  //onClick handle method For featureImage remove
+  const handleImageCheckbox = async (e) => {
+
+    //If croped Image hook has some data then clean up 
+    if (cropedImageFile !== '') setCropedImageFile('');
+    //If errors.featureImage has some errors then filter then set featureImage to "", clear other field as well
+    if (errors.featureImage) {
+      console.log(errors.featureImage);
+      const filteredErrors = Object.keys(errors).reduce((acc, fieldName) => {
+        // Filter based on your condition (replace with your actual logic)
+        if (fieldName !== 'featureImage') {
+          acc[fieldName] = errors[fieldName];
+        }
+        return acc;
+      }, {});
+      console.log(filteredErrors);
+      await setFieldValue("featureImage", '');
+      setErrors(filteredErrors)
+      setFeatureImageDemoFile('');
+      setImageSingleCheckboxError('');
+    } else {
+
+      await setFieldValue("featureImage", '');
+      setFeatureImageDemoFile('');
+      setImageSingleCheckboxError('');
+    }
+  }
+
+  const handleSelectedMultiImageFile = async (type) => {
+    console.log("HandleSelectedMultiImageFile Called " + type);
+
+    setFieldTouched("gallery", true); // Always touch the field for validation
+
+    console.log(errors);
+
+    // 3. Additional Error Check:
+    if (errors.gallery) {
+      console.log("Inside errors.gallery is true means error found 435");
+      setSelectedMultiImageFile(values.gallery);
+      setImageMultiCheckboxError(errors.gallery);
+      return; // Don't proceed with upload if there's an error
+    }
+
+    // 4. Proceed with Upload if No Errors:
+    console.log("Inside !errors.gallery is true means no error found 435");
+    setSelectedMultiImageFile(values.gallery);
+    console.log("File added into select multi image hook");
+  };
 
 
+  //onClick handle method For gallery image remove one by one
+  const handleImageMultiCheckbox = async (indexToRemove) => {
+    await setSelectedMultiImageFile(selectedMultiImageFile => selectedMultiImageFile.filter((_, index) => index !== indexToRemove));
 
-  // useEffect(() => {
+    const gallery = values.gallery;
+    gallery.splice(indexToRemove, 1)
 
-  //   console.log("outside selectimage effect");
-  //   if (selectedImageFile !== "" && isImageSelected === false) {
-  //     setIsImageSelected(true);
-  //     console.log("UseEffect file+false");
-  //     selectedImageFile ? console.log(selectedImageFile) : console.log("no data in selectedImageFile hook");
-  //   }
+    if (imageMultiCheckboxError.length !== 0) {
+      const errorMessages = imageMultiCheckboxError;
+      errorMessages.splice(indexToRemove, 1);
+      setImageMultiCheckboxError(errorMessages);
+    }
 
-  //   if (selectedImageFile === "" && isImageSelected === true) {
-  //     const filteredErrors = Object.keys(errors).reduce((acc, fieldName) => {
-  //       // Filter based on your condition (replace with your actual logic)
-  //       if (fieldName !== 'featureImage') {
-  //         acc[fieldName] = errors[fieldName];
-  //       }
-  //       return acc;
-  //     }, {});
+    console.log("handleImageMultiCheckbox index removed :" + indexToRemove);
+    console.log(gallery);
 
-  //     setErrors(filteredErrors);
-  //     setIsImageSelected(false);
-  //     console.log(errors.featureImage);
-  //     console.log("UseEffect file+true");
-  //   }
-  // }, [selectedImageFile]);
+    if (gallery.length !== 0) {
+      const filteredErrors = Object.keys(errors).reduce((acc, fieldName) => {
+        // Filter based on your condition (replace with your actual logic)
+        if (fieldName !== 'gallery') {
+          acc[fieldName] = errors[fieldName];
+        }
+        return acc;
+      }, {});
+      setErrors(filteredErrors)
+      await setFieldValue('gallery', gallery);
 
-  //onChange Listener on input file tag(gallery)
-  // useEffect(() => {
-  //   if (multiImageRef.current) {
-  //     multiImageRef.current.addEventListener('change', handleSelectedMultiImageFile);
-  //   }
-  //   return () => { // Add a cleanup function
-  //     if (multiImageRef.current) {
-  //       multiImageRef.current.removeEventListener('change', handleSelectedMultiImageFile);
-  //     }
-  //   }
-  // }, [selectedMultiImageFile]);
+      //Custom Max Min file check validation.
+      customValidation();
+      console.log("handleImageMultiCheckbox working.....");
+      return;
+    } else {
+      setFieldValue('gallery', []);
+    }
 
+    console.log("handleImageMultiCheckbox closed.....");
+
+  }
+
+  //This handle method used to capture input entered text and save them into redux state
+  const handleChange = async (event) => {
+    const { name, value } = event.target;
+    console.log("handle change called");
+
+    if (name === 'featureImage') {
+      const file = event.target.files[0];
+      console.log('\x1b[36m%s\x1b[0m', "inside handle change called");
+      setFieldValue(name, file);
+      setFieldTouched("featureImage", true);
+      return;
+    }
+
+    if (name === 'gallery') {
+
+      console.log("Gallery new File uploading.....................");
+      console.log(event.target.files);
+      const filesObject = event.target.files;
+      const fileObjects = Array.from(filesObject).map(file => ({
+        file: file, // Store the original file object
+      }));
+      let fileLength = values.gallery.length + fileObjects.length;
+
+      (fileLength < 3) ? setMinFileValidation(prev => ({ ...prev, isMinImage: true }))
+        : setMinFileValidation(prev => ({ ...prev, isMinImage: false }))
+      // if (fileLength < 3) {
+      //   setMinFileValidation((prevState) => ({
+      //     ...prevState,    // Copy all existing properties
+      //     isMinImage: true // Update isMaxImage
+      //   }));
+
+      // } else {
+      //   setMinFileValidation((prevState) => ({
+      //     ...prevState,    // Copy all existing properties
+      //     isMinImage: false // Update isMaxImage
+      //   }));
+      // }
+      if (fileLength <= 5) {
+        maxFileValidation.isMaxImage && setMaxFileValidation(prev => ({ ...prev, isMaxImage: false }));
+        setFieldTouched("gallery", true);
+        await setFieldValue(name, [...values.gallery, ...fileObjects]);
+      } else {
+        setMaxFileValidation(prev => ({ ...prev, isMaxImage: true }));
+      };
+      console.log("Values updated........");
+      return;
+    }
+
+    console.log("handle change closed");
+
+    setFieldValue(name, value);
+    dispatch(updateField({ field: name, value }));
+
+  };
 
   //onClick Listener on input radio tag(video/youtube)
   useEffect(() => {
@@ -372,9 +465,6 @@ const AddDeviceStep2 = () => {
     dispatch(updateAppDataDevice({ case: "VIDEO", field: "isVimeoChecked", value: false }))
     dispatch(updateAppDataDevice({ case: "VIDEO", field: "isYoutubeChecked", value: true }))
     dispatch(updateAppDataDevice({ case: "VIDEO", field: "myfieldinsideradio", value: true }))
-    // setIsVimeoChecked(false); 
-    // setIsYoutubeChecked(true);
-    // setFieldInsideRadio(true);
   };
 
   //Click method for Vimeo radio
@@ -383,236 +473,7 @@ const AddDeviceStep2 = () => {
     dispatch(updateAppDataDevice({ case: "VIDEO", field: "isYoutubeChecked", value: false }))
     dispatch(updateAppDataDevice({ case: "VIDEO", field: "isVimeoChecked", value: true }))
     dispatch(updateAppDataDevice({ case: "VIDEO", field: "myfieldinsideradio", value: true }))
-    // setIsYoutubeChecked(false); 
-    // setIsVimeoChecked(true);
-    // setFieldInsideRadio(true);
   };
-
-
-  //onChange handle method for featureImage where populating image
-  const handleSelectedImageFile = async (type) => {
-
-    console.log("HandleSelectedMultiImageFile Called " + type);
-
-    setFieldTouched("featureImage", true); // Always touch the field for validation
-
-    console.log(errors);
-
-    // 3. Additional Error Check:
-    if (errors.featureImage) {
-      console.log("Inside errors.gallery is true means error found 435");
-      if (cropedImageFile !== '') setCropedImageFile('')
-      setSelectedImageFile('');
-      setFeatureImageDemoFile(values.featureImage);
-      setImageSingleCheckboxError(errors.featureImage);
-      return; // Don't proceed with upload if there's an error
-    }
-
-    // 4. Proceed with Upload if No Errors:
-    console.log("Inside !errors.gallery is true means no error found 435");
-    setSelectedImageFile(values.featureImage);
-    console.log("File added into select multi image hook");
-
-    // if (!errors.featureImage) {
-    //   setFieldTouched("featureImage", true);
-    //   console.log("handleSelectedImage Called 280");
-    //   setSelectedImageFile(file)
-    // } else {
-    //   console.log("Error found line 283 ");
-    //   if (cropedImageFile !== '') setCropedImageFile('')
-    //   setSelectedImageFile('')
-    //   setFieldTouched("featureImage", true);
-    // }
-
-  }
-
-
-
-  //onClick handle method For featureImage remove
-  const handleImageCheckbox = async(e) => {
-    if(cropedImageFile !== '')setCropedImageFile('');
-    if (errors.featureImage) {
-      console.log(errors.featureImage);
-      const filteredErrors = Object.keys(errors).reduce((acc, fieldName) => {
-        // Filter based on your condition (replace with your actual logic)
-        if (fieldName !== 'featureImage') {
-          acc[fieldName] = errors[fieldName];
-        }
-        return acc;
-      }, {});
-      console.log(filteredErrors);
-      await setFieldValue("featureImage", '');
-      setErrors(filteredErrors)
-      setFeatureImageDemoFile('');
-      setImageSingleCheckboxError('');
-    } else{
-      await setFieldValue("featureImage", '');
-      setFeatureImageDemoFile('');
-        setImageSingleCheckboxError('');
-    }
-  }
-
-  const handleSelectedMultiImageFile = async (type) => {
-    console.log("HandleSelectedMultiImageFile Called " + type);
-
-    setFieldTouched("gallery", true); // Always touch the field for validation
-
-    console.log(errors);
-
-    // 3. Additional Error Check:
-    if (errors.gallery) {
-      console.log("Inside errors.gallery is true means error found 435");
-      setSelectedMultiImageFile(values.gallery);
-      setImageMultiCheckboxError(errors.gallery);
-      return; // Don't proceed with upload if there's an error
-    }
-
-    // 4. Proceed with Upload if No Errors:
-    console.log("Inside !errors.gallery is true means no error found 435");
-    setSelectedMultiImageFile(values.gallery);
-    // setImageMultiCheckboxError(errors.gallery);
-    // console.log(imageMultiCheckboxError);
-    console.log("File added into select multi image hook");
-  };
-
-  //onChange handle method for gallery where populating image one by one
-  // const handleSelectedMultiImageFile = async (type) => {
-
-  //   console.log("handleSelectedMultiImageFile Called " + type);
-
-  //   if (!errors.gallery) {
-  //     setFieldTouched("gallery", true);
-  //     console.log(errors);
-  //     console.log("Inside !erros.gallery is true means no error found 435");
-  //     setSelectedMultiImageFile(values.gallery)
-  //     console.log("File added into select multi image hook");
-  //     // [...selectedMultiImageFile, ...galleryImageFile]
-  //     // setGalleryImageFile([])
-  //     } else {
-  //       console.log(errors);
-  //       console.log("Inside !erros.gallery is false means error found 435");
-
-  //       setFieldTouched("gallery", true);
-  //       }
-  //       console.log("handleSelectedMultiImageFile Closed " + type);
-
-  //       }
-
-  // if (cropedImageFile !== '') setCropedImageFile('')
-  // setGalleryImageFile([])
-  // const updatedValues = values.gallery;
-  // const newUpdatedValues = updatedValues.pop();
-  // console.log(newUpdatedValues);
-  // console.log(!errors.gallery);
-  // try {
-  //   await validateField("gallery")
-  //   console.log("no error found")
-  // } catch (error) {
-  //   console.log(error.message);
-  // }
-
-  //onClick handle method For gallery image remove one by one
-  const handleImageMultiCheckbox = async (indexToRemove) => {
-    await setSelectedMultiImageFile(selectedMultiImageFile => selectedMultiImageFile.filter((_, index) => index !== indexToRemove));
-
-    const gallery = values.gallery;
-    gallery.splice(indexToRemove, 1)
-
-    if (imageMultiCheckboxError.length !== 0) {
-      const errorMessages = imageMultiCheckboxError;
-      errorMessages.splice(indexToRemove, 1);
-      setImageMultiCheckboxError(errorMessages);
-    }
-
-
-    console.log("handleImageMultiCheckbox index removed :" + indexToRemove);
-    console.log(gallery);
-
-    if (gallery.length !== 0) {
-      const filteredErrors = Object.keys(errors).reduce((acc, fieldName) => {
-        // Filter based on your condition (replace with your actual logic)
-        if (fieldName !== 'gallery') {
-          acc[fieldName] = errors[fieldName];
-        }
-        return acc;
-      }, {});
-      setErrors(filteredErrors)
-      await setFieldValue('gallery', gallery);
-      if (maxFileIndicate) setMaxFileIndicate(false)
-      console.log("handleImageMultiCheckbox working.....");
-      // values.gallery.splice(indexToRemove, 1)
-      return;
-
-    } else {
-
-      setFieldValue('gallery', []);
-    }
-
-    console.log("handleImageMultiCheckbox closed.....");
-
-    // setGalleryImageFile([...galleryImageFile, ...fileObjects])
-
-  }
-
-  //This handle method used to capture input entered text and save them into redux state
-  const handleChange = async(event) => {
-    const { name, value } = event.target;
-    console.log("handle change called");
-    console.log(event.target?.files[0]);
-
-    if (name === 'featureImage') {
-      const file = event.target.files[0];
-      console.log('\x1b[36m%s\x1b[0m', "inside handle change called");
-      // await setFieldValue(name, "");
-      setFieldValue(name, file);
-      setFieldTouched("featureImage", true);
-
-      // handleSelectedImageFile(file, errors);
-      // dispatch(updateField({ field: name, file }));
-      return;
-    }
-
-    if (name === 'gallery') {
-      // if(event.target.files.length === 0 ){
-      //   const error
-      // }
-      console.log("Gallery new File uploading.....................");
-      console.log(event.target.files);
-      const filesObject = event.target.files;
-      const fileObjects = Array.from(filesObject).map(file => ({
-        file: file, // Store the original file object
-      }));
-
-      // setFieldValue(name, [
-      //   ...(values.gallery[0] === null ? [] : [values.gallery[0]]), // Conditional spreading
-      //   ...values.gallery.slice(1), // Rest of the original array
-      //   ...fileObjects
-      // ]);
-      if ((values.gallery.length + fileObjects.length) <= 5) {
-        if (maxFileIndicate) setMaxFileIndicate(false)
-        setFieldValue(name, [...values.gallery, ...fileObjects]);
-        setFieldTouched("gallery", true);
-      } else {
-        setMaxFileIndicate(true);
-      }
-
-
-      // if (values.gallery[0] === null) { console.log("first value is null"); }
-      // setFieldValue(name, [...values.gallery, ...fileObjects]);
-      console.log("Values updated........");
-      // console.log(values.gallery);
-
-      // setGalleryImageFile([...values.gallery, ...fileObjects]);
-      return;
-    }
-
-    console.log("handle change closed");
-
-    setFieldValue(name, value);
-    dispatch(updateField({ field: name, value }));
-
-  };
-
 
   //This method used to decrement current step of form and update state in appData reducer
   const prev = () => {
@@ -623,38 +484,48 @@ const AddDeviceStep2 = () => {
   //This method used to increment current step of form and update state in appData reducer
   const next = async () => {
 
+    // dispatch(updateAppDataDevice({ case: "CURRENTSTEP", value: appData.currentStep + 1 }));
+
+
     const errors = await validateForm();
-    if (Object.keys(errors).length > 0) {
-      // console.log("Croped image has something "+(cropedImageFile !== ''));
-      // console.log(errors);
-      if (cropedImageFile !== '') {
-        console.log("Croped image has something " + (cropedImageFile !== ''));
-        const filteredErrors = Object.keys(errors).reduce((acc, fieldName) => {
-          // Filter based on your condition (replace with your actual logic)
-          if (fieldName !== 'featureImage') {
-            acc[fieldName] = errors[fieldName];
-          }
-          return acc;
-        }, {});
+    dispatch(updateAppDataDevice({ case: "CURRENTSTEP", value: appData.currentStep + 1 }));
 
+    //Check all condition regarding validation and errors then go to next step
+    // if (values.gallery.length >= 3 && values.gallery.length <= 5 && (!Object.keys(errors).length)) {
+    //   dispatch(updateAppDataDevice({ case: "CURRENTSTEP", value: appData.currentStep + 1 }));
+    // }
 
-        setErrors(filteredErrors)
-      }
+    //Below code make field touch so error will be visible on form 
+    // for (const key in errors) {
+    //   setFieldTouched(key, true);
+    // }
 
-      if (values > 0) {
-
-      }
-
-      Object.keys(errors).forEach(key => {
-        setFieldTouched(key, true);
-      });
-
-    } else {
-      dispatch(updateAppDataDevice({ case: "CURRENTSTEP", value: (appData.currentStep + 1) }));
-    }
-
+    // This will check if images are uploaded. if yes then how much if that is less than 3 then show validation message
+    // setMinFileValidation(prev => ({ ...prev, isMinImage: values.gallery.length < 3 }));
 
   };
+
+
+  // if (cropedImageFile !== '') {
+  //   console.log("Croped image has something " + (cropedImageFile !== ''));
+  //   const filteredErrors = Object.keys(errors).reduce((acc, fieldName) => {
+  //     if (fieldName !== 'featureImage') {
+  //       acc[fieldName] = errors[fieldName];
+  //     }
+  //     return acc;
+  //   }, {});
+  //   setErrors(filteredErrors)
+  // }
+
+
+  const customValidation = () => {
+    //gallery length is less than 3 then save true
+    setMinFileValidation(prev => ({ ...prev, isMinImage: values.gallery.length < 3 }));
+
+    //If isMaxImage is true then save value to false
+    maxFileValidation.isMaxImage && setMaxFileValidation(prev => ({ ...prev, isMaxImage: false }));
+
+  }
 
   return (
     <>
@@ -677,6 +548,7 @@ const AddDeviceStep2 = () => {
                   name="hardwareHighlights"
                   id="hardwareHighlights"                                                          //New Code
                   type="text"
+                  validate={backendValidation}
                   onChange={handleChange}
                   value={formData.hardwareHighlights}
                   placeholder="190 characters"
@@ -694,6 +566,7 @@ const AddDeviceStep2 = () => {
                   name="softwareUpgradesOsApplicationsworklistHighlights"                                                          //New Code
                   id="softwareUpgradesOsApplicationsworklistHighlights"                                                          //New Code
                   type="text"
+                  validate={backendValidation}
                   onChange={handleChange}
                   value={formData.softwareUpgradesOsApplicationsworklistHighlights}
                   placeholder="190 characters"
@@ -714,6 +587,7 @@ const AddDeviceStep2 = () => {
                   id="accessoriesHighlights"                                                          //New Code
                   type="text"
                   onChange={handleChange}
+                  validate={backendValidation}
                   value={formData.accessoriesHighlights}
                   placeholder="190 characters"
                 />
@@ -740,7 +614,7 @@ const AddDeviceStep2 = () => {
                   />
 
                   {/* imageRef={fileImageRef} */}
-                  <FileUpload name="featureImage" id="featureImage" onChange={handleChange} value={undefined} />
+                  <FileUpload key={selectedImageFile ? selectedImageFile.name : Date.now()} name="featureImage" id="featureImage" validate={backendValidation} onChange={handleChange} value={undefined} />
                   {(selectedImageFile instanceof File) && (
                     <ImageCrop />
                   )}
@@ -829,7 +703,7 @@ const AddDeviceStep2 = () => {
                     </div>
                     <Field type="checkbox" onClick={handleImageCheckbox} name="imageCheckbox" checked className="checkbox-instance custom-checkbox"></Field>
                   </div>
-             
+
                 )
               }
             </div>
@@ -851,7 +725,7 @@ const AddDeviceStep2 = () => {
                   />
 
                   {/* multi_imageRef={multiImageRef} */}
-                  <MultiFileUpload name="gallery" id="gallery" onChange={handleChange} maxFileWarning={maxFileIndicate} value={[undefined]} />
+                  <MultiFileUpload name="gallery" id="gallery" onChange={handleChange} validate={backendValidation} maxFileWarning={maxFileValidation} minFileWarning={minFileValidation} value={[undefined]} />
                 </div>
               </div>
               {
@@ -927,7 +801,7 @@ const AddDeviceStep2 = () => {
                 </div>
               </div>
               {appData.myfieldinsideradio && (
-                <Field type="text" name="linkVideo" onChange={handleChange} value={formData.linkVideo} className="text-input text-25 content-15 myinputfield" />
+                <Field type="text" name="linkVideo" onChange={handleChange} validate={backendValidation} value={formData.linkVideo} className="text-input text-25 content-15 myinputfield" />
               )}
 
             </div>
@@ -946,7 +820,7 @@ const AddDeviceStep2 = () => {
               <div className="input-field-6">
                 <div className="input-with-label-2">
 
-                  <MySelect label="Select one from the saved addresses " name="location" id="location" onChange={handleChange} value={formData.location}>
+                  <MySelect label="Select one from the saved addresses " validate={backendValidation} name="location" id="location" onChange={handleChange} value={formData.location}>
                     <option value="0">Select From Dropdown list </option>
                     <option value="India">India</option>
                     <option value="USA">USA</option>

@@ -17,11 +17,15 @@ export const AddDeviceAPI = createApi({
         }),
         addDevice: builder.mutation({
             query: (body) => {
-                // console.log("Hardware Data");
-                // console.log(body.get('hardware'));
+                for (const [key, value] of body.entries()) {
+                    console.log(key, value);
+                }
+                // // console.log("Hardware Data");
+                // console.log(body.get('transactionType'));
                 return {
                     url: '/add-device',
                     method: 'POST',
+                    //If you enable this will get boundary error. request should go automatically with error boundary. ex = multipart/form-data; boundary=----WebKitFormBoundaryzsIovpw2aofNEclm
                     // headers:{'Content-Type':'multipart/form-data'},
                     body: body,
                 };
